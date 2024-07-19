@@ -4,9 +4,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from backend.vo.categoryVO import CategoryVO
-from backend.vo.subCategoryVO import SubCategoryVO
-from backend.vo.productVO import ProductVO
+from backend.vo.category_vo import CategoryVO
+from backend.vo.subcategory_vo import SubCategoryVO
+from backend.vo.product_vo import ProductVO
 from backend.db.db import Base
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

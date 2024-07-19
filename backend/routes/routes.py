@@ -1,8 +1,9 @@
 from fastapi import APIRouter
-from backend.api.controller import categoryController, subCategoryController, productController
+
+from backend.api.controller import category_controller, subcategory_controller, product_controller
 
 router = APIRouter()
 
-router.include_router(categoryController.category)
-router.include_router(subCategoryController.subCategory)
-router.include_router(productController.product)
+router.include_router(category_controller.category)
+router.include_router(subcategory_controller.subCategory)
+router.include_router(product_controller.product)

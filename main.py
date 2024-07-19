@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from backend.routes import routes
-app = FastAPI()
+app = FastAPI(debug=True)
 app.include_router(routes.router)
 
 
