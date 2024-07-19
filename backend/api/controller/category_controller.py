@@ -32,8 +32,8 @@ async def create_category(category_insert: CategoryDTO, response: Response):
 
 @category.get("/get_categories/")
 async def read_categories(response: Response):
-    category_services = CategoryServices()
     try:
+        category_services = CategoryServices()
         response_data = category_services.admin_read_categories()
 
         response.status_code = response_data.get('status_code')
@@ -46,8 +46,8 @@ async def read_categories(response: Response):
 
 @category.delete("/delete_category/")
 async def delete_category(category_id: int, response: Response):
-    category_services = CategoryServices()
     try:
+        category_services = CategoryServices()
         if not category_id:
             ApplicationServices.application_response(HttpStatusCodeEnum.NOT_FOUND,
                                                      ResponseMessageEnum.CategoryNotFound, False, data={})
@@ -61,8 +61,21 @@ async def delete_category(category_id: int, response: Response):
         ApplicationServices.handle_exception(exception, is_raise=True)
 
 
-@category.put("/update_category/", response_model=UpdateCategoryDTO)
+@category.put("/update_category/")
 async def update_category(update_category_id: int, category_update:
-                          UpdateCategoryDTO):
-    category_services = CategoryServices()
-    return category_services.admin_update_category(update_category_id=update_category_id, category=category_update)
+                          UpdateCategoryDTO, response: Response):
+    try:
+        category_services = CategoryServices()
+        if not category_update:
+            response.status_code = HttpStatusCodeEnum.BAD_REQUEST.value
+            return ApplicationServices.application_response(
+                HttpStatusCodeEnum.BAD_REQUEST,
+                ResponseMessageEnum.BadRequest, False, data={})
+
+        response_data = category_services.admin_update_category(update_category_id, category_update)
+        response.status_code = response_data.get('status_code')
+        return response_data.get('response_message')
+
+    except Exception as exception:
+        print(f"Category Update Controller Exception: {exception}")
+        ApplicationServices.handle_exception(exception, is_raise=True)

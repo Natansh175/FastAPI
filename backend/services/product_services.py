@@ -23,7 +23,7 @@ def fk_delete_check(category_id: int, subcategory_id: int):
     category_dao = CategoryDAO()
     subcategory_dao = SubCategoryDAO()
 
-    category_vo_list = category_dao.read_category(category_id)
+    category_vo_list = category_dao.read_category_immutable(category_id)
     subcategory_vo_list = subcategory_dao.read_subcategory(subcategory_id)
 
     if category_vo_list is not None and subcategory_vo_list is not None:
@@ -38,7 +38,7 @@ def admin_insert_product(category_id: int, subcategory_id: int,
     try:
         category_dao = CategoryDAO()
         subcategory_dao = SubCategoryDAO()
-        category_vo_list = category_dao.read_category(category_id)
+        category_vo_list = category_dao.read_category_immutable(category_id)
         subcategory_vo_list = subcategory_dao.read_subcategory(subcategory_id)
 
         if category_vo_list is None or subcategory_vo_list is None:
@@ -99,7 +99,7 @@ def admin_read_products():
                     "product_image": product.product_image_path,
                 }
                 for product in product_data
-                if not category_dao.read_category(
+                if not category_dao.read_category_immutable(
                     product.product_category_id) is None
                 and not subcategory_dao.read_subcategory(
                     product.product_subcategory_id) is None

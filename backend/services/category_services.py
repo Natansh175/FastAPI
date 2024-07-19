@@ -1,4 +1,3 @@
-from fastapi import HTTPException
 from datetime import datetime
 
 from backend.vo.category_vo import CategoryVO
@@ -14,7 +13,6 @@ class CategoryServices:
         try:
             category_vo = CategoryVO()
             category_dao = CategoryDAO()
-            application_services = ApplicationServices()
 
             category_vo.category_name = category.category_name
             category_vo.category_description = category.category_description
@@ -26,14 +24,14 @@ class CategoryServices:
             if category_vo.category_count > 0 and category_vo.category_name != "" and category_vo.category_description != "":
                 category_dao.create_category(category_vo)
 
-                return application_services.application_response(
+                return ApplicationServices.application_response(
                     status_code=HttpStatusCodeEnum.CREATED.value,
                     response_message=ResponseMessageEnum.CategoryCreated.value,
                     success=True,
                     data=category.model_dump())
 
             else:
-                return application_services.application_response(
+                return ApplicationServices.application_response(
                     status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY.value,
                     response_message=ResponseMessageEnum.CategoryUnprocessableEntity.value,
                     success=False,
@@ -79,7 +77,7 @@ class CategoryServices:
     def admin_delete_category(category_id: int):
         try:
             category_dao = CategoryDAO()
-            category_vo_list = category_dao.edit_category(category_id)
+            category_vo_list = category_dao.read_category_mutable(category_id)
 
             if category_vo_list is not None and not category_vo_list.is_deleted:
                 category_vo_list.is_deleted = True
@@ -102,24 +100,35 @@ class CategoryServices:
                               UpdateCategoryDTO):
         try:
             category_dao = CategoryDAO()
-            category_vo_list = category_dao.edit_category(update_category_id)
+            category_vo_list = category_dao.read_category_mutable(update_category_id)
             if category_vo_list is not None and category_vo_list.is_deleted == 0:
 
                 update_data = category.model_dump(exclude_unset=True)
-
                 for key, value in update_data.items():
                     setattr(category_vo_list, key, value)
 
                 category_vo_list.edited_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M')
-                category_dao.update_category(category_vo_list=category_vo_list)
 
-                return category_vo_list
+                if category.category_count == 0 or category.category_name == "" or category.category_description == "":
+
+                    return ApplicationServices.application_response(
+                        status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY.value,
+                        response_message=ResponseMessageEnum.CategoryUnprocessableEntity.value,
+                        success=False,
+                        data={})
+
+                else:
+                    category_dao.update_category(category_vo_list)
+
+                    return ApplicationServices.application_response(
+                        HttpStatusCodeEnum.OK,
+                        ResponseMessageEnum.CategoryUpdated, True, data=category_vo_list)
 
             else:
-                raise HTTPException(status_code=404, detail="Cannot find category with this ID")
+                return ApplicationServices.application_response(
+                    HttpStatusCodeEnum.NOT_FOUND,
+                    ResponseMessageEnum.CategoryNotFound, False, {})
 
-        except HTTPException as ex:
-            raise ex
-
-        except Exception as ex:
-            raise HTTPException(status_code=500, detail=str(ex))
+        except Exception as exception:
+            print(f"Category Update Service Exception: {exception}")
+            ApplicationServices.handle_exception(exception, is_raise=True)
