@@ -37,11 +37,12 @@ class ResponseMessageEnum(str, Enum):
     ProductUpdated = "Product Updated Successfully."
     ProductImageUpdate = "Product Image Updated Successfully."
     ProductNotFound = "Cannot find Product with provided ID."
+    NoProductFound = "No Products to show!"
     ProductUnprocessableEntity = "Make sure you entered a Name/Description and Product quantity/price is greater than zero."
 
     # Server Error
     InternalServerError = "Internal Server Error."
 
     # Client Error
-    BadRequest = "Bad Request."
+    BadRequest = "Oops! Bad Request."
     OK = "Request Processed Successfully."

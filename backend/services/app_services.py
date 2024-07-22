@@ -29,7 +29,7 @@ class ApplicationServices:
         elif isinstance(exception, ValueError):
             response['status_code'] = 400
             response['response_message'] = str(exception)
-        # Add more exception types as needed
+        # Add more exception types if needed
 
         if is_raise:
             raise HTTPException(status_code=response['status_code'], detail=response['response_message'])

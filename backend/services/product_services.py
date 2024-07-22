@@ -17,14 +17,14 @@ IMAGE_PATH = "static/user_resources/images"
 
 
 # A function to check whether the category or Subcategory is deleted or not
-# Prior of performing any activity on subcategory table.
+# Prior of performing any activity on product table.
 def fk_delete_check(category_id: int, subcategory_id: int):
 
     category_dao = CategoryDAO()
     subcategory_dao = SubCategoryDAO()
 
     category_vo_list = category_dao.read_category_immutable(category_id)
-    subcategory_vo_list = subcategory_dao.read_subcategory(subcategory_id)
+    subcategory_vo_list = subcategory_dao.read_subcategory_immutable(subcategory_id)
 
     if category_vo_list is not None and subcategory_vo_list is not None:
         return True
@@ -39,7 +39,7 @@ def admin_insert_product(category_id: int, subcategory_id: int,
         category_dao = CategoryDAO()
         subcategory_dao = SubCategoryDAO()
         category_vo_list = category_dao.read_category_immutable(category_id)
-        subcategory_vo_list = subcategory_dao.read_subcategory(subcategory_id)
+        subcategory_vo_list = subcategory_dao.read_subcategory_immutable(subcategory_id)
 
         if category_vo_list is None or subcategory_vo_list is None:
             raise HTTPException(detail="No such Category/Subcategory found with provided ID", status_code=404)
@@ -101,7 +101,7 @@ def admin_read_products():
                 for product in product_data
                 if not category_dao.read_category_immutable(
                     product.product_category_id) is None
-                and not subcategory_dao.read_subcategory(
+                and not subcategory_dao.read_subcategory_immutable(
                     product.product_subcategory_id) is None
             ]
 

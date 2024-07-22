@@ -22,18 +22,19 @@ class CategoryServices:
             category_vo.edited_date = ""
 
             if category_vo.category_count > 0 and category_vo.category_name != "" and category_vo.category_description != "":
+
                 category_dao.create_category(category_vo)
 
                 return ApplicationServices.application_response(
-                    status_code=HttpStatusCodeEnum.CREATED.value,
-                    response_message=ResponseMessageEnum.CategoryCreated.value,
+                    status_code=HttpStatusCodeEnum.CREATED,
+                    response_message=ResponseMessageEnum.CategoryCreated,
                     success=True,
                     data=category.model_dump())
 
             else:
                 return ApplicationServices.application_response(
-                    status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY.value,
-                    response_message=ResponseMessageEnum.CategoryUnprocessableEntity.value,
+                    status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                    response_message=ResponseMessageEnum.CategoryUnprocessableEntity,
                     success=False,
                     data={})
 
@@ -60,7 +61,7 @@ class CategoryServices:
 
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, success=True,
-                    data=data_to_show)
+                    data={"Detail": data_to_show})
 
             else:
                 return ApplicationServices.application_response(
@@ -112,8 +113,8 @@ class CategoryServices:
                 if category.category_count == 0 or category.category_name == "" or category.category_description == "":
 
                     return ApplicationServices.application_response(
-                        status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY.value,
-                        response_message=ResponseMessageEnum.CategoryUnprocessableEntity.value,
+                        status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                        response_message=ResponseMessageEnum.CategoryUnprocessableEntity,
                         success=False,
                         data={})
 
@@ -122,7 +123,7 @@ class CategoryServices:
 
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,
-                        ResponseMessageEnum.CategoryUpdated, True, data=category_vo_list)
+                        ResponseMessageEnum.CategoryUpdated, True, category_vo_list)
 
             else:
                 return ApplicationServices.application_response(

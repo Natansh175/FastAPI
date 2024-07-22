@@ -17,7 +17,7 @@ async def create_category(category_insert: CategoryDTO, response: Response):
     try:
         category_services = CategoryServices()
         if not category_insert:
-            response.status_code = HttpStatusCodeEnum.BAD_REQUEST.value
+            response.status_code = HttpStatusCodeEnum.BAD_REQUEST
             return ApplicationServices.application_response(HttpStatusCodeEnum.BAD_REQUEST,
                                                             ResponseMessageEnum.BadRequest, False, data={})
 
@@ -37,7 +37,7 @@ async def read_categories(response: Response):
         response_data = category_services.admin_read_categories()
 
         response.status_code = response_data.get('status_code')
-        return response_data.get('data')
+        return response_data['data']['Detail']
 
     except Exception as exception:
         print(f"Category Read Controller Exception: {exception}")
@@ -49,6 +49,7 @@ async def delete_category(category_id: int, response: Response):
     try:
         category_services = CategoryServices()
         if not category_id:
+            response.status_code = HttpStatusCodeEnum.NOT_FOUND
             ApplicationServices.application_response(HttpStatusCodeEnum.NOT_FOUND,
                                                      ResponseMessageEnum.CategoryNotFound, False, data={})
 
@@ -66,8 +67,8 @@ async def update_category(update_category_id: int, category_update:
                           UpdateCategoryDTO, response: Response):
     try:
         category_services = CategoryServices()
-        if not category_update:
-            response.status_code = HttpStatusCodeEnum.BAD_REQUEST.value
+        if not category_update or not update_category_id:
+            response.status_code = HttpStatusCodeEnum.BAD_REQUEST
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})

@@ -3,9 +3,9 @@ from typing import Optional
 
 
 class SubCategoryDTO(BaseModel):
-    subcategory_name: str = Field(min_length=1)
-    subcategory_description: str = Field(min_length=1)
-    subcategory_count: int = Field(gt=0)
+    subcategory_name: str
+    subcategory_description: str
+    subcategory_count: int
 
     class Config:
         from_attributes = True
