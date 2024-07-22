@@ -1,5 +1,6 @@
 from backend.db.db import Base, SessionLocal
 
+# Creating DataBase Session
 db = SessionLocal()
 
 
@@ -51,6 +52,8 @@ def view_data_by_id(table_name: str, view_id: int):
 
 
 # To update specific data in specific table
+# This function is being used for update
+# as well as partial delete functionalities
 def update_data(table_name: str, data: dict):
     table = Base.metadata.tables.get(table_name)
     if table is None:
@@ -59,28 +62,3 @@ def update_data(table_name: str, data: dict):
     db.merge(data)
     db.flush()
     db.commit()
-
-
-
-
-'''
-
-# For converting single data-row into mutable dictionary
-# If needed in future
-
-if view_stmt:
-        row_dict = {column.name: getattr(view_stmt, column.name) for column in
-                    table.columns}
-        print(row_dict)
-        if row_dict is None:
-            pass
-
-        # Changed operation
-        # Do check in all cases...  (undone)
-        elif row_dict is not None:
-            if row_dict["is_deleted"]:
-                pass
-            else:
-                return row_dict
-                
-'''

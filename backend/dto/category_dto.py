@@ -1,7 +1,5 @@
-from pydantic import BaseModel, constr
+from pydantic import BaseModel
 from typing import Optional
-
-meaningful_string_pattern = r'[a-zA-Z0-9]'
 
 
 class CategoryDTO(BaseModel):

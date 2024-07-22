@@ -1,4 +1,5 @@
 from datetime import datetime
+import logging
 
 from backend.vo.category_vo import CategoryVO
 from backend.dao.category_dao import CategoryDAO
@@ -7,9 +8,39 @@ from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
 from backend.services.app_services import ApplicationServices
 
 
+# Configure logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+# Console handler for all logs
+console_handler = logging.StreamHandler()
+console_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(console_formatter)
+logger.addHandler(console_handler)
+
+# File handler for error logs
+file_handler = logging.FileHandler('category_services.log')
+file_handler.setLevel(logging.ERROR)
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+
 class CategoryServices:
+    """Service class for managing categories in the application."""
+
     @staticmethod
     def admin_insert_category(category: CategoryDTO):
+        """
+        Insert a new category into the database.
+
+        Args:
+            category (CategoryDTO): The data transfer object containing category details.
+
+        Returns:
+            dict: The response from the application services, including status and message.
+        """
+        logger.info("Inserting a new category")
         try:
             category_vo = CategoryVO()
             category_dao = CategoryDAO()
@@ -18,32 +49,41 @@ class CategoryServices:
             category_vo.category_description = category.category_description
             category_vo.category_count = category.category_count
             category_vo.is_deleted = False
-            category_vo.created_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M')
+            category_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
             category_vo.edited_date = ""
 
-            if category_vo.category_count > 0 and category_vo.category_name != "" and category_vo.category_description != "":
-
+            if category_vo.category_count > 0 and category_vo.category_name and category_vo.category_description:
                 category_dao.create_category(category_vo)
-
+                logger.info(f"Category '{category_vo.category_name}' inserted successfully")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.CREATED,
                     ResponseMessageEnum.CategoryCreated,
                     True,
-                    {})
+                    {}
+                )
 
-            else:
-                return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                    ResponseMessageEnum.CategoryUnprocessableEntity,
-                    False,
-                    {})
+            logger.warning("Category insertion failed due to invalid input data")
+            return ApplicationServices.application_response(
+                HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                ResponseMessageEnum.CategoryUnprocessableEntity,
+                False,
+                {}
+            )
 
         except Exception as exception:
-            print(f"Category Insert Service Exception: {exception}")
+            logger.error(f"Category Insert Service Exception: {exception}", exc_info=True)
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
     def admin_read_categories():
+        """
+        Retrieve all categories from the database.
+
+        Returns:
+            list of dict: The response from the application services,
+            including status and data.
+        """
+        logger.info("Reading all categories")
         try:
             category_dao = CategoryDAO()
             category_data = category_dao.read_categories()
@@ -58,77 +98,99 @@ class CategoryServices:
                     }
                     for category in category_data
                 ]
-
+                logger.info("Categories retrieved successfully")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
-                    {"Detail": data_to_show})
+                    {"Detail": data_to_show}
+                )
 
-            else:
-                return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound,
-                    False,
-                    {"Detail": ResponseMessageEnum.NoCategoryFound})
-
-
+            logger.warning("No categories found")
+            return ApplicationServices.application_response(
+                HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound,
+                False,
+                {"Detail": ResponseMessageEnum.NoCategoryFound}
+            )
         except Exception as exception:
-            print(f"Category Read Service Exception: {exception}")
+            logger.error(f"Category Read Service Exception: {exception}", exc_info=True)
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
     def admin_delete_category(category_id: int):
+        """
+        Delete a category by marking it as deleted.
+
+        Args:
+            category_id (int): The ID of the category to be deleted.
+
+        Returns:
+            dict: The response from the application services, including status and message.
+        """
+        logger.info(f"Deleting category with ID {category_id}")
         try:
             category_dao = CategoryDAO()
             category_vo_list = category_dao.read_category_mutable(category_id)
 
-            if category_vo_list is not None and not category_vo_list.is_deleted:
+            if category_vo_list and not category_vo_list.is_deleted:
                 category_vo_list.is_deleted = True
                 category_dao.update_category(category_vo_list)
-
+                logger.info(f"Category with ID {category_id} marked as deleted")
                 return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted, True, {})
+                    HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted, True, {}
+                )
 
-            elif category_vo_list is None or category_vo_list.is_deleted:
-                return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound, False,
-                    {})
-
+            logger.warning(f"Category with ID {category_id} not found or already deleted")
+            return ApplicationServices.application_response(
+                HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound, False, {}
+            )
         except Exception as exception:
-            print(f"Category Delete Service Exception: {exception}")
+            logger.error(f"Category Delete Service Exception: {exception}", exc_info=True)
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_update_category(update_category_id: int, category:
-                              UpdateCategoryDTO):
+    def admin_update_category(update_category_id: int, category: UpdateCategoryDTO):
+        """
+        Update the details of an existing category.
+
+        Args:
+            update_category_id (int): The ID of the category to be updated.
+            category (UpdateCategoryDTO): The data transfer object containing updated category details.
+
+        Returns:
+            dict: The response from the application services, including status and message.
+        """
+        logger.info(f"Updating category with ID {update_category_id}")
         try:
             category_dao = CategoryDAO()
             category_vo_list = category_dao.read_category_mutable(update_category_id)
-            if category_vo_list is not None and category_vo_list.is_deleted == 0:
 
+            if category_vo_list and not category_vo_list.is_deleted:
                 update_data = category.model_dump(exclude_unset=True)
                 for key, value in update_data.items():
                     setattr(category_vo_list, key, value)
 
-                category_vo_list.edited_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M')
+                category_vo_list.edited_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
 
-                if category.category_count == 0 or category.category_name == "" or category.category_description == "":
-
+                if category.category_count == 0 or not category.category_name or not category.category_description:
+                    logger.warning("Category update failed due to invalid input data")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
                         ResponseMessageEnum.CategoryUnprocessableEntity,
                         False,
-                        {})
+                        {}
+                    )
 
-                else:
-                    category_dao.update_category(category_vo_list)
-                    return ApplicationServices.application_response(
-                        HttpStatusCodeEnum.OK,
-                        ResponseMessageEnum.CategoryUpdated, True, {})
-
-            else:
+                category_dao.update_category(category_vo_list)
+                logger.info(f"Category with ID {update_category_id} updated successfully")
                 return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.NOT_FOUND,
-                    ResponseMessageEnum.CategoryNotFound, False, {})
+                    HttpStatusCodeEnum.OK,
+                    ResponseMessageEnum.CategoryUpdated, True, {}
+                )
 
+            logger.warning(f"Category with ID {update_category_id} not found or already deleted")
+            return ApplicationServices.application_response(
+                HttpStatusCodeEnum.NOT_FOUND,
+                ResponseMessageEnum.CategoryNotFound, False, {}
+            )
         except Exception as exception:
-            print(f"Category Update Service Exception: {exception}")
+            logger.error(f"Category Update Service Exception: {exception}", exc_info=True)
             ApplicationServices.handle_exception(exception, True)

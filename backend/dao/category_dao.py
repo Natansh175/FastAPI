@@ -10,7 +10,7 @@ class CategoryDAO:
     def create_category(category):
         sql_dynamic.insert_data('category_table', category)
 
-    # To read one particular Category Data
+    # To read one particular Category Data (Immutable)
     @staticmethod
     def read_category_immutable(category_id: int):
         category_vo_list = sql_dynamic.view_data_by_id('category_table', view_id=category_id)
@@ -22,6 +22,7 @@ class CategoryDAO:
         category_data = sql_dynamic.view_data_all('category_table')
         return category_data
 
+    # To read one particular Category Data (Mutable)
     @staticmethod
     def read_category_mutable(update_category_id: int):
         category_vo_list = db.get(CategoryVO, update_category_id)
