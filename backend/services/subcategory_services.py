@@ -65,7 +65,6 @@ class SubCategoryServices:
     @staticmethod
     def admin_read_subcategories():
         try:
-            category_dao = CategoryDAO()
             subcategory_dao = SubCategoryDAO()
 
             subcategory_data = subcategory_dao.read_subcategories()
@@ -78,7 +77,8 @@ class SubCategoryServices:
                         "subcategory_count": subcategory.subcategory_count
                     }
                     for subcategory in subcategory_data
-                    if category_dao.read_category_immutable(subcategory.subcategory_category_id) is not None
+                    if category_delete_check(
+                        subcategory.subcategory_category_id) is not None
                 ]
 
                 if data_to_show:
@@ -174,7 +174,7 @@ class SubCategoryServices:
                         HttpStatusCodeEnum.OK,
                         ResponseMessageEnum.SubCategoryUpdated,
                         True,
-                        subcategory_vo_list)
+                        {})
 
             elif subcategory_vo_list is None or subcategory_vo_list.is_deleted == 1:
                 return ApplicationServices.application_response(

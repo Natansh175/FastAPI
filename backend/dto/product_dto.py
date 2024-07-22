@@ -1,12 +1,12 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional
 
 
 class ProductDTO(BaseModel):
-    product_name: str = Field(min_length=1)
-    product_description: str = Field(min_length=1)
-    product_price: int = Field(gt=0)
-    product_quantity: int = Field(gt=0)
+    product_name: str
+    product_description: str
+    product_price: int
+    product_quantity: int
 
     class Config:
         from_attributes = True

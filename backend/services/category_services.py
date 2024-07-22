@@ -26,21 +26,21 @@ class CategoryServices:
                 category_dao.create_category(category_vo)
 
                 return ApplicationServices.application_response(
-                    status_code=HttpStatusCodeEnum.CREATED,
-                    response_message=ResponseMessageEnum.CategoryCreated,
-                    success=True,
-                    data=category.model_dump())
+                    HttpStatusCodeEnum.CREATED,
+                    ResponseMessageEnum.CategoryCreated,
+                    True,
+                    {})
 
             else:
                 return ApplicationServices.application_response(
-                    status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                    response_message=ResponseMessageEnum.CategoryUnprocessableEntity,
-                    success=False,
-                    data={})
+                    HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                    ResponseMessageEnum.CategoryUnprocessableEntity,
+                    False,
+                    {})
 
         except Exception as exception:
             print(f"Category Insert Service Exception: {exception}")
-            ApplicationServices.handle_exception(exception, is_raise=True)
+            ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
     def admin_read_categories():
@@ -60,19 +60,19 @@ class CategoryServices:
                 ]
 
                 return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, success=True,
-                    data={"Detail": data_to_show})
+                    HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
+                    {"Detail": data_to_show})
 
             else:
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound,
-                    success=False,
-                    data={"Detail": ResponseMessageEnum.NoCategoryFound})
+                    False,
+                    {"Detail": ResponseMessageEnum.NoCategoryFound})
 
 
         except Exception as exception:
             print(f"Category Read Service Exception: {exception}")
-            ApplicationServices.handle_exception(exception, is_raise=True)
+            ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
     def admin_delete_category(category_id: int):
@@ -85,16 +85,16 @@ class CategoryServices:
                 category_dao.update_category(category_vo_list)
 
                 return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted, True, data={})
+                    HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted, True, {})
 
             elif category_vo_list is None or category_vo_list.is_deleted:
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound, False,
-                    data={})
+                    {})
 
         except Exception as exception:
             print(f"Category Delete Service Exception: {exception}")
-            ApplicationServices.handle_exception(exception, is_raise=True)
+            ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
     def admin_update_category(update_category_id: int, category:
@@ -113,17 +113,16 @@ class CategoryServices:
                 if category.category_count == 0 or category.category_name == "" or category.category_description == "":
 
                     return ApplicationServices.application_response(
-                        status_code=HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                        response_message=ResponseMessageEnum.CategoryUnprocessableEntity,
-                        success=False,
-                        data={})
+                        HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                        ResponseMessageEnum.CategoryUnprocessableEntity,
+                        False,
+                        {})
 
                 else:
                     category_dao.update_category(category_vo_list)
-
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,
-                        ResponseMessageEnum.CategoryUpdated, True, category_vo_list)
+                        ResponseMessageEnum.CategoryUpdated, True, {})
 
             else:
                 return ApplicationServices.application_response(
@@ -132,4 +131,4 @@ class CategoryServices:
 
         except Exception as exception:
             print(f"Category Update Service Exception: {exception}")
-            ApplicationServices.handle_exception(exception, is_raise=True)
+            ApplicationServices.handle_exception(exception, True)

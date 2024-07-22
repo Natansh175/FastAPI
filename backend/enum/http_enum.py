@@ -9,6 +9,7 @@ class HttpStatusCodeEnum(int, Enum):
     BAD_REQUEST = 400
     UNAUTHORIZED = 401
     NOT_FOUND = 404
+    UNSUPPORTED_MEDIA_TYPE = 405
     UNPROCESSABLE_ENTITY = 422
     INTERNAL_SERVER_ERROR = 500
 
@@ -35,11 +36,13 @@ class ResponseMessageEnum(str, Enum):
     ProductCreated = "Product Created Successfully."
     ProductDeleted = "Product Deleted Successfully."
     ProductUpdated = "Product Updated Successfully."
+    ImageUpdated = "Image Updated Successfully."
     ProductImageUpdate = "Product Image Updated Successfully."
     ProductNotFound = "Cannot find Product with provided ID."
     NoProductFound = "No Products to show!"
+    NoCategorySubCategoryFound = "No Category/SubCategory found with provided ID."
     ProductUnprocessableEntity = "Make sure you entered a Name/Description and Product quantity/price is greater than zero."
-
+    InvalidImageType = "Invalid Image Type."
     # Server Error
     InternalServerError = "Internal Server Error."
 

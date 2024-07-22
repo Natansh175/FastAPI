@@ -16,7 +16,7 @@ class ProductDAO:
         return product_vo_list
 
     @staticmethod
-    def edit_product(update_product_id: int):
+    def read_product_mutable(update_product_id: int):
         product_vo_list = db.get(ProductVO, update_product_id)
         return product_vo_list
 

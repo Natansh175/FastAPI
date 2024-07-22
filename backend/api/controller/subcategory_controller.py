@@ -68,7 +68,7 @@ async def update_subcategory(update_subcategory_id: int, subcategory_update:
                              UpdateSubCategoryDTO, response: Response):
     try:
         subcategory_services = SubCategoryServices()
-        if not update_subcategory_id or not subcategory_update:
+        if not subcategory_update:
             response.status_code = HttpStatusCodeEnum.BAD_REQUEST
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest, False, data={})
