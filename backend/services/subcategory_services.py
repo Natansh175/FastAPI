@@ -1,5 +1,6 @@
-from datetime import datetime
 import logging
+
+from datetime import datetime
 
 from backend.services.app_services import ApplicationServices
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -26,7 +27,7 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def category_delete_check(category_id: int) -> bool:
+def category_delete_check(category_id: int):
     """
     Check whether the specified category is deleted or not.
 
@@ -39,11 +40,14 @@ def category_delete_check(category_id: int) -> bool:
     category_dao = CategoryDAO()
     category_vo_list = category_dao.read_category_immutable(category_id)
 
-    return category_vo_list is not None
+    if category_vo_list:
+        return True
+    else:
+        pass
 
 
 class SubCategoryServices:
-    """Service class for managing subcategories in the application."""
+    # Service class for managing subcategories in the application.
 
     @staticmethod
     def admin_insert_subcategory(subcategory: SubCategoryDTO, category_id: int) -> dict:
@@ -66,6 +70,9 @@ class SubCategoryServices:
             category_data = category_dao.read_category_immutable(category_id=category_id)
 
             if category_data is None or category_data.is_deleted:
+                logger.warning(f"Category with ID: {category_id} does not "
+                               f"exist "
+                               f"or marked as deleted.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.CategoryNotFound, False, {})
@@ -124,6 +131,7 @@ class SubCategoryServices:
                 ]
 
                 if data_to_show:
+                    logger.info("subcategories retrieved successfully")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
                         {"Detail": data_to_show})
@@ -160,7 +168,11 @@ class SubCategoryServices:
             subcategory_vo_list = subcategory_dao.read_subcategory_mutable(subcategory_id)
 
             if subcategory_vo_list is not None and not subcategory_vo_list.is_deleted:
-                if not category_delete_check(subcategory_vo_list.subcategory_category_id):
+                if category_delete_check(subcategory_vo_list.subcategory_category_id) is None:
+                    logger.warning(
+                        f"Category with ID:"
+                        f" {subcategory_vo_list.subcategory_category_id} does not exist "
+                        f"or marked as deleted.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.NOT_FOUND,
                         ResponseMessageEnum.SubCategoryNotFound,
@@ -211,13 +223,20 @@ class SubCategoryServices:
                     False, {})
 
             if subcategory_vo_list is not None and not subcategory_vo_list.is_deleted:
-                if not category_delete_check(subcategory_vo_list.subcategory_category_id):
+                if category_delete_check(
+                        subcategory_vo_list.subcategory_category_id) is None:
+                    logger.warning(
+                        f"Category with "
+                        f"ID: {subcategory_vo_list.subcategory_category_id} "
+                        f"does not exist "
+                        f"or marked as deleted.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.NOT_FOUND,
                         ResponseMessageEnum.SubCategoryNotFound,
                         False,
                         {})
 
+                # Updating just the fields that are changed by user
                 subcategory_data = subcategory.model_dump(exclude_unset=True)
                 for key, value in subcategory_data.items():
                     setattr(subcategory_vo_list, key, value)
@@ -232,7 +251,7 @@ class SubCategoryServices:
                     True,
                     {})
 
-            logger.warning(f"Subcategory with ID {update_subcategory_id} not found or already deleted")
+            logger.warning(f"Subcategory with ID {update_subcategory_id} not found or already deleted.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.SubCategoryNotFound,

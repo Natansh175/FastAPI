@@ -1,8 +1,8 @@
-from datetime import datetime
 import os
-from pathlib import Path
 import uuid
 import logging
+from datetime import datetime
+from pathlib import Path
 
 from backend.vo.product_vo import ProductVO
 from backend.dao.category_dao import CategoryDAO
@@ -33,9 +33,9 @@ logger.addHandler(file_handler)
 IMAGE_PATH = "static/user_resources/images"
 
 
-def fk_delete_check(category_id: int, subcategory_id: int) -> bool:
+def fk_delete_check(category_id: int, subcategory_id: int):
     """
-    Checks if the category and subcategory are not deleted.
+    Checks if the category and subcategory are not marked as deleted.
 
     Args:
         category_id (int): ID of the category to check.
@@ -53,10 +53,11 @@ def fk_delete_check(category_id: int, subcategory_id: int) -> bool:
     if category_vo_list is not None and subcategory_vo_list is not None:
         return True
     else:
-        return False
+        pass
 
 
 class ProductServices:
+    # Service class for managing products in the application.
     @staticmethod
     def admin_insert_product(category_id: int, subcategory_id: int,
                              image_filename: str, image_data: bytes, product: ProductDTO):
@@ -73,13 +74,12 @@ class ProductServices:
         Returns:
             dict: Response message and status.
         """
+        logger.info("Inserting a new product in database")
         try:
-            category_dao = CategoryDAO()
-            subcategory_dao = SubCategoryDAO()
-            category_vo_list = category_dao.read_category_immutable(category_id)
-            subcategory_vo_list = subcategory_dao.read_subcategory_immutable(subcategory_id)
-
-            if category_vo_list is None or subcategory_vo_list is None:
+            if fk_delete_check(category_id, subcategory_id) is None:
+                logger.warning(f"No Category or SubCategory found with "
+                               f"category ID: {category_id} and "
+                               f"subcategory ID: {subcategory_id}")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.NoCategorySubCategoryFound, False, {})
@@ -117,6 +117,7 @@ class ProductServices:
                     ResponseMessageEnum.ProductCreated, True, {})
 
             else:
+                logger.warning("Product insertion failed due to invalid input data")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
                     ResponseMessageEnum.ProductUnprocessableEntity, False, {})
@@ -128,11 +129,13 @@ class ProductServices:
     @staticmethod
     def admin_read_products():
         """
-        Reads all products from the database and filters out deleted ones.
+        Reads all products from the database and filters out the ones that
+        are marked as deleted.
 
         Returns:
            list of dict: Response message and product data.
         """
+        logger.info("Reading all products from the database")
         try:
             product_dao = ProductDAO()
 
@@ -152,17 +155,21 @@ class ProductServices:
                 ]
 
                 if data_to_show:
+                    logger.info("Products retrieved successfully")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
                         {"Detail": data_to_show})
 
                 else:
+                    logger.info("No Products found in database")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.NOT_FOUND,
                         ResponseMessageEnum.NoProductFound,
                         False, {"Detail": ResponseMessageEnum.NoProductFound})
 
             else:
+                logger.info("No Products found in database or the "
+                            "category/subcategory marked as deleted.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.NoProductFound,
@@ -178,11 +185,12 @@ class ProductServices:
         Marks a product as deleted.
 
         Args:
-            product_id (int): ID of the product to delete.
+            product_id (int): ID of the product to mark as deleted.
 
         Returns:
             dict: Response message and status.
         """
+        logger.info(f"Deleting product with ID: {product_id} from database")
         try:
             product_dao = ProductDAO()
             product_vo_list = product_dao.read_product_mutable(product_id)
@@ -193,6 +201,7 @@ class ProductServices:
                     product_vo_list.product_category_id, product_vo_list.product_subcategory_id)
 
                 if delete_check is None:
+                    logger.warning(f"No Category or SubCategory found with ID: {product_id}")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.NOT_FOUND,
                         ResponseMessageEnum.ProductNotFound, False, {})
@@ -201,12 +210,13 @@ class ProductServices:
                     product_vo_list.is_deleted = True
                     product_dao.update_product(product_vo_list)
 
-                    logger.info(f"Product deleted: {product_id}")
+                    logger.info(f"Product deleted with ID: {product_id}")
 
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK, ResponseMessageEnum.ProductDeleted, True, {})
 
             elif product_vo_list is None or product_vo_list.is_deleted == 1:
+                logger.warning("Product is already marked as deleted or product does not exist")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.ProductNotFound, False, {})
@@ -227,6 +237,7 @@ class ProductServices:
         Returns:
             dict: Response message and status.
         """
+        logger.info(f"Updating product Data of Product ID: {product_update_id}")
         try:
             product_dao = ProductDAO()
             product_vo_list = product_dao.read_product_mutable(product_update_id)
@@ -235,7 +246,7 @@ class ProductServices:
                     product_update_data.product_description == "" or
                     product_update_data.product_price == 0 or
                     product_update_data.product_quantity == 0):
-
+                logger.warning("Data updating failed due to invalid data")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
                     ResponseMessageEnum.ProductUnprocessableEntity, False, {})
@@ -245,11 +256,16 @@ class ProductServices:
                     product_vo_list.product_category_id, product_vo_list.product_subcategory_id)
 
                 if delete_value is None:
+                    logger.info(f"Product with "
+                                f"category_id: {product_vo_list.product_category_id} and "
+                                f"subcategory_id: {product_vo_list.product_subcategory_id} "
+                                f"does not exist or marked as deleted.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.NOT_FOUND,
                         ResponseMessageEnum.ProductNotFound, False, {})
 
                 else:
+                    # Updating just the fields that are changed by user
                     product_data = product_update_data.model_dump(exclude_unset=True)
                     for key, value in product_data.items():
                         setattr(product_vo_list, key, value)
@@ -265,6 +281,7 @@ class ProductServices:
                         ResponseMessageEnum.ProductUpdated, True, {})
 
             elif product_vo_list is None or product_vo_list.is_deleted == 1:
+                logger.warning("Product is already marked as deleted or product does not exist")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.ProductNotFound, False, {})
@@ -276,7 +293,7 @@ class ProductServices:
     @staticmethod
     def admin_update_product_image(update_image_id: int, update_image_name: str, product_image_data: bytes):
         """
-        Updates the image for a given product.
+        Updates the image for a given product ID.
 
         Args:
             update_image_id (int): ID of the product whose image needs to be updated.
@@ -286,6 +303,7 @@ class ProductServices:
         Returns:
             dict: Response message and status.
         """
+        logger.info(f"Updating image of product_id: {update_image_id}")
         try:
             product_dao = ProductDAO()
 
@@ -297,6 +315,10 @@ class ProductServices:
                     product_vo_list.product_category_id, product_vo_list.product_subcategory_id)
 
                 if delete_check is None:
+                    logger.info(f"Product with "
+                                f"category_id: {product_vo_list.product_category_id} and "
+                                f"subcategory_id: {product_vo_list.product_subcategory_id} "
+                                f"does not exist or marked as deleted.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.NOT_FOUND,
                         ResponseMessageEnum.ProductNotFound, False, {})
@@ -325,6 +347,7 @@ class ProductServices:
                         ResponseMessageEnum.ImageUpdated, True, {})
 
             elif product_vo_list is None or product_vo_list.is_deleted == 1:
+                logger.warning("Product is already marked as deleted or product does not exist")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.ProductNotFound, False, {})

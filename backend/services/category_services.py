@@ -1,5 +1,6 @@
-from datetime import datetime
 import logging
+
+from datetime import datetime
 
 from backend.vo.category_vo import CategoryVO
 from backend.dao.category_dao import CategoryDAO
@@ -27,7 +28,7 @@ logger.addHandler(file_handler)
 
 
 class CategoryServices:
-    """Service class for managing categories in the application."""
+    # Service class for managing categories in the application
 
     @staticmethod
     def admin_insert_category(category: CategoryDTO):
@@ -104,7 +105,7 @@ class CategoryServices:
                     {"Detail": data_to_show}
                 )
 
-            logger.warning("No categories found")
+            logger.info("No categories found")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound,
                 False,
@@ -164,6 +165,8 @@ class CategoryServices:
             category_vo_list = category_dao.read_category_mutable(update_category_id)
 
             if category_vo_list and not category_vo_list.is_deleted:
+
+                # Updating just the fields that are changed by user
                 update_data = category.model_dump(exclude_unset=True)
                 for key, value in update_data.items():
                     setattr(category_vo_list, key, value)
@@ -186,7 +189,7 @@ class CategoryServices:
                     ResponseMessageEnum.CategoryUpdated, True, {}
                 )
 
-            logger.warning(f"Category with ID {update_category_id} not found or already deleted")
+            logger.warning(f"Category with ID {update_category_id} not found or marked as deleted")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.CategoryNotFound, False, {}
