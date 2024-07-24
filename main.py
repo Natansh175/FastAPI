@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from backend.routes import routes
-
+from backend.db.db import Base, Engine
 # Main app
 app = FastAPI(debug=True)
 
