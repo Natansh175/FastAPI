@@ -44,9 +44,20 @@ class ResponseMessageEnum(str, Enum):
     ProductUnprocessableEntity = "Make sure you entered a Name/Description and Product quantity/price is greater than zero."
     InvalidImageType = "Invalid Image Type."
 
+    # For login functionalities
+    UserNotFound = "User not found."
+    UserExists = "User already exists."
+    IncorrectPassword = "Incorrect password."
+    UserBlocked = "User is temporarily blocked by admin."
+    NoUserFound = "E-Mail or Password is incorrect."
+    LoggedIn = "Logged in Successfully."
+
+    # For Table Queries
+    TableNotFound = "Can not find table with name: "
+
     # Server Error
     InternalServerError = "Internal Server Error."
 
-    # Client Error
+    # Client Requests (Common)
     BadRequest = "Oops! Bad Request."
     OK = "Request Processed Successfully."

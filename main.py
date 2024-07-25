@@ -1,9 +1,13 @@
 from fastapi import FastAPI
 
 from backend.routes import routes
-from backend.db.db import Base, Engine
+
 # Main app
-app = FastAPI(debug=True)
+app = FastAPI(debug=True, title="Basic E-Commerce API", version="1.0.0",
+              summary="A basic E-Commerce API with applied security for "
+                      "managing products and learning how to make "
+                      "REST APIs."
+              )
 
 # Includes router of every sub-app
 app.include_router(routes.router)

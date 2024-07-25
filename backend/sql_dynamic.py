@@ -1,4 +1,6 @@
 from backend.db.db import Base, SessionLocal
+from backend.services.app_services import ApplicationServices
+from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
 
 # Creating DataBase Session
 db = SessionLocal()
@@ -16,7 +18,12 @@ def get_table_id(table_name: str):
 def insert_data(table_name: str, data: dict):
     table = Base.metadata.tables.get(table_name)
     if table is None:
-        raise ValueError(f"Table {table_name} does not exist")
+        return ApplicationServices.application_response(
+            HttpStatusCodeEnum.NOT_FOUND,
+            ResponseMessageEnum.TableNotFound,
+            False,
+            {}
+        )
 
     db.add(data)
     db.commit()
@@ -26,7 +33,12 @@ def insert_data(table_name: str, data: dict):
 def view_data_all(table_name: str):
     table = Base.metadata.tables.get(table_name)
     if table is None:
-        raise ValueError(f"Table {table_name} does not exist")
+        return ApplicationServices.application_response(
+            HttpStatusCodeEnum.NOT_FOUND,
+            ResponseMessageEnum.TableNotFound,
+            False,
+            {}
+        )
 
     view_stmt = db.query(table).filter(table.c.is_deleted == 0).all()
     return view_stmt
@@ -36,12 +48,16 @@ def view_data_all(table_name: str):
 def view_data_by_id(table_name: str, view_id: int):
     table = Base.metadata.tables.get(table_name)
     if table is None:
-        raise ValueError(f"Table {table_name} does not exist")
+        return ApplicationServices.application_response(
+            HttpStatusCodeEnum.NOT_FOUND,
+            ResponseMessageEnum.TableNotFound,
+            False,
+            {}
+        )
 
     table_id = get_table_id(table_name)
     data_column = getattr(table.c, table_id)
     view_stmt = db.query(table).filter(data_column == view_id).first()
-
     if view_stmt is None:
         pass
     elif view_stmt is not None:
@@ -51,13 +67,35 @@ def view_data_by_id(table_name: str, view_id: int):
             return view_stmt
 
 
-# To update specific data in specific table
-# This function is being used for update
-# as well as partial delete functionalities
-def update_data(table_name: str, data: dict):
+# To Retrieve single data from specific table by username
+def view_data_by_username(table_name: str, username: str):
     table = Base.metadata.tables.get(table_name)
     if table is None:
-        raise ValueError(f"Table {table_name} does not exist")
+        return ApplicationServices.application_response(
+            HttpStatusCodeEnum.NOT_FOUND,
+            ResponseMessageEnum.TableNotFound,
+            False,
+            {}
+        )
+
+    view_stmt = db.query(table).filter(table.c.login_name == username).first()
+
+    return view_stmt
+
+
+def update_data(table_name: str, data: dict):
+    """
+    To update specific data in specific table This function is being used for
+    update as well as partial delete functionalities
+    """
+    table = Base.metadata.tables.get(table_name)
+    if table is None:
+        return ApplicationServices.application_response(
+            HttpStatusCodeEnum.NOT_FOUND,
+            ResponseMessageEnum.TableNotFound,
+            False,
+            {}
+        )
 
     db.merge(data)
     db.flush()

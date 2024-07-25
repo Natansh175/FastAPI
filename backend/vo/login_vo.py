@@ -4,9 +4,9 @@ from backend.db.db import Base
 
 
 class LoginVO(Base):
-    __tablename__ = 'login'
+    __tablename__ = 'login_table'
     login_id = Column(Integer, primary_key=True, autoincrement=True)
     login_name = Column(String(200))
     login_password = Column(String(200))
     login_role = Column(String(20))
-    login_status = Column(Boolean, default=True)
+    login_status = Column(Boolean)

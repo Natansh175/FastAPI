@@ -1,6 +1,6 @@
 from sqlalchemy import Boolean, Column, Integer, String
 
-from backend.db.db import Base
+from backend.db.db import Base, engine
 
 
 class CategoryVO(Base):
