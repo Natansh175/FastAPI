@@ -10,6 +10,7 @@ class HttpStatusCodeEnum(int, Enum):
     UNAUTHORIZED = 401
     NOT_FOUND = 404
     UNSUPPORTED_MEDIA_TYPE = 405
+    CONFLICT = 409
     UNPROCESSABLE_ENTITY = 422
     INTERNAL_SERVER_ERROR = 500
 
@@ -47,10 +48,11 @@ class ResponseMessageEnum(str, Enum):
     # For login functionalities
     UserNotFound = "User not found."
     UserExists = "User already exists."
-    IncorrectPassword = "Incorrect password."
     UserBlocked = "User is temporarily blocked by admin."
-    NoUserFound = "E-Mail or Password is incorrect."
+    IncorrectPassword = "Password is incorrect!"
     LoggedIn = "Logged in Successfully."
+    NotValidInput = "Make sure to enter every information!"
+    UserCreatedSuccessfully = "User Created Successfully."
 
     # For Table Queries
     TableNotFound = "Can not find table with name: "

@@ -9,7 +9,6 @@ class UserVO(Base):
     user_id = Column(Integer, primary_key=True, autoincrement=True)
     user_firstname = Column(String(200))
     user_lastname = Column(String(200))
-    user_email = Column(String(50))
     user_gender = Column(String(10))
     user_address = Column(String(500))
     is_deleted = Column(Boolean, default=0)

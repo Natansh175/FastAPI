@@ -68,7 +68,7 @@ def view_data_by_id(table_name: str, view_id: int):
 
 
 # To Retrieve single data from specific table by username
-def view_data_by_username(table_name: str, username: str):
+def view_data_by_email(table_name: str, email: str):
     table = Base.metadata.tables.get(table_name)
     if table is None:
         return ApplicationServices.application_response(
@@ -78,9 +78,12 @@ def view_data_by_username(table_name: str, username: str):
             {}
         )
 
-    view_stmt = db.query(table).filter(table.c.login_name == username).first()
+    view_stmt = db.query(table).filter(table.c.login_username == email).first()
 
-    return view_stmt
+    if view_stmt is None:
+        pass
+    else:
+        return view_stmt
 
 
 def update_data(table_name: str, data: dict):

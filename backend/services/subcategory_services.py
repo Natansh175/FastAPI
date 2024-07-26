@@ -80,7 +80,6 @@ class SubCategoryServices:
             subcategory_vo.subcategory_name = subcategory.subcategory_name
             subcategory_vo.subcategory_description = subcategory.subcategory_description
             subcategory_vo.subcategory_count = subcategory.subcategory_count
-            subcategory_vo.is_active = False
             subcategory_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
             subcategory_vo.edited_date = ""
             subcategory_vo.subcategory_category_id = category_id
