@@ -270,6 +270,17 @@ class ProductServices:
                     for key, value in product_data.items():
                         setattr(product_vo_list, key, value)
 
+                    for data in product_data.values():
+                        if data == "" or 0:
+                            logger.warning(
+                                "Category update failed due to invalid input data")
+
+                            return ApplicationServices.application_response(
+                                HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                                ResponseMessageEnum.CategoryUnprocessableEntity,
+                                False,
+                                {}
+                            )
                     product_vo_list.edited_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M')
 
                     product_dao.update_product(product_vo_list=product_vo_list)

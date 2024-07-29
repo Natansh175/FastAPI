@@ -234,3 +234,133 @@ Traceback (most recent call last):
   File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 133, in admin_delete_category
     if category_vo_list and not category_vo_list.is_deleted:
 AttributeError: 'dict' object has no attribute 'is_deleted'
+2024-07-29 16:24:28,115 - backend.services.category_services - ERROR - Category Insert Service Exception: Instance '<CategoryVO at 0x20626af0880>' is not persistent within this Session
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 57, in admin_insert_category
+    category_dao.create_category(category_vo)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 11, in create_category
+    sql_dynamic.insert_data('category_table', category)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 32, in insert_data
+    db.refresh(data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3132, in refresh
+    self._expire_state(state, attribute_names)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3258, in _expire_state
+    self._validate_persistent(state)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4127, in _validate_persistent
+    raise sa_exc.InvalidRequestError(
+sqlalchemy.exc.InvalidRequestError: Instance '<CategoryVO at 0x20626af0880>' is not persistent within this Session
+2024-07-29 16:25:51,564 - backend.services.category_services - ERROR - Category Read Service Exception: Class 'builtins.list' is not mapped
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3128, in refresh
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 90, in admin_read_categories
+    category_data = category_dao.read_categories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 22, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table')
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 48, in view_data_all
+    db.refresh(view_stmt)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3130, in refresh
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2024-07-29 16:26:03,780 - backend.services.category_services - ERROR - Category Read Service Exception: Class 'builtins.list' is not mapped
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3128, in refresh
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 90, in admin_read_categories
+    category_data = category_dao.read_categories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 22, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table')
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 48, in view_data_all
+    db.refresh(view_stmt)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3130, in refresh
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2024-07-29 16:26:06,868 - backend.services.category_services - ERROR - Category Read Service Exception: Class 'builtins.list' is not mapped
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3128, in refresh
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 90, in admin_read_categories
+    category_data = category_dao.read_categories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 22, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table')
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 48, in view_data_all
+    db.refresh(view_stmt)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3130, in refresh
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2024-07-29 16:26:16,180 - backend.services.category_services - ERROR - Category Read Service Exception: Class 'builtins.list' is not mapped
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3128, in refresh
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 90, in admin_read_categories
+    category_data = category_dao.read_categories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 22, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table')
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 48, in view_data_all
+    db.refresh(view_stmt)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3130, in refresh
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2024-07-29 16:26:29,713 - backend.services.category_services - ERROR - Category Read Service Exception: Class 'builtins.list' is not mapped
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3128, in refresh
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 90, in admin_read_categories
+    category_data = category_dao.read_categories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 22, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table')
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 48, in view_data_all
+    db.refresh(view_stmt)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3130, in refresh
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2024-07-29 16:32:14,259 - backend.services.category_services - ERROR - Category Read Service Exception: Class 'builtins.list' is not mapped
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3128, in refresh
+    state = attributes.instance_state(instance)
+AttributeError: 'list' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 90, in admin_read_categories
+    category_data = category_dao.read_categories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 22, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table')
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 48, in view_data_all
+    db.refresh(view_stmt)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3130, in refresh
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.list' is not mapped
+2024-07-29 17:06:38,317 - backend.services.category_services - ERROR - Category Delete Service Exception: can't set attribute
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 136, in admin_delete_category
+    category_vo_list.is_deleted = True
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\row.py", line 81, in __setattr__
+    raise AttributeError("can't set attribute")
+AttributeError: can't set attribute

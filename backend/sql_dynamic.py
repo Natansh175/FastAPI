@@ -108,6 +108,8 @@ def update_data(table_name: str, data: dict):
     db.commit()
 
 
+# Keeping it here temporarily
+# Until solution is discussed with sir!
 def view_data_mutable(table_name: str, view_id: int):
     table = Base.metadata.tables.get(table_name)
     if table is None:

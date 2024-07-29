@@ -1,4 +1,3 @@
-from backend.vo.category_vo import CategoryVO
 from backend import sql_dynamic
 from backend.db.db import SessionLocal
 

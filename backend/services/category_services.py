@@ -182,15 +182,6 @@ class CategoryServices:
                         )
                 category_vo_list.edited_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
 
-                # if category.category_count == 0 or not category.category_name or not category.category_description:
-                #     logger.warning("Category update failed due to invalid input data")
-                #     return ApplicationServices.application_response(
-                #         HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                #         ResponseMessageEnum.CategoryUnprocessableEntity,
-                #         False,
-                #         {}
-                #     )
-
                 category_dao.update_category(category_vo_list)
                 logger.info(f"Category with ID {update_category_id} updated successfully")
                 return ApplicationServices.application_response(

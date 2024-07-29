@@ -54,6 +54,7 @@ class ResponseMessageEnum(str, Enum):
     NotValidInput = "Make sure to enter every information!"
     UserCreatedSuccessfully = "User Created Successfully."
     Unauthorized = "You are not authorized to access this service."
+    LoggedOut = "Logged Out Successfully."
 
     # For Table Queries
     TableNotFound = "Can not find table with name: "

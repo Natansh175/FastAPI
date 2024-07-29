@@ -60,3 +60,11 @@ async def user_login(request: Request, response: Response,
     except Exception as exception:
         print(f"Login validate Controller exception: {exception}")
         return ApplicationServices.handle_exception(exception, True)
+
+
+@authentication.post("/logout")
+async def user_logout(response: Response):
+    authentication_services = AuthenticationServices()
+    response_data = authentication_services.app_logout(response)
+    response.status_code = response_data.get('status_code')
+    return response_data.get('response_message')

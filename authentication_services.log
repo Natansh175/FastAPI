@@ -1,0 +1,10 @@
+2024-07-29 17:38:02,389 - backend.services.authentication_services - ERROR - Login Required Exception: object dict can't be used in 'await' expression
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 386, in decorator
+    return await refresh_token(request, fn)
+TypeError: object dict can't be used in 'await' expression
+2024-07-29 17:38:10,579 - backend.services.authentication_services - ERROR - Login Required Exception: object dict can't be used in 'await' expression
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 386, in decorator
+    return await refresh_token(request, fn)
+TypeError: object dict can't be used in 'await' expression
