@@ -23,9 +23,18 @@ class CategoryDAO:
         return category_data
 
     # To read one particular Category Data (Mutable)
+    # Problem here!!
+    # Not getting updated with db without reloading API.
+    # @staticmethod
+    # def read_category_mutable(update_category_id: int):
+    #     category_vo_list = db.query(CategoryVO).filter(
+    #         CategoryVO.category_id == update_category_id).first()
+    #     return category_vo_list
+
     @staticmethod
     def read_category_mutable(update_category_id: int):
-        category_vo_list = db.get(CategoryVO, update_category_id)
+        category_vo_list = sql_dynamic.view_data_mutable('category_table',
+                                                         update_category_id)
         return category_vo_list
 
     @staticmethod

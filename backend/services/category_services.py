@@ -130,7 +130,6 @@ class CategoryServices:
         try:
             category_dao = CategoryDAO()
             category_vo_list = category_dao.read_category_mutable(category_id)
-
             if category_vo_list and not category_vo_list.is_deleted:
                 category_vo_list.is_deleted = True
                 category_dao.update_category(category_vo_list)
@@ -170,17 +169,27 @@ class CategoryServices:
                 update_data = category.model_dump(exclude_unset=True)
                 for key, value in update_data.items():
                     setattr(category_vo_list, key, value)
+                for data in update_data.values():
+                    if data == "" or 0:
+                        logger.warning(
+                            "Category update failed due to invalid input data")
 
+                        return ApplicationServices.application_response(
+                            HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                            ResponseMessageEnum.CategoryUnprocessableEntity,
+                            False,
+                            {}
+                        )
                 category_vo_list.edited_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
 
-                if category.category_count == 0 or not category.category_name or not category.category_description:
-                    logger.warning("Category update failed due to invalid input data")
-                    return ApplicationServices.application_response(
-                        HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                        ResponseMessageEnum.CategoryUnprocessableEntity,
-                        False,
-                        {}
-                    )
+                # if category.category_count == 0 or not category.category_name or not category.category_description:
+                #     logger.warning("Category update failed due to invalid input data")
+                #     return ApplicationServices.application_response(
+                #         HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
+                #         ResponseMessageEnum.CategoryUnprocessableEntity,
+                #         False,
+                #         {}
+                #     )
 
                 category_dao.update_category(category_vo_list)
                 logger.info(f"Category with ID {update_category_id} updated successfully")

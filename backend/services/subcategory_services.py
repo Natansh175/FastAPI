@@ -63,16 +63,15 @@ class SubCategoryServices:
         """
         logger.info("Inserting a new subcategory")
         try:
-            category_dao = CategoryDAO()
+
             subcategory_vo = SubCategoryVO()
             subcategory_dao = SubCategoryDAO()
 
-            category_data = category_dao.read_category_immutable(category_id=category_id)
+            category_data = category_delete_check(category_id)
 
-            if category_data is None or category_data.is_deleted:
+            if category_data is None:
                 logger.warning(f"Category with ID: {category_id} does not "
-                               f"exist "
-                               f"or marked as deleted.")
+                               f"exist or marked as deleted.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.CategoryNotFound, False, {})

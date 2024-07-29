@@ -1,6 +1,9 @@
 from backend.db.db import Base, SessionLocal
 from backend.services.app_services import ApplicationServices
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
+from backend.vo.category_vo import CategoryVO
+from backend.vo.product_vo import ProductVO
+from backend.vo.subcategory_vo import SubCategoryVO
 
 # Creating DataBase Session
 db = SessionLocal()
@@ -103,3 +106,31 @@ def update_data(table_name: str, data: dict):
     db.merge(data)
     db.flush()
     db.commit()
+
+
+def view_data_mutable(table_name: str, view_id: int):
+    table = Base.metadata.tables.get(table_name)
+    if table is None:
+        return ApplicationServices.application_response(
+            HttpStatusCodeEnum.NOT_FOUND,
+            ResponseMessageEnum.TableNotFound,
+            False,
+            {}
+        )
+
+    if table_name == "category_table":
+        category_vo_list = db.query(CategoryVO).filter(
+            CategoryVO.category_id == view_id).first()
+        return category_vo_list
+
+    if table_name == "subcategory_table":
+        subcategory_vo_list = db.query(SubCategoryVO).filter(
+            SubCategoryVO.subcategory_id == view_id
+        ).first()
+        return subcategory_vo_list
+
+    if table_name == "product_table":
+        product_vo_list = db.query(ProductVO).filter(
+            ProductVO.product_id == view_id
+        ).first()
+        return product_vo_list

@@ -1,9 +1,10 @@
-from fastapi import APIRouter, UploadFile, File, Form, Response
+from fastapi import APIRouter, UploadFile, File, Form, Response, Request
 
 from backend.dto.product_dto import ProductDTO, UpdateProductDataDTO
 from backend.services.product_services import ProductServices
 from backend.services.app_services import ApplicationServices
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
+from backend.services.authentication_services import login_required
 
 
 product = APIRouter(
@@ -16,8 +17,10 @@ IMAGE_PATH = "static/user_resources/images"
 
 
 @product.post("/insert_product/")
+@login_required(role="admin")
 async def create_product(category_id: int,
                          subcategory_id: int,
+                         request: Request,
                          response: Response,
                          product_name: str = Form(...),
                          product_description: str = Form(...),
@@ -60,7 +63,8 @@ async def create_product(category_id: int,
 
 
 @product.get("/get_products/")
-async def read_products(response: Response):
+@login_required(role="user")
+async def read_products(request: Request, response: Response):
     try:
         product_services = ProductServices()
         response_data = product_services.admin_read_products()
@@ -75,7 +79,9 @@ async def read_products(response: Response):
 
 
 @product.delete("/delete_product/")
-async def delete_product(product_id: int, response: Response):
+@login_required(role="admin")
+async def delete_product(product_id: int, request: Request,
+                         response: Response):
     try:
         product_services = ProductServices()
         if not product_id:
@@ -94,8 +100,10 @@ async def delete_product(product_id: int, response: Response):
 
 
 @product.put("/update_product_data/")
+@login_required(role="admin")
 async def update_product(product_update_id: int, product_update_data:
-                         UpdateProductDataDTO, response: Response):
+                         UpdateProductDataDTO, request: Request,
+                         response: Response):
     try:
         product_services = ProductServices()
         if not product_update_data:
@@ -115,7 +123,9 @@ async def update_product(product_update_id: int, product_update_data:
 
 
 @product.put("/update_product_image/")
-async def update_product_image(product_id: int, response: Response,
+@login_required(role="admin")
+async def update_product_image(product_id: int, request: Request,
+                               response: Response,
                                product_image: UploadFile = File(...)):
     try:
         product_services = ProductServices()
