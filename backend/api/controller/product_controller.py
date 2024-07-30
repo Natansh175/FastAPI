@@ -1,9 +1,10 @@
 from fastapi import APIRouter, UploadFile, File, Form, Response, Request
 
-from backend.dto.product_dto import ProductDTO, UpdateProductDataDTO
+from backend.dto.product_dto import ProductDTO, ProductDataUpdateDTO
 from backend.services.product_services import ProductServices
 from backend.services.app_services import ApplicationServices
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
+from backend.enum.authentication_enum import AuthenticationEnum
 from backend.services.authentication_services import login_required
 
 
@@ -17,7 +18,7 @@ IMAGE_PATH = "static/user_resources/images"
 
 
 @product.post("/insert_product/")
-@login_required(role="admin")
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
 async def create_product(category_id: int,
                          subcategory_id: int,
                          request: Request,
@@ -41,6 +42,8 @@ async def create_product(category_id: int,
         product_image_data = await product_image.read()
 
         product_data = ProductDTO(
+            product_category_id=category_id,
+            product_subcategory_id=subcategory_id,
             product_name=product_name,
             product_description=product_description,
             product_price=product_price,
@@ -48,8 +51,6 @@ async def create_product(category_id: int,
         )
 
         response_data = product_services.admin_insert_product(
-            category_id,
-            subcategory_id,
             product_image.filename,
             product_image_data,
             product_data
@@ -63,14 +64,14 @@ async def create_product(category_id: int,
 
 
 @product.get("/get_products/")
-@login_required(role="user")
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.USER_ROLE])
 async def read_products(request: Request, response: Response):
     try:
         product_services = ProductServices()
         response_data = product_services.admin_read_products()
 
         response.status_code = response_data.get('status_code')
-        return response_data['data']['Detail']
+        return response_data.get('data')
 
     except Exception as exception:
         print(f"Product Read Controller Exception: {exception}")
@@ -79,7 +80,7 @@ async def read_products(request: Request, response: Response):
 
 
 @product.delete("/delete_product/")
-@login_required(role="admin")
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
 async def delete_product(product_id: int, request: Request,
                          response: Response):
     try:
@@ -100,9 +101,8 @@ async def delete_product(product_id: int, request: Request,
 
 
 @product.put("/update_product_data/")
-@login_required(role="admin")
-async def update_product(product_update_id: int, product_update_data:
-                         UpdateProductDataDTO, request: Request,
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+async def update_product(product_update_data: ProductDataUpdateDTO, request: Request,
                          response: Response):
     try:
         product_services = ProductServices()
@@ -112,8 +112,7 @@ async def update_product(product_update_id: int, product_update_data:
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest,
                 False, data={})
 
-        response_data = product_services.admin_update_product_data(
-            product_update_id, product_update_data)
+        response_data = product_services.admin_update_product_data(product_update_data)
         response.status_code = response_data.get('status_code')
         return response_data['response_message']
 
@@ -123,7 +122,7 @@ async def update_product(product_update_id: int, product_update_data:
 
 
 @product.put("/update_product_image/")
-@login_required(role="admin")
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
 async def update_product_image(product_id: int, request: Request,
                                response: Response,
                                product_image: UploadFile = File(...)):

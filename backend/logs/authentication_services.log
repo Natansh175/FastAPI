@@ -1,0 +1,276 @@
+2024-07-30 18:07:29,175 - backend.services.authentication_services - ERROR - Login Required Exception: 500: exceptions must derive from BaseException
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 69, in admin_insert_category
+    raise ApplicationServices.application_response(
+TypeError: exceptions must derive from BaseException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 28, in create_category
+    response_data = category_services.admin_insert_category(
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 79, in admin_insert_category
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: exceptions must derive from BaseException
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 107, in decorator
+    return await fn(*args, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 35, in create_category
+    ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: exceptions must derive from BaseException
+2024-07-30 19:49:58,127 - backend.services.authentication_services - ERROR - Login Required Exception: 500: name 'product_update_id' is not defined
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 116, in update_product
+    product_update_id, product_update_data)
+NameError: name 'product_update_id' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 107, in decorator
+    return await fn(*args, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 122, in update_product
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: name 'product_update_id' is not defined
+2024-07-30 20:01:11,500 - backend.services.authentication_services - ERROR - Login Required Exception: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 232, in admin_update_product_image
+    os.remove(os.path.join(IMAGE_PATH, previous_product_image))
+  File "C:\ProgramData\Anaconda3\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\ProgramData\Anaconda3\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 141, in update_product_image
+    response_data = product_services.admin_update_product_image(product_id,
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 256, in admin_update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 107, in decorator
+    return await fn(*args, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 149, in update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+2024-07-30 20:02:50,499 - backend.services.authentication_services - ERROR - Login Required Exception: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 232, in admin_update_product_image
+    os.remove(os.path.join(IMAGE_PATH, previous_product_image))
+  File "C:\ProgramData\Anaconda3\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\ProgramData\Anaconda3\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 141, in update_product_image
+    response_data = product_services.admin_update_product_image(product_id,
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 256, in admin_update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 107, in decorator
+    return await fn(*args, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 149, in update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+2024-07-30 20:03:59,415 - backend.services.authentication_services - ERROR - Login Required Exception: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 231, in admin_update_product_image
+    os.remove(os.path.join(IMAGE_PATH, previous_product_image))
+  File "C:\ProgramData\Anaconda3\lib\ntpath.py", line 117, in join
+    genericpath._check_arg_types('join', path, *paths)
+  File "C:\ProgramData\Anaconda3\lib\genericpath.py", line 152, in _check_arg_types
+    raise TypeError(f'{funcname}() argument must be str, bytes, or '
+TypeError: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 141, in update_product_image
+    response_data = product_services.admin_update_product_image(product_id,
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 255, in admin_update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 108, in decorator
+    return await fn(*args, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 149, in update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+2024-07-30 20:07:51,110 - backend.services.authentication_services - ERROR - Login Required Exception: 500: (pymysql.err.IntegrityError) (1048, "Column 'product_category_id' cannot be null")
+[SQL: INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_image_name, product_image_path, is_deleted, created_date, edited_date, product_category_id, product_subcategory_id) VALUES (%(product_name)s, %(product_description)s, %(product_price)s, %(product_quantity)s, %(product_image_name)s, %(product_image_path)s, %(is_deleted)s, %(created_date)s, %(edited_date)s, %(product_category_id)s, %(product_subcategory_id)s)]
+[parameters: {'product_name': None, 'product_description': None, 'product_price': None, 'product_quantity': None, 'product_image_name': 'fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'product_image_path': '/static/user_resources/images/fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'is_deleted': 0, 'created_date': None, 'edited_date': '2024-07-30 20:07:51', 'product_category_id': None, 'product_subcategory_id': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1048, "Column 'product_category_id' cannot be null")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 100, in update_data
+    db.commit()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4341, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4477, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4437, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1048, "Column 'product_category_id' cannot be null")
+[SQL: INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_image_name, product_image_path, is_deleted, created_date, edited_date, product_category_id, product_subcategory_id) VALUES (%(product_name)s, %(product_description)s, %(product_price)s, %(product_quantity)s, %(product_image_name)s, %(product_image_path)s, %(is_deleted)s, %(created_date)s, %(edited_date)s, %(product_category_id)s, %(product_subcategory_id)s)]
+[parameters: {'product_name': None, 'product_description': None, 'product_price': None, 'product_quantity': None, 'product_image_name': 'fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'product_image_path': '/static/user_resources/images/fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'is_deleted': 0, 'created_date': None, 'edited_date': '2024-07-30 20:07:51', 'product_category_id': None, 'product_subcategory_id': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 247, in admin_update_product_image
+    product_dao.update_product(product_vo)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\product_dao.py", line 24, in update_product
+    sql_dynamic.update_data('product_table', product_vo_list)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 106, in update_data
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: (pymysql.err.IntegrityError) (1048, "Column 'product_category_id' cannot be null")
+[SQL: INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_image_name, product_image_path, is_deleted, created_date, edited_date, product_category_id, product_subcategory_id) VALUES (%(product_name)s, %(product_description)s, %(product_price)s, %(product_quantity)s, %(product_image_name)s, %(product_image_path)s, %(is_deleted)s, %(created_date)s, %(edited_date)s, %(product_category_id)s, %(product_subcategory_id)s)]
+[parameters: {'product_name': None, 'product_description': None, 'product_price': None, 'product_quantity': None, 'product_image_name': 'fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'product_image_path': '/static/user_resources/images/fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'is_deleted': 0, 'created_date': None, 'edited_date': '2024-07-30 20:07:51', 'product_category_id': None, 'product_subcategory_id': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 141, in update_product_image
+    response_data = product_services.admin_update_product_image(product_id,
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\product_services.py", line 257, in admin_update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: (pymysql.err.IntegrityError) (1048, "Column 'product_category_id' cannot be null")
+[SQL: INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_image_name, product_image_path, is_deleted, created_date, edited_date, product_category_id, product_subcategory_id) VALUES (%(product_name)s, %(product_description)s, %(product_price)s, %(product_quantity)s, %(product_image_name)s, %(product_image_path)s, %(is_deleted)s, %(created_date)s, %(edited_date)s, %(product_category_id)s, %(product_subcategory_id)s)]
+[parameters: {'product_name': None, 'product_description': None, 'product_price': None, 'product_quantity': None, 'product_image_name': 'fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'product_image_path': '/static/user_resources/images/fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'is_deleted': 0, 'created_date': None, 'edited_date': '2024-07-30 20:07:51', 'product_category_id': None, 'product_subcategory_id': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 107, in decorator
+    return await fn(*args, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\product_controller.py", line 149, in update_product_image
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: (pymysql.err.IntegrityError) (1048, "Column 'product_category_id' cannot be null")
+[SQL: INSERT INTO product_table (product_name, product_description, product_price, product_quantity, product_image_name, product_image_path, is_deleted, created_date, edited_date, product_category_id, product_subcategory_id) VALUES (%(product_name)s, %(product_description)s, %(product_price)s, %(product_quantity)s, %(product_image_name)s, %(product_image_path)s, %(is_deleted)s, %(created_date)s, %(edited_date)s, %(product_category_id)s, %(product_subcategory_id)s)]
+[parameters: {'product_name': None, 'product_description': None, 'product_price': None, 'product_quantity': None, 'product_image_name': 'fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'product_image_path': '/static/user_resources/images/fb2ecfdf-9b91-44d2-b45f-51b985cb5249_pexels-pixabay-256302.jpg', 'is_deleted': 0, 'created_date': None, 'edited_date': '2024-07-30 20:07:51', 'product_category_id': None, 'product_subcategory_id': None}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

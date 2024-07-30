@@ -51,7 +51,6 @@ class ResponseMessageEnum(str, Enum):
     UserBlocked = "User is temporarily blocked by admin."
     IncorrectPassword = "Password is incorrect!"
     LoggedIn = "Logged in Successfully."
-    NotValidInput = "Make sure to enter every information!"
     UserCreatedSuccessfully = "User Created Successfully."
     Unauthorized = "You are not authorized to access this service."
     LoggedOut = "Logged Out Successfully."

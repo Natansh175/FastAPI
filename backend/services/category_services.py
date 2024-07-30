@@ -1,13 +1,10 @@
 import logging
-
 from datetime import datetime
 
-from backend.vo.category_vo import CategoryVO
 from backend.dao.category_dao import CategoryDAO
-from backend.dto.category_dto import UpdateCategoryDTO, CategoryDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
 from backend.services.app_services import ApplicationServices
-
+from backend.vo.category_vo import CategoryVO
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -15,14 +12,16 @@ logger.setLevel(logging.DEBUG)
 
 # Console handler for all logs
 console_handler = logging.StreamHandler()
-console_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
 # File handler for error logs
-file_handler = logging.FileHandler('category_services.log')
+file_handler = logging.FileHandler('backend/logs/category_services.log')
 file_handler.setLevel(logging.ERROR)
-file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_formatter = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
@@ -31,7 +30,7 @@ class CategoryServices:
     # Service class for managing categories in the application
 
     @staticmethod
-    def admin_insert_category(category: CategoryDTO):
+    def admin_insert_category(category):
         """
         Insert a new category into the database.
 
@@ -50,29 +49,24 @@ class CategoryServices:
             category_vo.category_description = category.category_description
             category_vo.category_count = category.category_count
             category_vo.is_deleted = False
-            category_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-            category_vo.edited_date = ""
+            category_vo.created_date = datetime.strftime(datetime.now(),
+                                                         '%Y-%m-%d %H:%M:%S')
+            category_vo.edited_date = datetime.strftime(datetime.now(),
+                                                        '%Y-%m-%d %H:%M:%S')
 
-            if category_vo.category_count > 0 and category_vo.category_name and category_vo.category_description:
-                category_dao.create_category(category_vo)
-                logger.info(f"Category '{category_vo.category_name}' inserted successfully")
-                return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.CREATED,
-                    ResponseMessageEnum.CategoryCreated,
-                    True,
-                    {}
-                )
-
-            logger.warning("Category insertion failed due to invalid input data")
+            category_dao.create_category(category_vo)
+            logger.info(
+                f"Category '{category.category_name}' inserted successfully")
             return ApplicationServices.application_response(
-                HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                ResponseMessageEnum.CategoryUnprocessableEntity,
-                False,
+                HttpStatusCodeEnum.CREATED,
+                ResponseMessageEnum.CategoryCreated,
+                True,
                 {}
             )
 
         except Exception as exception:
-            logger.error(f"Category Insert Service Exception: {exception}", exc_info=True)
+            logger.error(f"Category Insert Service Exception: {exception}",
+                         exc_info=True)
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
@@ -102,17 +96,19 @@ class CategoryServices:
                 logger.info("Categories retrieved successfully")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
-                    {"Detail": data_to_show}
+                    data=data_to_show
                 )
 
             logger.info("No categories found")
             return ApplicationServices.application_response(
-                HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound,
+                HttpStatusCodeEnum.NOT_FOUND,
+                ResponseMessageEnum.NoCategoryFound,
                 False,
-                {"Detail": ResponseMessageEnum.NoCategoryFound}
+                data=ResponseMessageEnum.NoCategoryFound
             )
         except Exception as exception:
-            logger.error(f"Category Read Service Exception: {exception}", exc_info=True)
+            logger.error(f"Category Read Service Exception: {exception}",
+                         exc_info=True)
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
@@ -128,72 +124,58 @@ class CategoryServices:
         """
         logger.info(f"Deleting category with ID {category_id}")
         try:
+            category_vo = CategoryVO()
             category_dao = CategoryDAO()
-            category_vo_list = category_dao.read_category_mutable(category_id)
-            if category_vo_list and not category_vo_list.is_deleted:
-                category_vo_list.is_deleted = True
-                category_dao.update_category(category_vo_list)
-                logger.info(f"Category with ID {category_id} marked as deleted")
-                return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted, True, {}
-                )
 
-            logger.warning(f"Category with ID {category_id} not found or already deleted")
+            category_vo.category_id = category_id
+            category_vo.is_deleted = True
+            category_dao.update_category(category_vo)
+
+            logger.info(
+                f"Category with ID {category_id} marked as deleted")
+
             return ApplicationServices.application_response(
-                HttpStatusCodeEnum.NOT_FOUND, ResponseMessageEnum.CategoryNotFound, False, {}
+                HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted,
+                True, {}
             )
+
         except Exception as exception:
-            logger.error(f"Category Delete Service Exception: {exception}", exc_info=True)
+            logger.error(f"Category Delete Service Exception: {exception}",
+                         exc_info=True)
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_update_category(update_category_id: int, category: UpdateCategoryDTO):
+    def admin_update_category(category_update_dto):
         """
         Update the details of an existing category.
 
         Args:
-            update_category_id (int): The ID of the category to be updated.
-            category (UpdateCategoryDTO): The data transfer object containing updated category details.
+            category_update_dto (CategoryUpdateDTO): The data transfer object containing updated category details.
 
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info(f"Updating category with ID {update_category_id}")
+        logger.info(f"Updating subcategory with ID {category_update_dto.subcategory_id}")
         try:
+            category_vo = CategoryVO()
             category_dao = CategoryDAO()
-            category_vo_list = category_dao.read_category_mutable(update_category_id)
+            for key, value in category_update_dto.model_dump(
+                    exclude_unset=True).items():
+                setattr(category_vo, key, value)
 
-            if category_vo_list and not category_vo_list.is_deleted:
+            category_vo.edited_date = datetime.strftime(
+                datetime.now(), '%Y-%m-%d %H:%M:%S')
+            category_dao.update_category(category_vo)
 
-                # Updating just the fields that are changed by user
-                update_data = category.model_dump(exclude_unset=True)
-                for key, value in update_data.items():
-                    setattr(category_vo_list, key, value)
-                for data in update_data.values():
-                    if data == "" or 0:
-                        logger.warning(
-                            "Category update failed due to invalid input data")
-
-                        return ApplicationServices.application_response(
-                            HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                            ResponseMessageEnum.CategoryUnprocessableEntity,
-                            False,
-                            {}
-                        )
-                category_vo_list.edited_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-
-                category_dao.update_category(category_vo_list)
-                logger.info(f"Category with ID {update_category_id} updated successfully")
-                return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.OK,
-                    ResponseMessageEnum.CategoryUpdated, True, {}
-                )
-
-            logger.warning(f"Category with ID {update_category_id} not found or marked as deleted")
+            logger.info(
+                f"Category with ID {category_update_dto.category_id} updated "
+                f"successfully")
             return ApplicationServices.application_response(
-                HttpStatusCodeEnum.NOT_FOUND,
-                ResponseMessageEnum.CategoryNotFound, False, {}
+                HttpStatusCodeEnum.OK,
+                ResponseMessageEnum.CategoryUpdated, True, {}
             )
+
         except Exception as exception:
-            logger.error(f"Category Update Service Exception: {exception}", exc_info=True)
+            logger.error(f"Category Update Service Exception: {exception}",
+                         exc_info=True)
             ApplicationServices.handle_exception(exception, True)

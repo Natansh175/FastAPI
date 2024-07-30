@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Response, Request
 
-from backend.dto.subcategory_dto import SubCategoryDTO, UpdateSubCategoryDTO
-from backend.services.subcategory_services import SubCategoryServices
+from backend.dto.subcategory_dto import SubCategoryDTO, SubCategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
+from backend.enum.authentication_enum import AuthenticationEnum
+from backend.services.subcategory_services import SubCategoryServices
 from backend.services.app_services import ApplicationServices
 from backend.services.authentication_services import login_required
 
@@ -14,9 +15,9 @@ subCategory = APIRouter(
 
 
 @subCategory.post("/insert_subcategory/")
-@login_required(role="admin")
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
 async def create_subcategory(subcategory_insert: SubCategoryDTO,
-                             category_id: int, request: Request,
+                             request: Request,
                              response: Response):
     try:
         subcategory_services = SubCategoryServices()
@@ -25,7 +26,7 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
             return ApplicationServices.application_response(HttpStatusCodeEnum.BAD_REQUEST,
                                                             ResponseMessageEnum.BadRequest, False, data={})
 
-        response_data = subcategory_services.admin_insert_subcategory(subcategory_insert, category_id)
+        response_data = subcategory_services.admin_insert_subcategory(subcategory_insert)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 
@@ -35,14 +36,14 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
 
 
 @subCategory.get("/get_subcategories/")
-@login_required(role="user")
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.USER_ROLE])
 async def read_subcategories(request: Request, response: Response):
     try:
         subcategory_services = SubCategoryServices()
         response_data = subcategory_services.admin_read_subcategories()
 
         response.status_code = response_data.get('status_code')
-        return response_data['data']['Detail']
+        return response_data.get('data')
 
     except Exception as exception:
         print(f"SubCategory Read controller Exception: {exception}")
@@ -50,7 +51,7 @@ async def read_subcategories(request: Request, response: Response):
 
 
 @subCategory.delete("/delete_subcategory/")
-@login_required(role="admin")
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
 async def delete_subcategory(subcategory_id: int, request: Request,
                              response: Response):
     try:
@@ -71,18 +72,18 @@ async def delete_subcategory(subcategory_id: int, request: Request,
 
 
 @subCategory.put("/update_subcategory/")
-@login_required(role="admin")
-async def update_subcategory(update_subcategory_id: int, subcategory_update:
-                             UpdateSubCategoryDTO, request: Request,
+@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+async def update_subcategory(subcategory_update_dto: SubCategoryUpdateDTO,
+                             request: Request,
                              response: Response):
     try:
         subcategory_services = SubCategoryServices()
-        if not subcategory_update:
+        if not subcategory_update_dto:
             response.status_code = HttpStatusCodeEnum.BAD_REQUEST
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest, False, data={})
 
-        response_data = subcategory_services.admin_update_subcategory(update_subcategory_id, subcategory_update)
+        response_data = subcategory_services.admin_update_subcategory(subcategory_update_dto)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 

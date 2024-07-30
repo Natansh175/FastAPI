@@ -5,7 +5,6 @@ import jwt
 from fastapi import Response
 from functools import wraps
 
-from backend.dto.register_dto import RegisterDTO
 from backend.vo.login_vo import LoginVO
 from backend.vo.user_vo import UserVO
 from backend.dao.authentication_dao import AuthenticationDAO
@@ -25,7 +24,7 @@ console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
 # File handler for error logs
-file_handler = logging.FileHandler('authentication_services.log')
+file_handler = logging.FileHandler('backend/logs/authentication_services.log')
 file_handler.setLevel(logging.ERROR)
 file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(file_formatter)
@@ -47,7 +46,7 @@ def refresh_token(request, response, fn):
         if refreshtoken is not None:
             data = jwt.decode(refreshtoken, algorithms=["HS256"], options={"verify_signature": False})
 
-            login_vo_list = authentication_dao.read_user_immutable(data['upload_id'])
+            login_vo_list = authentication_dao.read_user_by_email(data['public_id'])
 
             response = fn(request)
             response.set_cookie(
@@ -101,9 +100,10 @@ def login_required(role):
                 else:
                     authentication_dao = AuthenticationDAO()
                     data = jwt.decode(accesstoken, algorithms=["HS256"], options={"verify_signature": False})
-                    login_vo_list = authentication_dao.read_user_immutable(data.get('public_id'))
+                    login_vo_list = authentication_dao.read_user_by_email(data.get('public_id'))
                     if login_vo_list is not None:
-                        if login_vo_list.login_role == role and login_vo_list.login_status:
+                        if login_vo_list.login_role in role and \
+                                login_vo_list.login_status:
                             return await fn(*args, **kwargs)
                         else:
                             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
@@ -124,24 +124,14 @@ def login_required(role):
 class AuthenticationServices:
 
     @staticmethod
-    def insert_user(user_info: RegisterDTO):
+    def insert_user(user_info):
         logger.info("Inserting a new user")
         try:
             login_vo = LoginVO()
             user_vo = UserVO()
             authentication_dao = AuthenticationDAO()
 
-            for key, value in user_info:
-                if value == "":
-                    logger.warning("User insertion failed due to invalid input data")
-                    return ApplicationServices.application_response(
-                        HttpStatusCodeEnum.UNPROCESSABLE_ENTITY,
-                        ResponseMessageEnum.NotValidInput,
-                        False,
-                        {}
-                    )
-
-            user_vo_list = authentication_dao.read_user_immutable(user_info.email)
+            user_vo_list = authentication_dao.read_user_by_email(user_info.email)
 
             if user_vo_list:
                 logger.warning(f"User with email {user_info.email} already exists")
@@ -186,7 +176,7 @@ class AuthenticationServices:
         logger.info(f"User login attempt with email: {email}")
         authentication_dao = AuthenticationDAO()
 
-        login_vo_list = authentication_dao.read_user_immutable(email)
+        login_vo_list = authentication_dao.read_user_by_email(email)
 
         user_password = password.encode('utf-8')
 
@@ -279,11 +269,11 @@ class AuthenticationServices:
         )
 
     @staticmethod
-    def app_logout(response: Response):
-        logger.info("User logout attempt")
+    def app_logout(user_email, response: Response):
+        logger.info(f"{user_email} attempted for logout")
         response.delete_cookie(AuthenticationEnum.ACCESSTOKEN.value)
         response.delete_cookie(AuthenticationEnum.REFRESHTOKEN.value)
-        logger.info("User logged out successfully")
+        logger.info(f"{user_email} logged out successfully")
         return ApplicationServices.application_response(
             HttpStatusCodeEnum.OK,
             ResponseMessageEnum.LoggedOut,

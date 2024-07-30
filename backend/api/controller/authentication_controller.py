@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Request, Response, Form
+import jwt
 
 from backend.dto.register_dto import RegisterDTO
 from backend.services.authentication_services import AuthenticationServices
@@ -63,8 +64,29 @@ async def user_login(request: Request, response: Response,
 
 
 @authentication.post("/logout")
-async def user_logout(response: Response):
-    authentication_services = AuthenticationServices()
-    response_data = authentication_services.app_logout(response)
-    response.status_code = response_data.get('status_code')
-    return response_data.get('response_message')
+async def user_logout(request: Request, response: Response):
+    try:
+        cookie = request.headers.get('cookie')
+        refreshtoken = None
+        if cookie:
+            cookies = cookie.split('; ')
+            for c in cookies:
+                if c.startswith('refreshtoken='):
+                    refreshtoken = c[len('refreshtoken='):]
+                    break
+        if refreshtoken is not None:
+            data = jwt.decode(refreshtoken, algorithms=["HS256"],
+                              options={"verify_signature": False})
+            print(data)
+            user_email = data['public_id']
+
+            authentication_services = AuthenticationServices()
+            response_data = authentication_services.app_logout(
+                user_email, response)
+
+            response.status_code = response_data.get('status_code')
+            return response_data.get('response_message')
+
+    except Exception as exception:
+        print(f"Logout Controller exception: {exception}")
+        return ApplicationServices.handle_exception(exception, True)

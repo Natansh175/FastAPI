@@ -10,7 +10,7 @@ SQLALCHEMY_DATABASE_URL = (
 # Create engine
 engine: Engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
-# Create session local
+# SessionLocal for creating sessions
 SessionLocal = sessionmaker(
     autocommit=False,
     autoflush=False,

@@ -7,10 +7,10 @@ from backend.api.controller import (category_controller,
 
 
 # APIRouter object to include other APIRouter classes across the project
-# Ultimately included in the app
+# Ultimately included in the app on main file
 router = APIRouter()
 
-# Includes sub-app routers
+# Sub-App routers
 router.include_router(authentication_controller.authentication)
 router.include_router(category_controller.category)
 router.include_router(subcategory_controller.subCategory)
