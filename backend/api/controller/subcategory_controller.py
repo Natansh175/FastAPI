@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Response, Request
+import jwt
 
 from backend.dto.subcategory_dto import SubCategoryDTO, SubCategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -15,7 +16,7 @@ subCategory = APIRouter(
 
 
 @subCategory.post("/insert_subcategory/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def create_subcategory(subcategory_insert: SubCategoryDTO,
                              request: Request,
                              response: Response):
@@ -24,9 +25,17 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
         if not subcategory_insert:
             response.status_code = HttpStatusCodeEnum.BAD_REQUEST
             return ApplicationServices.application_response(HttpStatusCodeEnum.BAD_REQUEST,
-                                                            ResponseMessageEnum.BadRequest, False, data={})
+                                                            ResponseMessageEnum.BadRequest,
+                                                            False, data={})
 
-        response_data = subcategory_services.admin_insert_subcategory(subcategory_insert)
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = subcategory_services.admin_insert_subcategory(
+            subcategory_insert, user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 
@@ -36,11 +45,20 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
 
 
 @subCategory.get("/get_subcategories/")
-@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.USER_ROLE])
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE,
+                      AuthenticationEnum.USER_ROLE,
+                      AuthenticationEnum.SELLER_ROLE])
 async def read_subcategories(request: Request, response: Response):
     try:
         subcategory_services = SubCategoryServices()
-        response_data = subcategory_services.admin_read_subcategories()
+
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = subcategory_services.admin_read_subcategories(user_id)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')
@@ -51,7 +69,7 @@ async def read_subcategories(request: Request, response: Response):
 
 
 @subCategory.delete("/delete_subcategory/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def delete_subcategory(subcategory_id: int, request: Request,
                              response: Response):
     try:
@@ -62,7 +80,14 @@ async def delete_subcategory(subcategory_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.SubCategoryNotFound, False, data={})
 
-        response_data = subcategory_services.admin_delete_subcategory(subcategory_id)
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = subcategory_services.admin_delete_subcategory(
+            subcategory_id, user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 
@@ -72,7 +97,7 @@ async def delete_subcategory(subcategory_id: int, request: Request,
 
 
 @subCategory.put("/update_subcategory/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def update_subcategory(subcategory_update_dto: SubCategoryUpdateDTO,
                              request: Request,
                              response: Response):
@@ -83,7 +108,14 @@ async def update_subcategory(subcategory_update_dto: SubCategoryUpdateDTO,
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest, False, data={})
 
-        response_data = subcategory_services.admin_update_subcategory(subcategory_update_dto)
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = subcategory_services.admin_update_subcategory(
+            subcategory_update_dto, user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 

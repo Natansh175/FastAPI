@@ -15,9 +15,11 @@ class ProductVO(Base):
     product_quantity = Column(Integer)
     product_image_name = Column(String(255), nullable=False)
     product_image_path = Column(String(255), nullable=False)
-    is_deleted = Column(Boolean, default=0)
     created_date = Column(String(255))
+    created_by = Column(String(50), nullable=False)
     edited_date = Column(String(255))
+    edited_by = Column(String(50), nullable=True)
+    is_deleted = Column(Boolean, default=0)
     product_category_id = Column(Integer,
                                  ForeignKey(CategoryVO.category_id, onupdate="CASCADE"), nullable=False)
     product_subcategory_id = Column(Integer,

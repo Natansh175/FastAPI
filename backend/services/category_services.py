@@ -30,17 +30,17 @@ class CategoryServices:
     # Service class for managing categories in the application
 
     @staticmethod
-    def admin_insert_category(category):
+    def admin_insert_category(category, user_id):
         """
         Insert a new category into the database.
 
         Args:
             category (CategoryDTO): The data transfer object containing category details.
-
+            user_id (str): Name of the user accessing this endpoint.
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info("Inserting a new category")
+        logger.info(f"{user_id} is inserting a new category.")
         try:
             category_vo = CategoryVO()
             category_dao = CategoryDAO()
@@ -53,10 +53,13 @@ class CategoryServices:
                                                          '%Y-%m-%d %H:%M:%S')
             category_vo.edited_date = datetime.strftime(datetime.now(),
                                                         '%Y-%m-%d %H:%M:%S')
+            category_vo.created_by = user_id
+            category_vo.edited_by = ""
 
             category_dao.create_category(category_vo)
             logger.info(
-                f"Category '{category.category_name}' inserted successfully")
+                f"Category '{category.category_name}' inserted successfully "
+                f"by {user_id}.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.CREATED,
                 ResponseMessageEnum.CategoryCreated,
@@ -70,15 +73,18 @@ class CategoryServices:
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_read_categories():
+    def admin_read_categories(user_id):
         """
         Retrieve all categories from the database.
+
+        Args:
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             list of dict: The response from the application services,
             including status and data.
         """
-        logger.info("Reading all categories")
+        logger.info(f"{user_id} is reading all categories.")
         try:
             category_dao = CategoryDAO()
             category_data = category_dao.read_categories()
@@ -93,7 +99,7 @@ class CategoryServices:
                     }
                     for category in category_data
                 ]
-                logger.info("Categories retrieved successfully")
+                logger.info(f"Categories retrieved successfully by {user_id}.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
                     data=data_to_show
@@ -112,17 +118,18 @@ class CategoryServices:
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_delete_category(category_id: int):
+    def admin_delete_category(category_id, user_id):
         """
         Delete a category by marking it as deleted.
 
         Args:
             category_id (int): The ID of the category to be deleted.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info(f"Deleting category with ID {category_id}")
+        logger.info(f"{user_id} is deleting category with ID {category_id}.")
         try:
             category_vo = CategoryVO()
             category_dao = CategoryDAO()
@@ -132,7 +139,7 @@ class CategoryServices:
             category_dao.update_category(category_vo)
 
             logger.info(
-                f"Category with ID {category_id} marked as deleted")
+                f"{user_id} marked category_id:{category_id} as deleted.")
 
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK, ResponseMessageEnum.CategoryDeleted,
@@ -145,17 +152,19 @@ class CategoryServices:
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_update_category(category_update_dto):
+    def admin_update_category(category_update_dto, user_id):
         """
         Update the details of an existing category.
 
         Args:
             category_update_dto (CategoryUpdateDTO): The data transfer object containing updated category details.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info(f"Updating subcategory with ID {category_update_dto.category_id}")
+        logger.info(f"{user_id} is updating category with ID"
+                    f" {category_update_dto.category_id}.")
         try:
             category_vo = CategoryVO()
             category_dao = CategoryDAO()
@@ -165,11 +174,12 @@ class CategoryServices:
 
             category_vo.edited_date = datetime.strftime(
                 datetime.now(), '%Y-%m-%d %H:%M:%S')
+            category_vo.edited_by = user_id
             category_dao.update_category(category_vo)
 
             logger.info(
                 f"Category with ID {category_update_dto.category_id} updated "
-                f"successfully")
+                f"successfully by {user_id}.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK,
                 ResponseMessageEnum.CategoryUpdated, True, {}

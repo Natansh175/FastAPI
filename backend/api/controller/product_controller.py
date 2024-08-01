@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form, Response, Request
+import jwt
 
 from backend.dto.product_dto import ProductDTO, ProductDataUpdateDTO
 from backend.services.product_services import ProductServices
@@ -18,7 +19,7 @@ IMAGE_PATH = "static/user_resources/images"
 
 
 @product.post("/insert_product/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def create_product(category_id: int,
                          subcategory_id: int,
                          request: Request,
@@ -38,6 +39,12 @@ async def create_product(category_id: int,
                 HttpStatusCodeEnum.UNSUPPORTED_MEDIA_TYPE,
                 ResponseMessageEnum.InvalidImageType, False, {})
 
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
         # Read image data
         product_image_data = await product_image.read()
 
@@ -53,7 +60,8 @@ async def create_product(category_id: int,
         response_data = product_services.admin_insert_product(
             product_image.filename,
             product_image_data,
-            product_data
+            product_data,
+            user_id
         )
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
@@ -64,11 +72,20 @@ async def create_product(category_id: int,
 
 
 @product.get("/get_products/")
-@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.USER_ROLE])
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE,
+                      AuthenticationEnum.USER_ROLE,
+                      AuthenticationEnum.SELLER_ROLE])
 async def read_products(request: Request, response: Response):
     try:
         product_services = ProductServices()
-        response_data = product_services.admin_read_products()
+
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = product_services.admin_read_products(user_id)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')
@@ -80,7 +97,7 @@ async def read_products(request: Request, response: Response):
 
 
 @product.delete("/delete_product/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def delete_product(product_id: int, request: Request,
                          response: Response):
     try:
@@ -91,7 +108,13 @@ async def delete_product(product_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.ProductNotFound, False, data={})
 
-        response_data = product_services.admin_delete_product(product_id)
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = product_services.admin_delete_product(product_id, user_id)
         response.status_code = response_data.get('status_code')
         return response_data['response_message']
 
@@ -101,7 +124,7 @@ async def delete_product(product_id: int, request: Request,
 
 
 @product.put("/update_product_data/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def update_product(product_update_data: ProductDataUpdateDTO, request: Request,
                          response: Response):
     try:
@@ -112,7 +135,14 @@ async def update_product(product_update_data: ProductDataUpdateDTO, request: Req
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest,
                 False, data={})
 
-        response_data = product_services.admin_update_product_data(product_update_data)
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = product_services.admin_update_product_data(
+            product_update_data, user_id)
         response.status_code = response_data.get('status_code')
         return response_data['response_message']
 
@@ -122,7 +152,7 @@ async def update_product(product_update_data: ProductDataUpdateDTO, request: Req
 
 
 @product.put("/update_product_image/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def update_product_image(product_id: int, request: Request,
                                response: Response,
                                product_image: UploadFile = File(...)):
@@ -135,12 +165,20 @@ async def update_product_image(product_id: int, request: Request,
                 HttpStatusCodeEnum.UNSUPPORTED_MEDIA_TYPE,
                 ResponseMessageEnum.InvalidImageType, False, {})
 
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
         # To read image data
         product_image_data = await product_image.read()
 
         response_data = product_services.admin_update_product_image(product_id,
                                                                     product_image.filename,
-                                                                    product_image_data)
+                                                                    product_image_data,
+                                                                    user_id)
+
         response.status_code = response_data.get('status_code')
         return response_data['response_message']
 

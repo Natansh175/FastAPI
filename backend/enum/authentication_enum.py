@@ -9,6 +9,7 @@ class AuthenticationEnum(str, Enum):
     REFRESHTOKEN = "refreshtoken"
     ADMIN_ROLE = "admin"
     USER_ROLE = "user"
+    SELLER_ROLE = "seller"
     ACCESS_TOKEN_MAX_AGE = 300000
     REFRESH_TOKEN_MAX_AGE = 86400000
     ACCESS_TOKEN_EXP = 5

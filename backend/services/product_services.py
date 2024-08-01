@@ -35,7 +35,8 @@ IMAGE_PATH = "static/user_resources/images"
 class ProductServices:
     # Service class for managing products in the application.
     @staticmethod
-    def admin_insert_product(image_filename, image_data: bytes, product):
+    def admin_insert_product(image_filename, image_data: bytes, product,
+                             user_id):
         """
         Inserts a new product into the database after validating its category and subcategory.
 
@@ -45,11 +46,14 @@ class ProductServices:
             product (ProductDTO): Data transfer object for the product.
             which contains the category ID and subcategory ID to which
             the product belongs to.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: Response message and status.
         """
-        logger.info("Inserting a new product in database")
+        logger.info(f"{user_id} is inserting a new product with parent "
+                    f"category ID:{product.product_category_id} subcategory "
+                    f"ID:{product.product_subcategory_id}.")
         try:
 
             unique_id = uuid.uuid4()
@@ -71,13 +75,16 @@ class ProductServices:
             product_vo.product_image_path = f"/{IMAGE_PATH}/{image_unique_filename}"
             product_vo.is_deleted = False
             product_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+            product_vo.created_by = user_id
             product_vo.edited_date = ""
+            product_vo.edited_by = ""
             product_vo.product_category_id = product.product_category_id
             product_vo.product_subcategory_id = product.product_subcategory_id
 
             product_dao.create_product(product_vo)
 
-            logger.info(f"Product created: {product.product_name}")
+            logger.info(f"Product '{product.product_name}' created "
+                        f"successfully by {user_id}.")
 
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.CREATED,
@@ -88,15 +95,18 @@ class ProductServices:
             return ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_read_products():
+    def admin_read_products(user_id):
         """
         Reads all products from the database and filters out the ones that
         are marked as deleted.
 
+        Args:
+            user_id (str): Name of the user accessing this endpoint.
+
         Returns:
            list of dict: Response message and product data.
         """
-        logger.info("Reading all products from the database")
+        logger.info(f"{user_id} is reading all products.")
         try:
             category_dao = CategoryDAO()
             subcategory_dao = SubCategoryDAO()
@@ -120,7 +130,8 @@ class ProductServices:
                 ]
 
                 if data_to_show:
-                    logger.info("Products retrieved successfully")
+                    logger.info(f"Products retrieved successfully by "
+                                f"{user_id}.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
                         data=data_to_show)
@@ -134,7 +145,7 @@ class ProductServices:
                         False, data=ResponseMessageEnum.NoProductFound)
 
             else:
-                logger.info("No Products found in database")
+                logger.info(f"No products in database for {user_id}.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.NOT_FOUND,
                     ResponseMessageEnum.NoProductFound,
@@ -145,17 +156,18 @@ class ProductServices:
             return ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_delete_product(product_id):
+    def admin_delete_product(product_id, user_id):
         """
         Marks a product as deleted.
 
         Args:
             product_id (int): ID of the product to mark as deleted.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: Response message and status.
         """
-        logger.info(f"Deleting product with ID: {product_id} from database")
+        logger.info(f"{user_id} is deleting product with ID: {product_id}.")
         try:
             product_vo = ProductVO()
             product_dao = ProductDAO()
@@ -164,7 +176,7 @@ class ProductServices:
             product_vo.is_deleted = True
             product_dao.update_product(product_vo)
 
-            logger.info(f"Product deleted with ID: {product_id}")
+            logger.info(f"{user_id} marked product:{product_id} as deleted.")
 
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK, ResponseMessageEnum.ProductDeleted, True, {})
@@ -174,7 +186,7 @@ class ProductServices:
             return ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_update_product_data(product_update_data):
+    def admin_update_product_data(product_update_data, user_id):
         """
         Updates product data.
 
@@ -182,12 +194,13 @@ class ProductServices:
             product_update_data (ProductDataUpdateDTO): Data transfer object
             with updated product data.
             This comes with ID of the product to update.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: Response message and status.
         """
-        logger.info(f"Updating product Data of Product ID: "
-                    f"{product_update_data.product_id}")
+        logger.info(f"{user_id} is updating product Data of Product ID: "
+                    f"{product_update_data.product_id}.")
         try:
             product_vo = ProductVO()
             product_dao = ProductDAO()
@@ -196,10 +209,13 @@ class ProductServices:
                 setattr(product_vo, key, value)
 
             product_vo.edited_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+            product_vo.edited_by = user_id
 
             product_dao.update_product(product_vo)
 
-            logger.info(f"Product updated: {product_update_data.product_id}")
+            logger.info(f"Product Data with ID"
+                        f" {product_update_data.product_id} "
+                        f"updated successfully by {user_id}.")
 
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK,
@@ -211,7 +227,7 @@ class ProductServices:
 
     @staticmethod
     def admin_update_product_image(update_image_id, update_image_name: str,
-                                   product_image_data: bytes):
+                                   product_image_data: bytes, user_id):
         """
         Updates the image for a given product ID.
 
@@ -219,11 +235,13 @@ class ProductServices:
             update_image_id (int): ID of the product whose image needs to be updated.
             update_image_name (str): New image filename.
             product_image_data (bytes): Byte data of the new image.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: Response message and status.
         """
-        logger.info(f"Updating image of product_id: {update_image_id}")
+        logger.info(f"{user_id} is updating image of product_id:"
+                    f" {update_image_id}.")
         try:
             product_vo = ProductVO()
             product_dao = ProductDAO()
@@ -245,9 +263,11 @@ class ProductServices:
             product_vo.edited_date = datetime.strftime(datetime.now(),
                                                        '%Y-%m-%d %H:%M:%S')
             product_vo.product_image_path = f"/{IMAGE_PATH}/{image_unique_filename}"
+            product_vo.edited_by = user_id
             product_dao.update_product(product_vo)
 
-            logger.info(f"Product image updated: {update_image_id}")
+            logger.info(f"Product image with ID: {update_image_id} updated "
+                        f"successfully by {user_id}.")
 
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK,

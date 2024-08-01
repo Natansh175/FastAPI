@@ -68,21 +68,16 @@ async def user_logout(request: Request, response: Response):
     try:
         refreshtoken = request.cookies.get(
             AuthenticationEnum.REFRESHTOKEN.value)
-        if refreshtoken is not None:
-            data = jwt.decode(refreshtoken, AuthenticationEnum.SECRET_KEY,
-                              algorithms=["HS256"])
-            user_email = data['public_id']
+        data = jwt.decode(refreshtoken,
+                          algorithms=["HS256"], options={"verify_signature": False})
+        user_email = data['public_id']
 
-            authentication_services = AuthenticationServices()
-            response_data = authentication_services.app_logout(
-                user_email, response)
+        authentication_services = AuthenticationServices()
+        response_data = authentication_services.app_logout(
+            user_email, response)
 
-            response.status_code = response_data.get('status_code')
-            return response_data.get('response_message')
-
-        elif refreshtoken is None:
-            response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
-            return ResponseMessageEnum.LogInAgain
+        response.status_code = response_data.get('status_code')
+        return response_data.get('response_message')
 
     except Exception as exception:
         print(f"Logout Controller exception: {exception}")

@@ -31,10 +31,10 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-async def refresh_token(fn, **kwargs):
+async def refresh_token(fn, role, **kwargs):
     response = kwargs.get('response')
     request = kwargs.get('request')
-    logger.info("Refreshing token")
+    logger.info("Refreshing tokens.")
     try:
         authentication_dao = AuthenticationDAO()
         refreshtoken = request.cookies.get(AuthenticationEnum.REFRESHTOKEN.value)
@@ -59,17 +59,25 @@ async def refresh_token(fn, **kwargs):
                 'public_id': login_vo_list.login_username,
                 'exp': datetime.utcnow() + timedelta(hours=int(AuthenticationEnum.REFRESH_TOKEN_EXP.value))
             }, AuthenticationEnum.SECRET_KEY,  AuthenticationEnum.HASH_ALGORITHM)
-            logger.info("New token created")
+            logger.info("New tokens created.")
             response.set_cookie(
                 AuthenticationEnum.REFRESHTOKEN.value,
                 value=refresh,
                 max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
             )
-            return await fn(**kwargs)
+
+            if login_vo_list.login_role in role and \
+                    login_vo_list.login_status:
+                return await fn(**kwargs)
+            else:
+                logger.info(f"{login_vo_list.login_username} is unauthorized for {fn}")
+                response.status_code = HttpStatusCodeEnum.UNAUTHORIZED.value
+                return ResponseMessageEnum.Unauthorized
+
         else:
             logger.warning("Refresh token not found")
             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
-            return ResponseMessageEnum.Unauthorized
+            return ResponseMessageEnum.LogInAgain
 
     except Exception as exception:
         logger.error(f"Refresh Token function exception: {exception}", exc_info=True)
@@ -86,7 +94,7 @@ def login_required(role):
                 accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
 
                 if accesstoken is None:
-                    return await refresh_token(fn, **kwargs)
+                    return await refresh_token(fn, role, **kwargs)
                 else:
                     authentication_dao = AuthenticationDAO()
                     try:
@@ -96,7 +104,7 @@ def login_required(role):
                         return ResponseMessageEnum.Unauthorized
 
                     except jwt.exceptions.ExpiredSignatureError:
-                        return await refresh_token(fn, **kwargs)
+                        return await refresh_token(fn, role, **kwargs)
 
                     login_vo_list = authentication_dao.read_user_by_email(data.get('public_id'))
                     if login_vo_list is not None:
@@ -104,6 +112,9 @@ def login_required(role):
                                 login_vo_list.login_status:
                             return await fn(**kwargs)
                         else:
+                            logger.info(f"{data.get('public_id')} with role "
+                                        f"{data.get('role')} is not "
+                                        f"authorized for {fn}")
                             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
                             return ResponseMessageEnum.Unauthorized.value
                     else:
@@ -123,7 +134,7 @@ class AuthenticationServices:
 
     @staticmethod
     def insert_user(user_info):
-        logger.info("Inserting a new user")
+        logger.info("Inserting a new user.")
         try:
             login_vo = LoginVO()
             user_vo = UserVO()
@@ -132,7 +143,8 @@ class AuthenticationServices:
             user_vo_list = authentication_dao.read_user_by_email(user_info.email)
 
             if user_vo_list:
-                logger.warning(f"User with email {user_info.email} already exists")
+                logger.warning(f"User with email {user_info.email} already "
+                               f"exists.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.CONFLICT,
                     ResponseMessageEnum.UserExists,
@@ -158,7 +170,7 @@ class AuthenticationServices:
 
             authentication_dao.insert_user(user_vo)
 
-            logger.info(f"User '{user_info.email}' inserted successfully")
+            logger.info(f"User '{user_info.email}' inserted successfully.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.CREATED,
                 ResponseMessageEnum.UserCreatedSuccessfully,
@@ -171,7 +183,7 @@ class AuthenticationServices:
 
     @staticmethod
     def app_login(email, password, response: Response):
-        logger.info(f"User login attempt with email: {email}")
+        logger.info(f"Login attempt with email: {email}.")
         authentication_dao = AuthenticationDAO()
 
         login_vo_list = authentication_dao.read_user_by_email(email)
@@ -180,7 +192,7 @@ class AuthenticationServices:
 
         if login_vo_list:
             if not login_vo_list.login_status:
-                logger.warning(f"User with email {email} is blocked")
+                logger.warning(f"User with email {email} is blocked.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.UNAUTHORIZED,
                     ResponseMessageEnum.UserBlocked,
@@ -214,7 +226,8 @@ class AuthenticationServices:
                         max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
                     )
 
-                    logger.info(f"Admin user '{email}' logged in successfully")
+                    logger.info(f"Admin user '{email}' logged in "
+                                f"successfully as {login_role}.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,
                         ResponseMessageEnum.LoggedIn,
@@ -243,13 +256,45 @@ class AuthenticationServices:
                         max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
                     )
 
-                    logger.info(f"User '{email}' logged in successfully")
+                    logger.info(f"User '{email}' logged in successfully as "
+                                f"{login_role}.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,
                         ResponseMessageEnum.LoggedIn,
                         True,
                         {}
                     )
+
+                elif login_role == 'seller':
+                    response.set_cookie(
+                        AuthenticationEnum.ACCESSTOKEN.value,
+                        value=jwt.encode({
+                            'public_id': email,
+                            'role': login_role,
+                            'exp': datetime.utcnow() + timedelta(minutes=int(AuthenticationEnum.ACCESS_TOKEN_EXP.value))
+                        }, AuthenticationEnum.SECRET_KEY, AuthenticationEnum.HASH_ALGORITHM),
+                        max_age=int(AuthenticationEnum.ACCESS_TOKEN_MAX_AGE.value)
+                    )
+
+                    refresh = jwt.encode({
+                        'public_id': email,
+                        'exp': datetime.utcnow() + timedelta(hours=int(AuthenticationEnum.REFRESH_TOKEN_EXP.value))
+                    }, AuthenticationEnum.SECRET_KEY, AuthenticationEnum.HASH_ALGORITHM)
+                    response.set_cookie(
+                        AuthenticationEnum.REFRESHTOKEN.value,
+                        value=refresh,
+                        max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
+                    )
+
+                    logger.info(f"User '{email}' logged in successfully as "
+                                f"{login_role}.")
+                    return ApplicationServices.application_response(
+                        HttpStatusCodeEnum.OK,
+                        ResponseMessageEnum.LoggedIn,
+                        True,
+                        {}
+                    )
+
             else:
                 logger.warning(f"Incorrect password for email {email}")
                 return ApplicationServices.application_response(
@@ -269,10 +314,10 @@ class AuthenticationServices:
 
     @staticmethod
     def app_logout(user_email, response: Response):
-        logger.info(f"{user_email} attempted for logout")
+        logger.info(f"{user_email} attempted for logout.")
         response.delete_cookie(AuthenticationEnum.ACCESSTOKEN.value)
         response.delete_cookie(AuthenticationEnum.REFRESHTOKEN.value)
-        logger.info(f"{user_email} logged out successfully")
+        logger.info(f"{user_email} logged out successfully.")
         return ApplicationServices.application_response(
             HttpStatusCodeEnum.OK,
             ResponseMessageEnum.LoggedOut,

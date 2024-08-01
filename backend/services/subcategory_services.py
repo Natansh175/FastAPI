@@ -29,7 +29,7 @@ logger.addHandler(file_handler)
 class SubCategoryServices:
     # Service class for managing subcategories in the application.
     @staticmethod
-    def admin_insert_subcategory(subcategory):
+    def admin_insert_subcategory(subcategory, user_id):
         """
         Insert a new subcategory into the database.
 
@@ -37,11 +37,13 @@ class SubCategoryServices:
             subcategory (SubCategoryDTO): The data transfer object containing
             subcategory details and subcategory_category_id (int): The ID of
             the parent category.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info("Inserting a new subcategory")
+        logger.info(f"{user_id} is inserting a new subcategory with parent "
+                    f"category_id: {subcategory.subcategory_category_id}.")
         try:
 
             subcategory_vo = SubCategoryVO()
@@ -52,11 +54,13 @@ class SubCategoryServices:
             subcategory_vo.subcategory_count = subcategory.subcategory_count
             subcategory_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
             subcategory_vo.edited_date = ""
+            subcategory_vo.created_by = user_id
+            subcategory_vo.edited_by = ""
             subcategory_vo.subcategory_category_id = subcategory.subcategory_category_id
 
             subcategory_dao.create_subcategory(subcategory_vo)
-            logger.info(f"Subcategory '"
-                        f"{subcategory.subcategory_name}' inserted successfully")
+            logger.info(f"Subcategory '{subcategory.subcategory_name}' "
+                        f"inserted successfully by {user_id}.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.CREATED,
                 ResponseMessageEnum.SubCategoryCreated, True, subcategory_vo)
@@ -66,15 +70,18 @@ class SubCategoryServices:
             ApplicationServices.handle_exception(exception, is_raise=True)
 
     @staticmethod
-    def admin_read_subcategories():
+    def admin_read_subcategories(user_id):
         """
         Retrieve all subcategories from the database.
+
+        Args:
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             list of dict: The response from the application services,
             including status and data.
         """
-        logger.info("Reading all subcategories")
+        logger.info(f" {user_id} is reading all subcategories.")
         try:
             category_dao = CategoryDAO()
             subcategory_dao = SubCategoryDAO()
@@ -94,7 +101,8 @@ class SubCategoryServices:
                 ]
 
                 if data_to_show:
-                    logger.info("subcategories retrieved successfully")
+                    logger.info(f"Subcategories retrieved successfully by"
+                                f" {user_id}.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
                         data=data_to_show)
@@ -117,17 +125,19 @@ class SubCategoryServices:
             ApplicationServices.handle_exception(exception, is_raise=True)
 
     @staticmethod
-    def admin_delete_subcategory(subcategory_id):
+    def admin_delete_subcategory(subcategory_id, user_id):
         """
         Mark a subcategory as deleted.
 
         Args:
             subcategory_id (int): The ID of the subcategory to be deleted.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info(f"Deleting subcategory with ID {subcategory_id}")
+        logger.info(f"{user_id} is deleting subcategory with ID"
+                    f" {subcategory_id}.")
         try:
             subcategory_vo = SubCategoryVO()
             subcategory_dao = SubCategoryDAO()
@@ -136,7 +146,8 @@ class SubCategoryServices:
             subcategory_vo.is_deleted = True
             subcategory_dao.update_subcategory(subcategory_vo)
 
-            logger.info(f"Subcategory with ID {subcategory_id} marked as deleted")
+            logger.info(f"{user_id} marked subcategory:{subcategory_id} as "
+                        f"deleted.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK, ResponseMessageEnum.SubCategoryDeleted, True, {})
 
@@ -145,18 +156,20 @@ class SubCategoryServices:
             ApplicationServices.handle_exception(exception, is_raise=True)
 
     @staticmethod
-    def admin_update_subcategory(subcategory_update_dto):
+    def admin_update_subcategory(subcategory_update_dto, user_id):
         """
         Update the details of an existing subcategory.
 
         Args:
             subcategory_update_dto (SubCategoryDTO): The data transfer object containing
             updated subcategory details.
+            user_id (str): Name of the user accessing this endpoint.
 
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info(f"Updating subcategory with ID {subcategory_update_dto.subcategory_id}")
+        logger.info(f"{user_id} is updating subcategory"
+                    f" with ID:{subcategory_update_dto.subcategory_id}.")
         try:
             subcategory_vo = SubCategoryVO()
             subcategory_dao = SubCategoryDAO()
@@ -167,10 +180,12 @@ class SubCategoryServices:
 
             subcategory_vo.edited_date = datetime.strftime(
                 datetime.now(), '%Y-%m-%d %H:%M:%S')
+            subcategory_vo.edited_by = user_id
+
             subcategory_dao.update_subcategory(subcategory_vo)
 
             logger.info(f"Subcategory with ID {subcategory_update_dto.subcategory_id} "
-                        f"updated successfully")
+                        f"updated successfully by {user_id}.")
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.OK,
                 ResponseMessageEnum.SubCategoryUpdated,

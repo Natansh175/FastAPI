@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Response, Request
+import jwt
 
 from backend.dto.category_dto import CategoryDTO, CategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -14,7 +15,7 @@ category = APIRouter(
 
 
 @category.post("/insert_category/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def create_category(category_insert: CategoryDTO, request: Request,
                           response: Response):
     try:
@@ -25,8 +26,14 @@ async def create_category(category_insert: CategoryDTO, request: Request,
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})
 
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
         response_data = category_services.admin_insert_category(
-            category_insert)
+            category_insert, user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 
@@ -36,11 +43,20 @@ async def create_category(category_insert: CategoryDTO, request: Request,
 
 
 @category.get("/get_categories/")
-@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.USER_ROLE])
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE,
+                      AuthenticationEnum.USER_ROLE,
+                      AuthenticationEnum.SELLER_ROLE])
 async def read_categories(request: Request, response: Response):
     try:
         category_services = CategoryServices()
-        response_data = category_services.admin_read_categories()
+
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = category_services.admin_read_categories(user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('data')
 
@@ -50,7 +66,7 @@ async def read_categories(request: Request, response: Response):
 
 
 @category.delete("/delete_category/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def delete_category(category_id: int, request: Request,
                           response: Response):
     try:
@@ -61,7 +77,14 @@ async def delete_category(category_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.CategoryNotFound, False, data={})
 
-        response_data = category_services.admin_delete_category(category_id)
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        response_data = category_services.admin_delete_category(category_id,
+                                                                user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 
@@ -71,7 +94,7 @@ async def delete_category(category_id: int, request: Request,
 
 
 @category.put("/update_category/")
-@login_required(role=AuthenticationEnum.ADMIN_ROLE)
+@login_required(role=[AuthenticationEnum.ADMIN_ROLE, AuthenticationEnum.SELLER_ROLE])
 async def update_category(category_update_dto: CategoryUpdateDTO,
                           request: Request, response: Response):
     try:
@@ -82,8 +105,14 @@ async def update_category(category_update_dto: CategoryUpdateDTO,
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})
 
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
         response_data = category_services.admin_update_category(
-            category_update_dto)
+            category_update_dto, user_id)
         response.status_code = response_data.get('status_code')
         return response_data.get('response_message')
 
