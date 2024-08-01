@@ -4,6 +4,7 @@ from enum import Enum
 class AuthenticationEnum(str, Enum):
     ENCODING = "utf-8"
     HASH_ALGORITHM = "HS256"
+    SECRET_KEY = "u3D:B=hrh:p#42h>6Q#&_Kuicy)nu^|8T!t%.[HSV<xWK54dyU"
     ACCESSTOKEN = "accesstoken"
     REFRESHTOKEN = "refreshtoken"
     ADMIN_ROLE = "admin"

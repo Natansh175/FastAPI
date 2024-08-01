@@ -2,6 +2,7 @@ from fastapi import APIRouter, Request, Response, Form
 import jwt
 
 from backend.dto.register_dto import RegisterDTO
+from backend.enum.authentication_enum import AuthenticationEnum
 from backend.services.authentication_services import AuthenticationServices
 from backend.services.app_services import ApplicationServices
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -10,7 +11,6 @@ authentication = APIRouter(
     prefix="/authentication",
     tags=["authentication"],
 )
-
 
 
 @authentication.post("/register_user")
@@ -66,18 +66,11 @@ async def user_login(request: Request, response: Response,
 @authentication.post("/logout")
 async def user_logout(request: Request, response: Response):
     try:
-        cookie = request.headers.get('cookie')
-        refreshtoken = None
-        if cookie:
-            cookies = cookie.split('; ')
-            for c in cookies:
-                if c.startswith('refreshtoken='):
-                    refreshtoken = c[len('refreshtoken='):]
-                    break
+        refreshtoken = request.cookies.get(
+            AuthenticationEnum.REFRESHTOKEN.value)
         if refreshtoken is not None:
-            data = jwt.decode(refreshtoken, algorithms=["HS256"],
-                              options={"verify_signature": False})
-            print(data)
+            data = jwt.decode(refreshtoken, AuthenticationEnum.SECRET_KEY,
+                              algorithms=["HS256"])
             user_email = data['public_id']
 
             authentication_services = AuthenticationServices()
@@ -86,6 +79,10 @@ async def user_logout(request: Request, response: Response):
 
             response.status_code = response_data.get('status_code')
             return response_data.get('response_message')
+
+        elif refreshtoken is None:
+            response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
+            return ResponseMessageEnum.LogInAgain
 
     except Exception as exception:
         print(f"Logout Controller exception: {exception}")

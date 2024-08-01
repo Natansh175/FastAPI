@@ -41,7 +41,6 @@ async def read_categories(request: Request, response: Response):
     try:
         category_services = CategoryServices()
         response_data = category_services.admin_read_categories()
-
         response.status_code = response_data.get('status_code')
         return response_data.get('data')
 

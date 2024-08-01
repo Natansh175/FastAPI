@@ -31,45 +31,41 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def refresh_token(request, response, fn):
+async def refresh_token(fn, **kwargs):
+    response = kwargs.get('response')
+    request = kwargs.get('request')
     logger.info("Refreshing token")
     try:
         authentication_dao = AuthenticationDAO()
-        cookie = request.headers.get('cookie')
-        refreshtoken = None
-        if cookie:
-            cookies = cookie.split('; ')
-            for c in cookies:
-                if c.startswith('refreshtoken='):
-                    refreshtoken = c[len('refreshtoken='):]
-                    break
+        refreshtoken = request.cookies.get(AuthenticationEnum.REFRESHTOKEN.value)
         if refreshtoken is not None:
-            data = jwt.decode(refreshtoken, algorithms=["HS256"], options={"verify_signature": False})
+            data = jwt.decode(refreshtoken, AuthenticationEnum.SECRET_KEY,
+                              algorithms=["HS256"])
 
             login_vo_list = authentication_dao.read_user_by_email(data['public_id'])
 
-            response = fn(request)
             response.set_cookie(
                 AuthenticationEnum.ACCESSTOKEN.value,
                 value=jwt.encode({
-                    'public_id': login_vo_list[0].login_username,
-                    'role': login_vo_list[0].login_role,
+                    'public_id': login_vo_list.login_username,
+                    'role': login_vo_list.login_role,
                     'exp': datetime.utcnow() + timedelta(minutes=int(AuthenticationEnum.ACCESS_TOKEN_EXP.value))
-                }, AuthenticationEnum.HASH_ALGORITHM),
+                }, AuthenticationEnum.SECRET_KEY,
+                    AuthenticationEnum.HASH_ALGORITHM),
                 max_age=int(AuthenticationEnum.ACCESS_TOKEN_MAX_AGE.value)
             )
 
             refresh = jwt.encode({
-                'public_id': login_vo_list[0].login_username,
+                'public_id': login_vo_list.login_username,
                 'exp': datetime.utcnow() + timedelta(hours=int(AuthenticationEnum.REFRESH_TOKEN_EXP.value))
-            }, AuthenticationEnum.HASH_ALGORITHM)
+            }, AuthenticationEnum.SECRET_KEY,  AuthenticationEnum.HASH_ALGORITHM)
             logger.info("New token created")
             response.set_cookie(
                 AuthenticationEnum.REFRESHTOKEN.value,
                 value=refresh,
                 max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
             )
-            return response
+            return await fn(**kwargs)
         else:
             logger.warning("Refresh token not found")
             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
@@ -83,28 +79,30 @@ def refresh_token(request, response, fn):
 def login_required(role):
     def inner(fn):
         @wraps(fn)
-        async def decorator(*args, **kwargs):
-            request = kwargs.get('request')
+        async def decorator(**kwargs):
             response = kwargs.get('response')
+            request = kwargs.get('request')
             try:
-                cookie = request.headers.get('cookie')
-                accesstoken = None
-                if cookie:
-                    cookies = cookie.split('; ')
-                    for c in cookies:
-                        if c.startswith('accesstoken='):
-                            accesstoken = c[len('accesstoken='):]
-                            break
+                accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+
                 if accesstoken is None:
-                    return refresh_token(request, response, fn)
+                    return await refresh_token(fn, **kwargs)
                 else:
                     authentication_dao = AuthenticationDAO()
-                    data = jwt.decode(accesstoken, algorithms=["HS256"], options={"verify_signature": False})
+                    try:
+                        data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+
+                    except jwt.exceptions.InvalidSignatureError:
+                        return ResponseMessageEnum.Unauthorized
+
+                    except jwt.exceptions.ExpiredSignatureError:
+                        return await refresh_token(fn, **kwargs)
+
                     login_vo_list = authentication_dao.read_user_by_email(data.get('public_id'))
                     if login_vo_list is not None:
                         if login_vo_list.login_role in role and \
                                 login_vo_list.login_status:
-                            return await fn(*args, **kwargs)
+                            return await fn(**kwargs)
                         else:
                             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
                             return ResponseMessageEnum.Unauthorized.value
@@ -201,14 +199,15 @@ class AuthenticationServices:
                             'public_id': email,
                             'role': login_role,
                             'exp': datetime.utcnow() + timedelta(minutes=int(AuthenticationEnum.ACCESS_TOKEN_EXP.value))
-                        }, AuthenticationEnum.HASH_ALGORITHM),
+                        }, AuthenticationEnum.SECRET_KEY,
+                            AuthenticationEnum.HASH_ALGORITHM),
                         max_age=int(AuthenticationEnum.ACCESS_TOKEN_MAX_AGE.value)
                     )
 
                     refresh = jwt.encode({
                         'public_id': email,
                         'exp': datetime.utcnow() + timedelta(hours=int(AuthenticationEnum.REFRESH_TOKEN_EXP.value))
-                    }, AuthenticationEnum.HASH_ALGORITHM)
+                    }, AuthenticationEnum.SECRET_KEY, AuthenticationEnum.HASH_ALGORITHM)
                     response.set_cookie(
                         AuthenticationEnum.REFRESHTOKEN.value,
                         value=refresh,
@@ -230,14 +229,14 @@ class AuthenticationServices:
                             'public_id': email,
                             'role': login_role,
                             'exp': datetime.utcnow() + timedelta(minutes=int(AuthenticationEnum.ACCESS_TOKEN_EXP.value))
-                        }, AuthenticationEnum.HASH_ALGORITHM),
+                        }, AuthenticationEnum.SECRET_KEY, AuthenticationEnum.HASH_ALGORITHM),
                         max_age=int(AuthenticationEnum.ACCESS_TOKEN_MAX_AGE.value)
                     )
 
                     refresh = jwt.encode({
                         'public_id': email,
                         'exp': datetime.utcnow() + timedelta(hours=int(AuthenticationEnum.REFRESH_TOKEN_EXP.value))
-                    }, AuthenticationEnum.HASH_ALGORITHM)
+                    }, AuthenticationEnum.SECRET_KEY, AuthenticationEnum.HASH_ALGORITHM)
                     response.set_cookie(
                         AuthenticationEnum.REFRESHTOKEN.value,
                         value=refresh,

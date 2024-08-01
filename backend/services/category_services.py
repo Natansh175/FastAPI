@@ -155,7 +155,7 @@ class CategoryServices:
         Returns:
             dict: The response from the application services, including status and message.
         """
-        logger.info(f"Updating subcategory with ID {category_update_dto.subcategory_id}")
+        logger.info(f"Updating subcategory with ID {category_update_dto.category_id}")
         try:
             category_vo = CategoryVO()
             category_dao = CategoryDAO()

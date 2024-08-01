@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import uvicorn
 
 from backend.routes import routes
 
@@ -16,4 +17,9 @@ app.include_router(routes.router)
 # Demo/Home endpoint
 @app.get("/")
 async def home():
-    return {"Hello": "World"}
+    return {"message": "Hello World"}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app="main:app", host="127.0.0.1", port=8000, log_level="info",
+                reload=True)
