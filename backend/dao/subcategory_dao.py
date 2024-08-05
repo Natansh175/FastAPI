@@ -8,14 +8,16 @@ class SubCategoryDAO:
 
     # to read one particular Subcategory Data
     @staticmethod
-    def read_subcategory_by_id(subcategory_id):
-        subcategory_vo_list = sql_dynamic.view_data_by_id('subcategory_table', subcategory_id)
+    def read_subcategory_by_id(view_id):
+        subcategory_vo_list = sql_dynamic.view_data_by_id(
+            'subcategory_table', view_id, column_name="subcategory_id")
         return subcategory_vo_list
 
     # to read all subcategories
     @staticmethod
-    def read_subcategories():
-        subcategory_data = sql_dynamic.view_data_all('subcategory_table')
+    def read_subcategories(skip, limit, sort_criteria, search_keyword):
+        subcategory_data = sql_dynamic.view_data_all('subcategory_table', skip,
+                                                     limit, sort_criteria, search_keyword)
         return subcategory_data
 
     @staticmethod

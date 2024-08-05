@@ -10,13 +10,16 @@ class ProductDAO:
         sql_dynamic.insert_data('product_table', product_data)
 
     @staticmethod
-    def read_products():
-        product_vo_list = sql_dynamic.view_data_all('product_table')
+    def read_products(skip, limit, sort_criteria, search_keyword):
+        product_vo_list = sql_dynamic.view_data_all('product_table', skip,
+                                                    limit, sort_criteria,
+                                                    search_keyword)
         return product_vo_list
 
     @staticmethod
-    def read_product_by_id(product_id):
-        product_vo_list = sql_dynamic.view_data_by_id('product_table', product_id)
+    def read_product_by_id(view_id):
+        product_vo_list = sql_dynamic.view_data_by_id('product_table',
+                                                      view_id, column_name="product_id")
         return product_vo_list
 
     @staticmethod

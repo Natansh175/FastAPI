@@ -34,15 +34,24 @@ logger.addHandler(file_handler)
 async def refresh_token(fn, role, **kwargs):
     response = kwargs.get('response')
     request = kwargs.get('request')
-    logger.info("Refreshing tokens.")
     try:
         authentication_dao = AuthenticationDAO()
         refreshtoken = request.cookies.get(AuthenticationEnum.REFRESHTOKEN.value)
         if refreshtoken is not None:
-            data = jwt.decode(refreshtoken, AuthenticationEnum.SECRET_KEY,
-                              algorithms=["HS256"])
+            try:
+                data = jwt.decode(refreshtoken, AuthenticationEnum.SECRET_KEY,
+                                  algorithms=["HS256"])
+
+            except jwt.ExpiredSignatureError:
+                response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
+                return ResponseMessageEnum.LogInAgain
+            except jwt.InvalidTokenError:
+                response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
+                return ResponseMessageEnum.Unauthorized
 
             login_vo_list = authentication_dao.read_user_by_email(data['public_id'])
+
+            logger.info(f"Refreshing tokens for '{login_vo_list.login_username}'.")
 
             response.set_cookie(
                 AuthenticationEnum.ACCESSTOKEN.value,
@@ -59,7 +68,9 @@ async def refresh_token(fn, role, **kwargs):
                 'public_id': login_vo_list.login_username,
                 'exp': datetime.utcnow() + timedelta(hours=int(AuthenticationEnum.REFRESH_TOKEN_EXP.value))
             }, AuthenticationEnum.SECRET_KEY,  AuthenticationEnum.HASH_ALGORITHM)
-            logger.info("New tokens created.")
+
+            logger.info(f"New tokens created for '{login_vo_list.login_username}'.")
+
             response.set_cookie(
                 AuthenticationEnum.REFRESHTOKEN.value,
                 value=refresh,
@@ -75,7 +86,7 @@ async def refresh_token(fn, role, **kwargs):
                 return ResponseMessageEnum.Unauthorized
 
         else:
-            logger.warning("Refresh token not found")
+            logger.warning(f"Refresh token not found.")
             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
             return ResponseMessageEnum.LogInAgain
 
@@ -304,7 +315,7 @@ class AuthenticationServices:
                     {}
                 )
 
-        logger.warning(f"User with email {email} not found")
+        logger.warning(f"User with email {email} not found.")
         return ApplicationServices.application_response(
             HttpStatusCodeEnum.NOT_FOUND,
             ResponseMessageEnum.UserNotFound,

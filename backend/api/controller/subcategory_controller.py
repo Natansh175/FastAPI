@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Response, Request
+from fastapi import APIRouter, Response, Request, Query
+from typing import Optional, Any
 import jwt
 
 from backend.dto.subcategory_dto import SubCategoryDTO, SubCategoryUpdateDTO
@@ -48,7 +49,17 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
 @login_required(role=[AuthenticationEnum.ADMIN_ROLE,
                       AuthenticationEnum.USER_ROLE,
                       AuthenticationEnum.SELLER_ROLE])
-async def read_subcategories(request: Request, response: Response):
+async def read_subcategories(request: Request, response: Response,
+                             limit: Optional[int] =
+                             Query(default=10, description="Items per page"),
+                             page: int = Query(default=1,
+                                               description="Page number",
+                                               ge=1),
+                             sort_by: Optional[str] = Query(None,
+                                                            description="Sort by field"),
+                             search_keyword: Optional[Any] =
+                             Query(None, description="Search for specific "
+                                                     "keyword")):
     try:
         subcategory_services = SubCategoryServices()
 
@@ -58,7 +69,8 @@ async def read_subcategories(request: Request, response: Response):
                           options={"verify_signature": False})
         user_id = data.get('public_id')
 
-        response_data = subcategory_services.admin_read_subcategories(user_id)
+        response_data = subcategory_services.admin_read_subcategories(
+            user_id, limit, page, sort_by, search_keyword)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')

@@ -1,17 +1,11 @@
+from sqlalchemy import or_, inspect
+
 from backend.db.db import Base, SessionLocal
 from backend.services.app_services import ApplicationServices
-from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
+from backend.enum.http_enum import ResponseMessageEnum
 
 # Creating DataBase Session
 db = SessionLocal()
-
-
-# To get the 'id column name' according to table
-def get_table_id(table_name: str):
-    which_table = table_name.split("_")
-    table_id = which_table[0] + "_" + "id"
-
-    return table_id
 
 
 # To insert new row in specific table
@@ -25,17 +19,32 @@ def insert_data(table_name: str, data: dict):
             return ResponseMessageEnum.TableNotFound
 
     except Exception as exception:
+        db.rollback()
         print(f"Insert Data exception in dynamic file : {exception}")
         return ApplicationServices.handle_exception(exception, True)
 
 
 # To view all available data in specific table
-def view_data_all(table_name: str):
+def view_data_all(table_name: str, skip, limit, sort_criteria, search):
     try:
         table = Base.metadata.tables.get(table_name)
         if table is not None:
-            view_stmt = db.query(table).filter(table.c.is_deleted == 0).all()
-            return view_stmt
+            if sort_criteria is None or sort_criteria not in table.c:
+                sorting_column = table.c.created_date
+            else:
+                sorting_column = sort_criteria
+            query = db.query(table).filter(table.c.is_deleted == 0)
+            if search is not None:
+                search_conditions = [
+                    table.c[column.name].like(f"%{search}%")
+                    for column in inspect(table).c
+                    if column.type.python_type == str
+                ]
+                if search_conditions:
+                    query = query.filter(or_(*search_conditions))
+            query = query.order_by(sorting_column).offset(skip).limit(limit)
+            return query.all()
+
         else:
             return ResponseMessageEnum.TableNotFound
 
@@ -45,13 +54,11 @@ def view_data_all(table_name: str):
 
 
 # To Retrieve single data from specific table by ID
-def view_data_by_id(table_name: str, view_id: int):
+def view_data_by_id(table_name: str, view_id: int, column_name: str):
     try:
         table = Base.metadata.tables.get(table_name)
         if table is not None:
-
-            table_id = get_table_id(table_name)
-            data_column = getattr(table.c, table_id)
+            data_column = getattr(table.c, column_name)
             view_stmt = db.query(table).filter(data_column == view_id).first()
             if view_stmt is None:
                 pass
@@ -90,7 +97,7 @@ def view_data_by_email(table_name: str, email: str):
 def update_data(table_name: str, data: dict):
     """
     To update specific data in specific table This function is being used for
-    update as well as partial delete functionalities
+    update as well as partial delete functionalities.
     """
     try:
         table = Base.metadata.tables.get(table_name)

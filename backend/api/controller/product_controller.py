@@ -1,4 +1,5 @@
-from fastapi import APIRouter, UploadFile, File, Form, Response, Request
+from fastapi import APIRouter, UploadFile, File, Form, Response, Request, Query
+from typing import Any, Optional
 import jwt
 
 from backend.dto.product_dto import ProductDTO, ProductDataUpdateDTO
@@ -75,7 +76,17 @@ async def create_product(category_id: int,
 @login_required(role=[AuthenticationEnum.ADMIN_ROLE,
                       AuthenticationEnum.USER_ROLE,
                       AuthenticationEnum.SELLER_ROLE])
-async def read_products(request: Request, response: Response):
+async def read_products(request: Request, response: Response,
+                        limit: Optional[int] =
+                        Query(default=10, description="Items per page"),
+                        page: int = Query(default=1,
+                                          description="Page number",
+                                          ge=1),
+                        sort_by: Optional[str] = Query(None,
+                                                       description="Sort by field"),
+                        search_keyword: Optional[Any] =
+                        Query(None, description="Search for specific keyword")
+                        ):
     try:
         product_services = ProductServices()
 
@@ -85,7 +96,9 @@ async def read_products(request: Request, response: Response):
                           options={"verify_signature": False})
         user_id = data.get('public_id')
 
-        response_data = product_services.admin_read_products(user_id)
+        response_data = product_services.admin_read_products(user_id, limit,
+                                                             page, sort_by,
+                                                             search_keyword)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')

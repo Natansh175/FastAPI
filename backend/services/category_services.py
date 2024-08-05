@@ -1,5 +1,6 @@
 import logging
 from datetime import datetime
+from math import ceil
 
 from backend.dao.category_dao import CategoryDAO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -73,12 +74,16 @@ class CategoryServices:
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_read_categories(user_id):
+    def admin_read_categories(user_id, limit, page, sort_by, search_keyword):
         """
         Retrieve all categories from the database.
 
         Args:
             user_id (str): Name of the user accessing this endpoint.
+            limit (int): Maximum number of categories to return.
+            page (int): Page number of the categories to return.
+            sort_by (str): Sorting criteria.
+            search_keyword (any): Search criteria.
 
         Returns:
             list of dict: The response from the application services,
@@ -86,8 +91,11 @@ class CategoryServices:
         """
         logger.info(f"{user_id} is reading all categories.")
         try:
+            skip = (page - 1) * limit
+
             category_dao = CategoryDAO()
-            category_data = category_dao.read_categories()
+            category_data = category_dao.read_categories(skip, limit,
+                                                         sort_by, search_keyword)
 
             if category_data:
                 data_to_show = [
@@ -99,6 +107,16 @@ class CategoryServices:
                     }
                     for category in category_data
                 ]
+                total_count = len(data_to_show)
+                total_pages = ceil(total_count / limit)
+
+                max_pages_to_display = 5  # Adjust as needed
+                start_page = max(1, page - max_pages_to_display // 2)
+                end_page = min(total_pages,
+                               start_page + max_pages_to_display - 1)
+
+                pagination_range = range(start_page, end_page + 1)
+
                 logger.info(f"Categories retrieved successfully by {user_id}.")
                 return ApplicationServices.application_response(
                     HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,

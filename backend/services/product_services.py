@@ -3,6 +3,7 @@ import uuid
 import logging
 from datetime import datetime
 from pathlib import Path
+from math import ceil
 
 from backend.vo.product_vo import ProductVO
 from backend.dao.category_dao import CategoryDAO
@@ -95,24 +96,32 @@ class ProductServices:
             return ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_read_products(user_id):
+    def admin_read_products(user_id, limit, page, sort_by, search_keyword):
         """
         Reads all products from the database and filters out the ones that
         are marked as deleted.
 
         Args:
             user_id (str): Name of the user accessing this endpoint.
+            limit (int): Maximum number of products to return.
+            page (int): Page number of the products to return.
+            sort_by (str): Sorting criteria.
+            search_keyword (any): Search criteria.
 
         Returns:
            list of dict: Response message and product data.
         """
         logger.info(f"{user_id} is reading all products.")
         try:
+            skip = (page - 1) * limit
+
             category_dao = CategoryDAO()
             subcategory_dao = SubCategoryDAO()
             product_dao = ProductDAO()
 
-            product_data = product_dao.read_products()
+            product_data = product_dao.read_products(skip, limit,
+                                                     sort_by,
+                                                     search_keyword)
             if product_data:
                 data_to_show = [
                     {
@@ -130,6 +139,15 @@ class ProductServices:
                 ]
 
                 if data_to_show:
+                    total_count = len(data_to_show)
+                    total_pages = ceil(total_count / limit)
+
+                    max_pages_to_display = 5  # Adjust as needed
+                    start_page = max(1, page - max_pages_to_display // 2)
+                    end_page = min(total_pages,
+                                   start_page + max_pages_to_display - 1)
+
+                    pagination_range = range(start_page, end_page + 1)
                     logger.info(f"Products retrieved successfully by "
                                 f"{user_id}.")
                     return ApplicationServices.application_response(

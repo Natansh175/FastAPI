@@ -1,0 +1,357 @@
+2024-08-02 19:30:47,124 - backend.services.subcategory_services - ERROR - SubCategory Read Service Exception: view_data_all() missing 3 required positional arguments: 'skip', 'limit', and 'sort_criteria'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 104, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\subcategory_services.py", line 88, in admin_read_subcategories
+    subcategory_data = subcategory_dao.read_subcategories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\subcategory_dao.py", line 18, in read_subcategories
+    subcategory_data = sql_dynamic.view_data_all('subcategory_table')
+TypeError: view_data_all() missing 3 required positional arguments: 'skip', 'limit', and 'sort_criteria'
+2024-08-05 11:44:45,124 - backend.services.subcategory_services - ERROR - SubCategory Read Service Exception: view_data_all() missing 4 required positional arguments: 'skip', 'limit', 'sort_criteria', and 'search'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\subcategory_services.py", line 88, in admin_read_subcategories
+    subcategory_data = subcategory_dao.read_subcategories()
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\subcategory_dao.py", line 19, in read_subcategories
+    subcategory_data = sql_dynamic.view_data_all('subcategory_table')
+TypeError: view_data_all() missing 4 required positional arguments: 'skip', 'limit', 'sort_criteria', and 'search'
+2024-08-05 14:27:52,317 - backend.services.subcategory_services - ERROR - SubCategory Insert Service Exception: 500: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'khikhi', 'subcategory_description': 'khakha', 'subcategory_count': 400, 'created_date': '2024-08-05 14:27:52', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 17, in insert_data
+    db.commit()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4341, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4477, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4437, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'khikhi', 'subcategory_description': 'khakha', 'subcategory_count': 400, 'created_date': '2024-08-05 14:27:52', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\subcategory_services.py", line 61, in admin_insert_subcategory
+    subcategory_dao.create_subcategory(subcategory_vo)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\subcategory_dao.py", line 7, in create_subcategory
+    sql_dynamic.insert_data('subcategory_table', subcategory_data)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 23, in insert_data
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'khikhi', 'subcategory_description': 'khakha', 'subcategory_count': 400, 'created_date': '2024-08-05 14:27:52', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-08-05 14:31:57,447 - backend.services.subcategory_services - ERROR - SubCategory Insert Service Exception: 500: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'ddccff', 'subcategory_description': 'vbg', 'subcategory_count': 2200, 'created_date': '2024-08-05 14:31:57', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 17, in insert_data
+    db.commit()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4341, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4477, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4437, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'ddccff', 'subcategory_description': 'vbg', 'subcategory_count': 2200, 'created_date': '2024-08-05 14:31:57', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\subcategory_services.py", line 61, in admin_insert_subcategory
+    subcategory_dao.create_subcategory(subcategory_vo)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\subcategory_dao.py", line 7, in create_subcategory
+    sql_dynamic.insert_data('subcategory_table', subcategory_data)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 24, in insert_data
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'ddccff', 'subcategory_description': 'vbg', 'subcategory_count': 2200, 'created_date': '2024-08-05 14:31:57', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 9}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-08-05 14:35:18,571 - backend.services.subcategory_services - ERROR - SubCategory Insert Service Exception: 400: Category ID does not exist
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.IntegrityError: (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 19, in insert_data
+    db.commit()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 2017, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1302, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\state_changes.py", line 139, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 1277, in _prepare_impl
+    self.session.flush()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4341, in flush
+    self._flush(objects)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4477, in _flush
+    transaction.rollback(_capture_exception=True)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\util\langhelpers.py", line 146, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 4437, in _flush
+    flush_context.execute()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\persistence.py", line 1233, in _emit_insert_statements
+    result = connection.execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1418, in execute
+    return meth(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\sql\elements.py", line 515, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1640, in _execute_clauseelement
+    ret = self._execute_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 2353, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\engine\default.py", line 924, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.IntegrityError: (pymysql.err.IntegrityError) (1452, 'Cannot add or update a child row: a foreign key constraint fails (`fastapi`.`subcategory_table`, CONSTRAINT `subcategory_table_ibfk_1` FOREIGN KEY (`subcategory_category_id`) REFERENCES `category_table` (`category_id`) ON UPDATE CASCADE)')
+[SQL: INSERT INTO subcategory_table (subcategory_name, subcategory_description, subcategory_count, created_date, created_by, edited_date, edited_by, is_deleted, subcategory_category_id) VALUES (%(subcategory_name)s, %(subcategory_description)s, %(subcategory_count)s, %(created_date)s, %(created_by)s, %(edited_date)s, %(edited_by)s, %(is_deleted)s, %(subcategory_category_id)s)]
+[parameters: {'subcategory_name': 'ddccff', 'subcategory_description': 'vbg', 'subcategory_count': 2200, 'created_date': '2024-08-05 14:35:18', 'created_by': 'natansh@gmail.com', 'edited_date': '', 'edited_by': '', 'is_deleted': 0, 'subcategory_category_id': 18}]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\subcategory_services.py", line 61, in admin_insert_subcategory
+    subcategory_dao.create_subcategory(subcategory_vo)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\subcategory_dao.py", line 7, in create_subcategory
+    sql_dynamic.insert_data('subcategory_table', subcategory_data)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 25, in insert_data
+    raise HTTPException(status_code=400, detail="Category ID does not exist")
+fastapi.exceptions.HTTPException: 400: Category ID does not exist

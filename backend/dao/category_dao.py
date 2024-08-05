@@ -8,14 +8,17 @@ class CategoryDAO:
 
     # To read one particular Category Data (Immutable)
     @staticmethod
-    def read_category_by_id(category_id):
-        category_vo_list = sql_dynamic.view_data_by_id('category_table', view_id=category_id)
+    def read_category_by_id(view_id):
+        category_vo_list = sql_dynamic.view_data_by_id('category_table',
+                                                       view_id=view_id,
+                                                       column_name="category_id")
         return category_vo_list
 
     # To show all inserted and not-deleted categories to user
     @staticmethod
-    def read_categories():
-        category_data = sql_dynamic.view_data_all('category_table')
+    def read_categories(skip, limit, sort_criteria, search_keyword):
+        category_data = sql_dynamic.view_data_all('category_table', skip,
+                                                  limit, sort_criteria, search_keyword)
         return category_data
 
     @staticmethod
