@@ -17,12 +17,15 @@ class CategoryVO(Base):
     is_deleted = Column(Boolean, default=0)
 
 
-    @staticmethod
-    def serialize(category_vo):
-        category_dict = {
-            "category_id": category_vo.category_id,
-            "category_name": category_vo.category_name,
-            "category_description": category_vo.category_description,
-            "category_count": category_vo.category_count,
+    def serialize(self):
+        return {
+            "category_id": self.category_id,
+            "category_name": self.category_name,
+            "category_description": self.category_description,
+            "category_count": self.category_count,
+            "created_date": self.created_date,
+            "created_by": self.created_by,
+            "edited_date": self.edited_date,
+            "edited_by": self.edited_by,
+            "is_deleted": self.is_deleted,
         }
-        return category_dict

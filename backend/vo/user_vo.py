@@ -15,3 +15,16 @@ class UserVO(Base):
     is_deleted = Column(Boolean, default=0)
     user_login_id = Column(Integer, ForeignKey(LoginVO.login_id,
                                                onupdate="CASCADE"), nullable=False)
+
+
+    def serialize(self):
+        return {
+            'user_id': self.user_id,
+            'user_firstname': self.user_firstname,
+            'user_lastname': self.user_lastname,
+            'user_gender': self.user_gender,
+            'user_address': self.user_address,
+            'created_date': self.created_date,
+            'is_deleted': self.is_deleted,
+            'user_login_id': self.user_login_id
+        }

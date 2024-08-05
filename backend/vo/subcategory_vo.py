@@ -19,13 +19,16 @@ class SubCategoryVO(Base):
     subcategory_category_id = Column(Integer, ForeignKey(CategoryVO.category_id, onupdate="CASCADE"), nullable=False)
 
 
-    @staticmethod
-    def serializer(subcategory_vo):
-        subcategory_dict = {
-            "subcategory_id": subcategory_vo.subcategory_id,
-            "subcategory_name": subcategory_vo.subcategory_name,
-            "subcategory_description": subcategory_vo.subcategory_description,
-            "subcategory_count": subcategory_vo.subcategory_count,
-            "subcategory_category_id": subcategory_vo.subcategory_category_id,
+    def serialize(self):
+        return {
+            "subcategory_id": self.subcategory_id,
+            "subcategory_name": self.subcategory_name,
+            "subcategory_description": self.subcategory_description,
+            "subcategory_count": self.subcategory_count,
+            "created_date": self.created_date,
+            "created_by": self.created_by,
+            "edited_date": self.edited_date,
+            "edited_by": self.edited_by,
+            "is_deleted": self.is_deleted,
+            "subcategory_category_id": self.subcategory_category_id,
         }
-        return subcategory_dict

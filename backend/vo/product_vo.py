@@ -26,17 +26,20 @@ class ProductVO(Base):
                                     ForeignKey(SubCategoryVO.subcategory_id, onupdate="CASCADE"), nullable=False)
 
 
-    @staticmethod
-    def serialize(product_vo):
-        product_dict = {
-            "product_id": product_vo.product_id,
-            "product_name": product_vo.product_name,
-            "product_description": product_vo.product_description,
-            "product_price": product_vo.product_price,
-            "product_quantity": product_vo.product_quantity,
-            "product_image_name": product_vo.product_image_name,
-            "product_image_path": product_vo.product_image_path,
-            "product_category_id": product_vo.product_category_id,
-            "product_subcategory_id": product_vo.product_subcategory_id,
+    def serialize(self):
+        return {
+            "product_id": self.product_id,
+            "product_name": self.product_name,
+            "product_description": self.product_description,
+            "product_price": self.product_price,
+            "product_quantity": self.product_quantity,
+            "product_image_name": self.product_image_name,
+            "product_image_path": self.product_image_path,
+            "created_date": self.created_date,
+            "created_by": self.created_by,
+            "edited_date": self.edited_date,
+            "edited_by": self.edited_by,
+            "is_deleted": self.is_deleted,
+            "product_category_id": self.product_category_id,
+            "product_subcategory_id": self.product_subcategory_id,
         }
-        return product_dict
