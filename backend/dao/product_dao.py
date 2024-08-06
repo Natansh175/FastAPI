@@ -11,7 +11,9 @@ class ProductDAO:
 
     @staticmethod
     def read_products(skip, limit, sort_criteria, search_keyword):
-        product_vo_list = sql_dynamic.view_data_all('product_table', skip,
+        product_vo_list = sql_dynamic.view_data_all('product_table',
+                                                    'product',
+                                                    5, skip,
                                                     limit, sort_criteria,
                                                     search_keyword)
         return product_vo_list

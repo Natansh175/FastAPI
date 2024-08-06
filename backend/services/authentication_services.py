@@ -80,6 +80,10 @@ async def refresh_token(fn, role, **kwargs):
 
             if login_vo_list.login_role in role and \
                     login_vo_list.login_status:
+                request.state.user = {
+                    'username': login_vo_list.login_username,
+                    'role': login_vo_list.login_role
+                }
                 return await fn(**kwargs)
             else:
                 logger.info(f"{login_vo_list.login_username} is unauthorized for {fn}")

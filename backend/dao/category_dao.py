@@ -17,7 +17,9 @@ class CategoryDAO:
     # To show all inserted and not-deleted categories to user
     @staticmethod
     def read_categories(skip, limit, sort_criteria, search_keyword):
-        category_data = sql_dynamic.view_data_all('category_table', skip,
+        category_data = sql_dynamic.view_data_all('category_table',
+                                                  'category',
+                                                  4, skip,
                                                   limit, sort_criteria, search_keyword)
         return category_data
 

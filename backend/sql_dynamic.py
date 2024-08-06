@@ -25,23 +25,29 @@ def insert_data(table_name: str, data: dict):
 
 
 # To view all available data in specific table
-def view_data_all(table_name: str, skip, limit, sort_criteria, search):
+def view_data_all(table_name: str, columns_start_from: str,
+                  important_columns: int, skip, limit,
+                  sort_criteria, search):
     try:
         table = Base.metadata.tables.get(table_name)
         if table is not None:
-            if sort_criteria is None or sort_criteria not in table.c:
-                sorting_column = table.c.created_date
+            if sort_criteria is None:
+                sorting_column = 'created_date'
             else:
                 sorting_column = sort_criteria
+
             query = db.query(table).filter(table.c.is_deleted == 0)
+
+            # Had to add slicing just because product table
+            # Which had image name and path columns starting from 'product' also.
             if search is not None:
                 search_conditions = [
                     table.c[column.name].like(f"%{search}%")
                     for column in inspect(table).c
-                    if column.type.python_type == str
-                ]
+                    if columns_start_from in column.name][:important_columns]
+
                 if search_conditions:
-                    query = query.filter(or_(*search_conditions))
+                    query = query.filter(or_(*search_conditions)).order_by(sorting_column)
             query = query.order_by(sorting_column).offset(skip).limit(limit)
             return query.all()
 
