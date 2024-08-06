@@ -4698,3 +4698,715 @@ Traceback (most recent call last):
   File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
     raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
 fastapi.exceptions.HTTPException: 500: is_created
+2024-08-05 17:42:46,876 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: Class 'builtins.dict' is not mapped
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3462, in add
+    state = attributes.instance_state(instance)
+AttributeError: 'dict' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 16, in insert_data
+    db.add(data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3464, in add
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 60, in admin_insert_category
+    category_dao.create_category(category_vo.serialize())
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 7, in create_category
+    sql_dynamic.insert_data('category_table', category)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 24, in insert_data
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 36, in create_category
+    response_data = category_services.admin_insert_category(
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 74, in admin_insert_category
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 43, in create_category
+    ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+2024-08-05 17:42:46,895 - backend.services.authentication_services - ERROR - Login Required Exception: 500: Class 'builtins.dict' is not mapped
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3462, in add
+    state = attributes.instance_state(instance)
+AttributeError: 'dict' object has no attribute '_sa_instance_state'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 16, in insert_data
+    db.add(data)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\sqlalchemy\orm\session.py", line 3464, in add
+    raise exc.UnmappedInstanceError(instance) from err
+sqlalchemy.orm.exc.UnmappedInstanceError: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 60, in admin_insert_category
+    category_dao.create_category(category_vo.serialize())
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 7, in create_category
+    sql_dynamic.insert_data('category_table', category)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 24, in insert_data
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 36, in create_category
+    response_data = category_services.admin_insert_category(
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 74, in admin_insert_category
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 43, in create_category
+    ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Class 'builtins.dict' is not mapped
+2024-08-05 17:45:46,295 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'list' object has no attribute 'serialize'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 99, in admin_read_categories
+    print(category_data.serialize())
+AttributeError: 'list' object has no attribute 'serialize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 70, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 136, in admin_read_categories
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'list' object has no attribute 'serialize'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 124, in decorator
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'list' object has no attribute 'serialize'
+2024-08-06 11:53:41,853 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:53:41,954 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:55:25,907 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 70, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 83, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:55:25,914 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 70, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 83, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:55:59,569 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 70, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 83, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:55:59,569 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 70, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 83, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:57:07,950 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:57:07,950 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:57:31,334 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:57:31,334 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.user['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'user'
+2024-08-06 11:58:57,887 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: 'State' object has no attribute 'role'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'role'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.role['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'role'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'role'
+2024-08-06 11:58:57,900 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'State' object has no attribute 'role'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 112, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'role'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 69, in read_categories
+    user_id = request.state.role['public_id']
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'role'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 82, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 82, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'role'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 95, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'State' object has no attribute 'role'

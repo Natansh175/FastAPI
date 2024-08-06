@@ -23,7 +23,7 @@ console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
 # File handler
-file_handler = logging.FileHandler('backend/logs/product_services.log')
+file_handler = logging.FileHandler('backend/logs/product/product_services.log')
 file_handler.setLevel(logging.ERROR)
 file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(file_formatter)
@@ -75,7 +75,7 @@ class ProductServices:
             product_vo.product_image_name = image_unique_filename
             product_vo.product_image_path = f"/{IMAGE_PATH}/{image_unique_filename}"
             product_vo.is_deleted = False
-            product_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+            product_vo.created_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S')
             product_vo.created_by = user_id
             product_vo.edited_date = ""
             product_vo.edited_by = ""
@@ -142,7 +142,7 @@ class ProductServices:
                     total_count = len(data_to_show)
                     total_pages = ceil(total_count / limit)
 
-                    max_pages_to_display = 5  # Adjust as needed
+                    max_pages_to_display = 5
                     start_page = max(1, page - max_pages_to_display // 2)
                     end_page = min(total_pages,
                                    start_page + max_pages_to_display - 1)
@@ -226,7 +226,7 @@ class ProductServices:
             for key, value in product_update_data.model_dump(exclude_unset=True).items():
                 setattr(product_vo, key, value)
 
-            product_vo.edited_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+            product_vo.edited_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S')
             product_vo.edited_by = user_id
 
             product_dao.update_product(product_vo)
@@ -279,7 +279,7 @@ class ProductServices:
             product_vo.product_id = update_image_id
             product_vo.product_image_name = image_unique_filename
             product_vo.edited_date = datetime.strftime(datetime.now(),
-                                                       '%Y-%m-%d %H:%M:%S')
+                                                       '%d-%m-%Y %H:%M:%S')
             product_vo.product_image_path = f"/{IMAGE_PATH}/{image_unique_filename}"
             product_vo.edited_by = user_id
             product_dao.update_product(product_vo)

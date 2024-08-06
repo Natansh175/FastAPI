@@ -2,7 +2,7 @@ from typing import Any
 from fastapi import HTTPException
 
 
-# Class for handling response and exception in common way.
+# Common class for application response and exception handling.
 class ApplicationServices:
     @staticmethod
     def application_response(status_code: int, response_message: str = None,

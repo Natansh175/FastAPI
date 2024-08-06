@@ -1,6 +1,6 @@
+import logging
 from fastapi import APIRouter, Response, Request, Query
 from typing import Optional, Any
-import jwt
 
 from backend.dto.category_dto import CategoryDTO, CategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -13,6 +13,16 @@ category = APIRouter(
     prefix="/category",
     tags=["category"],
 )
+
+# Initialize logger
+logger = logging.getLogger(__name__)
+
+# File_handler for error logs
+file_handler = logging.FileHandler('backend/logs/category/category_controller.log')
+logger.setLevel(logging.ERROR)
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
 
 @category.post("/insert_category/")
@@ -27,11 +37,7 @@ async def create_category(category_insert: CategoryDTO, request: Request,
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = category_services.admin_insert_category(
             category_insert, user_id)
@@ -39,7 +45,8 @@ async def create_category(category_insert: CategoryDTO, request: Request,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Category Insert Controller Exception: {exception}")
+        logger.error(f"Category Insert Controller Exception: {exception}",
+                     exc_info=True)
         ApplicationServices.handle_exception(exception, is_raise=True)
 
 
@@ -61,11 +68,7 @@ async def read_categories(request: Request, response: Response,
     try:
         category_services = CategoryServices()
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = category_services.admin_read_categories(user_id,
                                                                 limit, page,
@@ -76,7 +79,7 @@ async def read_categories(request: Request, response: Response,
         return response_data.get('data')
 
     except Exception as exception:
-        print(f"Category Read Controller Exception: {exception}")
+        logger.error(f"Category Read Controller Exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, is_raise=True)
 
 
@@ -92,11 +95,7 @@ async def delete_category(category_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.CategoryNotFound, False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = category_services.admin_delete_category(category_id,
                                                                 user_id)
@@ -104,7 +103,8 @@ async def delete_category(category_id: int, request: Request,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Category Delete Controller Exception: {exception}")
+        logger.error(f"Category Delete Controller Exception: {exception}",
+                     exc_info=True)
         ApplicationServices.handle_exception(exception, is_raise=True)
 
 
@@ -120,11 +120,7 @@ async def update_category(category_update_dto: CategoryUpdateDTO,
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = category_services.admin_update_category(
             category_update_dto, user_id)
@@ -132,5 +128,5 @@ async def update_category(category_update_dto: CategoryUpdateDTO,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Category Update Controller Exception: {exception}")
+        logger.error(f"Category Update Controller Exception: {exception}", exc_info=True)
         ApplicationServices.handle_exception(exception, is_raise=True)

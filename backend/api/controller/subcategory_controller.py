@@ -1,6 +1,6 @@
+import logging
 from fastapi import APIRouter, Response, Request, Query
 from typing import Optional, Any
-import jwt
 
 from backend.dto.subcategory_dto import SubCategoryDTO, SubCategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -14,6 +14,16 @@ subCategory = APIRouter(
     prefix="/subcategory",
     tags=["subcategory"],
 )
+
+# Initialize logger
+logger = logging.getLogger(__name__)
+
+# File_handler for error logs
+file_handler = logging.FileHandler('backend/logs/subcategory/subcategory_controller.log')
+logger.setLevel(logging.ERROR)
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
 
 @subCategory.post("/insert_subcategory/")
@@ -29,11 +39,7 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
                                                             ResponseMessageEnum.BadRequest,
                                                             False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = subcategory_services.admin_insert_subcategory(
             subcategory_insert, user_id)
@@ -41,7 +47,8 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"SubCategory Insert controller Exception: {exception}")
+        logger.error(f"SubCategory Insert controller Exception: "
+                     f"{exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -63,11 +70,7 @@ async def read_subcategories(request: Request, response: Response,
     try:
         subcategory_services = SubCategoryServices()
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = subcategory_services.admin_read_subcategories(
             user_id, limit, page, sort_by, search_keyword)
@@ -76,7 +79,7 @@ async def read_subcategories(request: Request, response: Response,
         return response_data.get('data')
 
     except Exception as exception:
-        print(f"SubCategory Read controller Exception: {exception}")
+        logger.error(f"SubCategory Read controller Exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -92,11 +95,7 @@ async def delete_subcategory(subcategory_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.SubCategoryNotFound, False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = subcategory_services.admin_delete_subcategory(
             subcategory_id, user_id)
@@ -104,7 +103,8 @@ async def delete_subcategory(subcategory_id: int, request: Request,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"SubCategory Delete controller Exception: {exception}")
+        logger.error(f"SubCategory Delete controller Exception: "
+                     f"{exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -120,11 +120,7 @@ async def update_subcategory(subcategory_update_dto: SubCategoryUpdateDTO,
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest, False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = subcategory_services.admin_update_subcategory(
             subcategory_update_dto, user_id)
@@ -132,5 +128,6 @@ async def update_subcategory(subcategory_update_dto: SubCategoryUpdateDTO,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"SubCategory Update controller Exception: {exception}")
+        logger.error(f"SubCategory Update controller Exception: "
+                     f"{exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)

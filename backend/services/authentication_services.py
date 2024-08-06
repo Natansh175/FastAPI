@@ -24,7 +24,8 @@ console_handler.setFormatter(console_formatter)
 logger.addHandler(console_handler)
 
 # File handler for error logs
-file_handler = logging.FileHandler('backend/logs/authentication_services.log')
+file_handler = logging.FileHandler(
+    'backend/logs/authentication/authentication_services.log')
 file_handler.setLevel(logging.ERROR)
 file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(file_formatter)
@@ -121,6 +122,10 @@ def login_required(role):
                     if login_vo_list is not None:
                         if login_vo_list.login_role in role and \
                                 login_vo_list.login_status:
+                            request.state.user = {
+                                'username': login_vo_list.login_username,
+                                'role': login_vo_list.login_role
+                            }
                             return await fn(**kwargs)
                         else:
                             logger.info(f"{data.get('public_id')} with role "
@@ -176,7 +181,7 @@ class AuthenticationServices:
             user_vo.user_lastname = user_info.last_name
             user_vo.user_gender = user_info.gender
             user_vo.user_address = user_info.address
-            user_vo.created_date = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+            user_vo.created_date = datetime.strftime(datetime.now(), '%d-%m-%Y %H:%M:%S')
             user_vo.user_login_id = login_vo.login_id
 
             authentication_dao.insert_user(user_vo)

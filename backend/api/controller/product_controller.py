@@ -1,6 +1,6 @@
+import logging
 from fastapi import APIRouter, UploadFile, File, Form, Response, Request, Query
 from typing import Any, Optional
-import jwt
 
 from backend.dto.product_dto import ProductDTO, ProductDataUpdateDTO
 from backend.services.product_services import ProductServices
@@ -14,6 +14,17 @@ product = APIRouter(
     prefix="/product",
     tags=["product"],
 )
+
+# Initialize logger
+logger = logging.getLogger(__name__)
+
+# File_handler for error logs
+file_handler = logging.FileHandler('backend/logs/product/product_controller.log')
+logger.setLevel(logging.ERROR)
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
 
 ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png"}
 IMAGE_PATH = "static/user_resources/images"
@@ -33,18 +44,17 @@ async def create_product(category_id: int,
                          ):
     try:
         product_services = ProductServices()
+
+        user_id = request.state.user.get('username')
+
         # To check if uploaded file type is allowed
         if product_image.content_type not in ALLOWED_IMAGE_TYPES:
+            logger.warning(f"{product_image.content_type} is not allowed by "
+                           f"{user_id}.")
             response.status_code = HttpStatusCodeEnum.UNSUPPORTED_MEDIA_TYPE
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.UNSUPPORTED_MEDIA_TYPE,
                 ResponseMessageEnum.InvalidImageType, False, {})
-
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
 
         # Read image data
         product_image_data = await product_image.read()
@@ -68,7 +78,7 @@ async def create_product(category_id: int,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Product Insert Controller Exception: {exception}")
+        logger.error(f"Product Insert Controller Exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -90,11 +100,7 @@ async def read_products(request: Request, response: Response,
     try:
         product_services = ProductServices()
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = product_services.admin_read_products(user_id, limit,
                                                              page, sort_by,
@@ -104,7 +110,7 @@ async def read_products(request: Request, response: Response,
         return response_data.get('data')
 
     except Exception as exception:
-        print(f"Product Read Controller Exception: {exception}")
+        logger.error(f"Product Read Controller Exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -121,18 +127,14 @@ async def delete_product(product_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.ProductNotFound, False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = product_services.admin_delete_product(product_id, user_id)
         response.status_code = response_data.get('status_code')
         return response_data['response_message']
 
     except Exception as exception:
-        print(f"Product Delete Controller Exception: {exception}")
+        logger.error(f"Product Delete Controller Exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -148,11 +150,7 @@ async def update_product(product_update_data: ProductDataUpdateDTO, request: Req
                 HttpStatusCodeEnum.BAD_REQUEST, ResponseMessageEnum.BadRequest,
                 False, data={})
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+        user_id = request.state.user.get('username')
 
         response_data = product_services.admin_update_product_data(
             product_update_data, user_id)
@@ -160,7 +158,8 @@ async def update_product(product_update_data: ProductDataUpdateDTO, request: Req
         return response_data['response_message']
 
     except Exception as exception:
-        print(f"Product Update_Data Controller Exception: {exception}")
+        logger.error(f"Product Update_Data Controller Exception: "
+                     f"{exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
@@ -171,18 +170,17 @@ async def update_product_image(product_id: int, request: Request,
                                product_image: UploadFile = File(...)):
     try:
         product_services = ProductServices()
+
+        user_id = request.state.user.get('username')
+
         # To check if uploaded file type is allowed
         if product_image.content_type not in ALLOWED_IMAGE_TYPES:
+            logger.warning(f"{product_image.content_type} is not allowed by "
+                           f"{user_id}.")
             response.status_code = HttpStatusCodeEnum.UNSUPPORTED_MEDIA_TYPE
             return ApplicationServices.application_response(
                 HttpStatusCodeEnum.UNSUPPORTED_MEDIA_TYPE,
                 ResponseMessageEnum.InvalidImageType, False, {})
-
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
 
         # To read image data
         product_image_data = await product_image.read()
@@ -196,5 +194,6 @@ async def update_product_image(product_id: int, request: Request,
         return response_data['response_message']
 
     except Exception as exception:
-        print(f"Product Update_Image Controller Exception: {exception}")
+        logger.error(f"Product Update_Image Controller Exception: "
+                     f"{exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)

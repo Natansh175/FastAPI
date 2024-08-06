@@ -1,8 +1,7 @@
+import logging
 from fastapi import APIRouter, Request, Response, Form
-import jwt
 
 from backend.dto.register_dto import RegisterDTO
-from backend.enum.authentication_enum import AuthenticationEnum
 from backend.services.authentication_services import AuthenticationServices
 from backend.services.app_services import ApplicationServices
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -11,6 +10,16 @@ authentication = APIRouter(
     prefix="/authentication",
     tags=["authentication"],
 )
+
+# Initialize logger
+logger = logging.getLogger(__name__)
+
+# File_handler for error logs
+file_handler = logging.FileHandler('backend/logs/authentication/authentication_controller.log')
+logger.setLevel(logging.ERROR)
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
 
 
 @authentication.post("/register_user")
@@ -33,12 +42,12 @@ def register_user(response: Response, user_info: RegisterDTO):
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Register user exception: {exception}")
+        logger.error(f"Register user exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
 @authentication.post("/login")
-async def user_login(request: Request, response: Response,
+async def user_login(response: Response,
                      email: str = Form(...),
                      password: str = Form(...)):
     try:
@@ -59,18 +68,14 @@ async def user_login(request: Request, response: Response,
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Login validate Controller exception: {exception}")
+        logger.error(f"Login validate Controller exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
 
 
 @authentication.post("/logout")
 async def user_logout(request: Request, response: Response):
     try:
-        refreshtoken = request.cookies.get(
-            AuthenticationEnum.REFRESHTOKEN.value)
-        data = jwt.decode(refreshtoken,
-                          algorithms=["HS256"], options={"verify_signature": False})
-        user_email = data['public_id']
+        user_email = request.state.user.get('username')
 
         authentication_services = AuthenticationServices()
         response_data = authentication_services.app_logout(
@@ -80,5 +85,5 @@ async def user_logout(request: Request, response: Response):
         return response_data.get('response_message')
 
     except Exception as exception:
-        print(f"Logout Controller exception: {exception}")
+        logger.error(f"Logout Controller exception: {exception}", exc_info=True)
         return ApplicationServices.handle_exception(exception, True)
