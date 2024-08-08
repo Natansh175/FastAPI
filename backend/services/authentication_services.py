@@ -44,9 +44,11 @@ async def refresh_token(fn, role, **kwargs):
                                   algorithms=["HS256"])
 
             except jwt.ExpiredSignatureError:
+                logger.info("Refresh token is expired!")
                 response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
                 return ResponseMessageEnum.LogInAgain
             except jwt.InvalidTokenError:
+                logger.warning("Refresh token is invalid!")
                 response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
                 return ResponseMessageEnum.Unauthorized
 
@@ -117,9 +119,12 @@ def login_required(role):
                         data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
 
                     except jwt.exceptions.InvalidSignatureError:
+                        logger.warning("Refresh token is invalid!")
+                        response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
                         return ResponseMessageEnum.Unauthorized
 
                     except jwt.exceptions.ExpiredSignatureError:
+                        logger.info("Access token is expired!")
                         return await refresh_token(fn, role, **kwargs)
 
                     login_vo_list = authentication_dao.read_user_by_email(data.get('public_id'))
@@ -246,8 +251,8 @@ class AuthenticationServices:
                         max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
                     )
 
-                    logger.info(f"Admin user '{email}' logged in "
-                                f"successfully as {login_role}.")
+                    logger.info(f"Admin '{email}' logged in "
+                                f"successfully.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,
                         ResponseMessageEnum.LoggedIn,
@@ -276,7 +281,7 @@ class AuthenticationServices:
                         max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
                     )
 
-                    logger.info(f"User '{email}' logged in successfully as "
+                    logger.info(f"'{email}' logged in successfully as "
                                 f"{login_role}.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,
@@ -306,7 +311,7 @@ class AuthenticationServices:
                         max_age=int(AuthenticationEnum.REFRESH_TOKEN_MAX_AGE.value)
                     )
 
-                    logger.info(f"User '{email}' logged in successfully as "
+                    logger.info(f"'{email}' logged in successfully as "
                                 f"{login_role}.")
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK,

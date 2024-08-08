@@ -1,0 +1,42 @@
+2024-08-08 11:37:09,275 - backend.services.authentication_services - ERROR - Login Required Exception: Signature has expired
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 118, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+2024-08-08 11:40:11,904 - backend.services.authentication_services - ERROR - Login Required Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 119, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 709, in __getattr__
+    return self._state[key]
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 128, in decorator
+    user_id = request.state.user.get('username')
+  File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
