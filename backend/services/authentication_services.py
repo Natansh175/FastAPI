@@ -1,9 +1,12 @@
 import logging
-from datetime import datetime, timedelta
 import bcrypt
 import jwt
+import smtplib
 from fastapi import Response
 from functools import wraps
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from datetime import datetime, timedelta
 
 from backend.vo.login_vo import LoginVO
 from backend.vo.user_vo import UserVO
@@ -32,6 +35,24 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
+async def send_email(email):
+    sender = "noreplypython@yahoo.com"
+    receiver = email
+    msg = MIMEMultipart()
+    msg['From'] = sender
+    msg['To'] = receiver
+    msg['Subject'] = "Welcome to FastAPI"
+    message = ("Welcome to my demo fastAPI backend, hope you find and report "
+               "some bugs!")
+    msg.attach(MIMEText(message, 'plain'))
+    server = smtplib.SMTP('smtp.mail.yahoo.com', 587)
+    server.starttls()
+    server.login(sender, "dbzivjinwbndvvey")
+    text = msg.as_string()
+    server.sendmail(sender, receiver, text)
+    server.quit()
+
+
 async def refresh_token(fn, role, **kwargs):
     response = kwargs.get('response')
     request = kwargs.get('request')
@@ -53,6 +74,10 @@ async def refresh_token(fn, role, **kwargs):
                 return ResponseMessageEnum.Unauthorized
 
             login_vo_list = authentication_dao.read_user_by_email(data['public_id'])
+
+            if login_vo_list is None:
+                response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
+                return ResponseMessageEnum.UserNotFound
 
             logger.info(f"Refreshing tokens for '{login_vo_list.login_username}'.")
 

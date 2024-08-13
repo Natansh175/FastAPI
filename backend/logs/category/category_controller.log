@@ -1,0 +1,20 @@
+2024-08-13 18:37:43,223 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 76, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+TypeError: admin_read_categories() missing 1 required positional argument: 'background_tasks'

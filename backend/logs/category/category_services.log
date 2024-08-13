@@ -1,0 +1,1 @@
+2024-08-13 17:56:54,234 - backend.services.category_services - ERROR - Error while inserting data in excel for natansh175@gmail.com: 'DataFrame' object has no attribute 'to_sv'

@@ -1,0 +1,120 @@
+2024-08-13 13:50:41,337 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:51:42,023 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 2 required positional arguments: 'response' and 'request'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 2 required positional arguments: 'response' and 'request'
+2024-08-13 13:52:17,957 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'request'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 65, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'request'
+2024-08-13 13:52:41,919 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Request' object has no attribute 'set_cookie'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 65, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 239, in app_login
+    response.set_cookie(
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Request' object has no attribute 'set_cookie'
+2024-08-13 13:53:11,785 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: name 'request' is not defined
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 67, in user_login
+    request)
+    ^^^^^^^
+NameError: name 'request' is not defined
+2024-08-13 13:53:31,266 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:53:48,062 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:54:11,598 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:55:42,184 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:55:54,633 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:57:37,951 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:57:39,946 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:57:40,504 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 13:57:41,185 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 14:02:11,643 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 14:02:12,410 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 64, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() missing 1 required positional argument: 'response'
+2024-08-13 14:06:06,826 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'BackgroundTasks' object has no attribute 'set_cookie'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 67, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 238, in app_login
+    response.set_cookie(
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BackgroundTasks' object has no attribute 'set_cookie'
+2024-08-13 14:06:23,875 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() got multiple values for argument 'background_task'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 67, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() got multiple values for argument 'background_task'
+2024-08-13 14:06:51,475 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: AuthenticationServices.app_login() got multiple values for argument 'background_task'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 67, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: AuthenticationServices.app_login() got multiple values for argument 'background_task'

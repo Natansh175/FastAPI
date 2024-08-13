@@ -6,6 +6,7 @@ from backend.dao.category_dao import CategoryDAO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
 from backend.services.app_services import ApplicationServices
 from backend.vo.category_vo import CategoryVO
+from backend.excel_of_data import InsertDataIntoExcel
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -73,7 +74,8 @@ class CategoryServices:
             ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def admin_read_categories(user_id, limit, page, sort_by, search_keyword):
+    def admin_read_categories(user_id, limit, page, sort_by, search_keyword,
+                              background_tasks):
         """
         Retrieve all categories from the database.
 
@@ -83,6 +85,7 @@ class CategoryServices:
             page (int): Page number of the categories to return.
             sort_by (str): Sorting criteria.
             search_keyword (any): Search criteria.
+            background_tasks (BackgroundTasks): Background tasks object.
 
         Returns:
             list of dict: The response from the application services,
@@ -93,6 +96,8 @@ class CategoryServices:
             skip = (page - 1) * limit
 
             category_dao = CategoryDAO()
+            insert_data_to_excel = InsertDataIntoExcel()
+
             category_data = category_dao.read_categories(skip, limit,
                                                          sort_by, search_keyword)
 
@@ -115,6 +120,10 @@ class CategoryServices:
                                start_page + max_pages_to_display - 1)
 
                 pagination_range = range(start_page, end_page + 1)
+
+                background_tasks.add_task(insert_data_to_excel.admin_insert_data_excel,
+                                          data_to_show, user_id,
+                                          type_of_data="category_data")
 
                 logger.info(f"Categories retrieved successfully by {user_id}.")
                 return ApplicationServices.application_response(

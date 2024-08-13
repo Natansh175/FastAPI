@@ -40,3 +40,163 @@ Traceback (most recent call last):
   File "C:\ProgramData\Anaconda3\lib\site-packages\starlette\datastructures.py", line 712, in __getattr__
     raise AttributeError(message.format(self.__class__.__name__, key))
 AttributeError: 'State' object has no attribute 'user'
+2024-08-13 11:48:59,110 - backend.services.authentication_services - ERROR - Login Required Exception: module 'jwt.exceptions' has no attribute 'InvalidSignatureError'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 119, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^
+AttributeError: module 'jwt' has no attribute 'decode'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 121, in decorator
+    except jwt.exceptions.InvalidSignatureError:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'jwt.exceptions' has no attribute 'InvalidSignatureError'
+2024-08-13 12:01:18,695 - backend.services.authentication_services - ERROR - Login Required Exception: module 'jwt.exceptions' has no attribute 'InvalidSignatureError'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 119, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^
+AttributeError: module 'jwt' has no attribute 'decode'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 121, in decorator
+    except jwt.exceptions.InvalidSignatureError:
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'jwt.exceptions' has no attribute 'InvalidSignatureError'
+2024-08-13 14:35:20,104 - backend.services.authentication_services - ERROR - Refresh Token function exception: 'NoneType' object has no attribute 'login_username'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 140, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 78, in refresh_token
+    logger.info(f"Refreshing tokens for '{login_vo_list.login_username}'.")
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'login_username'
+2024-08-13 14:35:20,104 - backend.services.authentication_services - ERROR - Login Required Exception: 500: 'NoneType' object has no attribute 'login_username'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 140, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\fastapi_structural\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 78, in refresh_token
+    logger.info(f"Refreshing tokens for '{login_vo_list.login_username}'.")
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'login_username'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    return await refresh_token(fn, role, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 123, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: 'NoneType' object has no attribute 'login_username'
+2024-08-13 18:37:43,229 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 76, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+TypeError: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 114, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 91, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+2024-08-13 18:37:43,331 - backend.services.authentication_services - ERROR - Login Required Exception: 500: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 76, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+TypeError: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 114, in refresh_token
+    return await fn(**kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 91, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 153, in decorator
+    return await refresh_token(fn, role, **kwargs)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 127, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: admin_read_categories() missing 1 required positional argument: 'background_tasks'

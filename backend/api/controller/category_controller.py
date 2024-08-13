@@ -1,5 +1,5 @@
 import logging
-from fastapi import APIRouter, Response, Request, Query
+from fastapi import APIRouter, Response, Request, Query, BackgroundTasks
 from typing import Optional, Any
 
 from backend.dto.category_dto import CategoryDTO, CategoryUpdateDTO
@@ -55,8 +55,10 @@ async def create_category(category_insert: CategoryDTO, request: Request,
                       AuthenticationEnum.USER_ROLE,
                       AuthenticationEnum.SELLER_ROLE])
 async def read_categories(request: Request, response: Response,
+                          background_tasks: BackgroundTasks,
                           limit: Optional[int] =
                           Query(default=10, description="Items per page"),
+
                           page: int = Query(default=1,
                                             description="Page number",
                                             ge=1),
@@ -73,7 +75,8 @@ async def read_categories(request: Request, response: Response,
         response_data = category_services.admin_read_categories(user_id,
                                                                 limit, page,
                                                                 sort_by,
-                                                                search_keyword)
+                                                                search_keyword,
+                                                                background_tasks)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')

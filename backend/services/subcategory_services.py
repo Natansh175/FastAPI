@@ -7,6 +7,7 @@ from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
 from backend.dao.category_dao import CategoryDAO
 from backend.dao.subcategory_dao import SubCategoryDAO
 from backend.vo.subcategory_vo import SubCategoryVO
+from backend.excel_of_data import InsertDataIntoExcel
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -72,7 +73,7 @@ class SubCategoryServices:
 
     @staticmethod
     def admin_read_subcategories(user_id, limit, page, sort_by,
-                                 search_keyword):
+                                 search_keyword, background_tasks):
         """
         Retrieve all subcategories from the database.
 
@@ -82,6 +83,7 @@ class SubCategoryServices:
             page (int): Page number of the subcategories to return.
             sort_by (str): Sorting criteria.
             search_keyword (any): Search criteria.
+            background_tasks (BackgroundTasks): Background tasks object.
 
         Returns:
             list of dict: The response from the application services,
@@ -93,6 +95,8 @@ class SubCategoryServices:
 
             category_dao = CategoryDAO()
             subcategory_dao = SubCategoryDAO()
+            insert_data_to_excel = InsertDataIntoExcel()
+
             subcategory_data = subcategory_dao.read_subcategories(skip, limit,
                                                                   sort_by,
                                                                   search_keyword)
@@ -122,6 +126,12 @@ class SubCategoryServices:
                                    start_page + max_pages_to_display - 1)
 
                     pagination_range = range(start_page, end_page + 1)
+
+                    background_tasks.add_task(
+                        insert_data_to_excel.admin_insert_data_excel,
+                        data_to_show, user_id,
+                        type_of_data="subcategory_data")
+
                     return ApplicationServices.application_response(
                         HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
                         data=data_to_show)

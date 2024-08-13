@@ -1,5 +1,5 @@
 import logging
-from fastapi import APIRouter, Response, Request, Query
+from fastapi import APIRouter, Response, Request, Query, BackgroundTasks
 from typing import Optional, Any
 
 from backend.dto.subcategory_dto import SubCategoryDTO, SubCategoryUpdateDTO
@@ -57,6 +57,7 @@ async def create_subcategory(subcategory_insert: SubCategoryDTO,
                       AuthenticationEnum.USER_ROLE,
                       AuthenticationEnum.SELLER_ROLE])
 async def read_subcategories(request: Request, response: Response,
+                             background_tasks: BackgroundTasks,
                              limit: Optional[int] =
                              Query(default=10, description="Items per page"),
                              page: int = Query(default=1,
@@ -73,7 +74,7 @@ async def read_subcategories(request: Request, response: Response,
         user_id = request.state.user.get('username')
 
         response_data = subcategory_services.admin_read_subcategories(
-            user_id, limit, page, sort_by, search_keyword)
+            user_id, limit, page, sort_by, search_keyword, background_tasks)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')

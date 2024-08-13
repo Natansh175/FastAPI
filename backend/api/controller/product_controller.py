@@ -1,5 +1,6 @@
 import logging
-from fastapi import APIRouter, UploadFile, File, Form, Response, Request, Query
+from fastapi import (APIRouter, UploadFile, File, Form, Response, Request,
+                     Query, BackgroundTasks)
 from typing import Any, Optional
 
 from backend.dto.product_dto import ProductDTO, ProductDataUpdateDTO
@@ -87,6 +88,7 @@ async def create_product(category_id: int,
                       AuthenticationEnum.USER_ROLE,
                       AuthenticationEnum.SELLER_ROLE])
 async def read_products(request: Request, response: Response,
+                        background_tasks: BackgroundTasks,
                         limit: Optional[int] =
                         Query(default=10, description="Items per page"),
                         page: int = Query(default=1,
@@ -104,7 +106,8 @@ async def read_products(request: Request, response: Response,
 
         response_data = product_services.admin_read_products(user_id, limit,
                                                              page, sort_by,
-                                                             search_keyword)
+                                                             search_keyword,
+                                                             background_tasks)
 
         response.status_code = response_data.get('status_code')
         return response_data.get('data')
