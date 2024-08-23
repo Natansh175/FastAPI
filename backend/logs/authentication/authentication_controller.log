@@ -118,3 +118,102 @@ Traceback (most recent call last):
     response_data = authentication_services.app_login(email,
                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: AuthenticationServices.app_login() got multiple values for argument 'background_task'
+2024-08-20 15:43:15,517 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: module 'jwt' has no attribute 'encode'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 69, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 260, in app_login
+    value=jwt.encode({
+          ^^^^^^^^^^
+AttributeError: module 'jwt' has no attribute 'encode'
+2024-08-20 15:44:44,573 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: module 'jwt' has no attribute 'encode'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 69, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 260, in app_login
+    value=jwt.encode({
+          ^^^^^^^^^^
+AttributeError: module 'jwt' has no attribute 'encode'
+2024-08-20 15:45:04,041 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: module 'jwt' has no attribute 'encode'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 69, in user_login
+    response_data = authentication_services.app_login(email,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 260, in app_login
+    value=jwt.encode({
+          ^^^^^^^^^^
+AttributeError: module 'jwt' has no attribute 'encode'
+2024-08-20 18:22:47,842 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'cookies'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 76, in user_login
+    accesstoken = response.cookies.get(
+                  ^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'cookies'
+2024-08-20 18:24:28,857 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'content'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 76, in user_login
+    accesstoken = response.content
+                  ^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'content'
+2024-08-20 18:26:06,089 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'MutableHeaders' object is not callable
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 76, in user_login
+    accesstoken = response.headers()
+                  ^^^^^^^^^^^^^^^^^^
+TypeError: 'MutableHeaders' object is not callable
+2024-08-20 18:26:29,072 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'bytes' object is not callable
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 76, in user_login
+    accesstoken = response.body()
+                  ^^^^^^^^^^^^^^^
+TypeError: 'bytes' object is not callable
+2024-08-21 11:13:40,734 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'get'
+2024-08-21 11:13:59,773 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'get'
+2024-08-21 12:31:01,434 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2024-08-21 12:31:03,387 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2024-08-21 12:31:20,292 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'list' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+2024-08-21 12:32:03,405 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'get'
+2024-08-21 12:32:03,655 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'get'
+2024-08-21 12:32:03,905 - backend.api.controller.authentication_controller - ERROR - Login validate Controller exception: 'Response' object has no attribute 'get'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\authentication_controller.py", line 74, in user_login
+    response.status_code = response_data.get('status_code')
+                           ^^^^^^^^^^^^^^^^^
+AttributeError: 'Response' object has no attribute 'get'

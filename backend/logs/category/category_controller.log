@@ -18,3 +18,2480 @@ Traceback (most recent call last):
   File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 76, in read_categories
     response_data = category_services.admin_read_categories(user_id,
 TypeError: admin_read_categories() missing 1 required positional argument: 'background_tasks'
+2024-08-20 16:17:59,506 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:17:59,613 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:22,167 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:22,169 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:22,773 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:22,790 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:23,021 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:23,023 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:23,251 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:18:23,254 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:19:19,437 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:19:19,439 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:19:20,410 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:19:20,425 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:20:39,615 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:20:39,617 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:23:37,156 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:23:37,161 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:23:46,961 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:23:46,980 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:23:49,486 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:24:57,859 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:25:05,460 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:25:05,476 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:25:05,931 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:25:05,934 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:25:07,651 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:25:07,653 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:27:04,540 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:28:00,757 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:28:02,287 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:28:02,924 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:28:15,530 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:29:52,110 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:29:52,132 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:29:53,396 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:29:53,402 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:29:57,744 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:29,402 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:29,938 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:29,954 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:33,122 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:33,124 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:34,415 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:34,424 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:30:47,442 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    # user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:48,330 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:48,335 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:48,686 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:48,689 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:48,943 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:48,946 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:49,094 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:49,097 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:53,224 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:59,158 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:59,162 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:59,404 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:59,407 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:59,580 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:33:59,582 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:34:33,261 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'Request' object has no attribute 'State'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.State.user.get('username')
+              ^^^^^^^^^^^^^
+AttributeError: 'Request' object has no attribute 'State'
+2024-08-20 16:34:33,265 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'Request' object has no attribute 'State'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.State.user.get('username')
+              ^^^^^^^^^^^^^
+AttributeError: 'Request' object has no attribute 'State'
+2024-08-20 16:34:45,211 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'Request' object has no attribute 'State'
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.State.user.get('username')
+              ^^^^^^^^^^^^^
+AttributeError: 'Request' object has no attribute 'State'
+2024-08-20 16:35:40,484 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:40,488 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:41,008 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:41,010 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:41,183 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:41,185 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:41,384 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:35:41,386 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 16:36:01,483 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 'State' object has no attribute 'user'
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 699, in __getattr__
+    return self._state[key]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'user'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 73, in read_categories
+    user_id = request.state.user.get('username')
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\starlette\datastructures.py", line 702, in __getattr__
+    raise AttributeError(message.format(self.__class__.__name__, key))
+AttributeError: 'State' object has no attribute 'user'
+2024-08-20 18:06:32,641 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:06:32,648 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:06:33,585 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:06:33,596 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:12,726 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:12,730 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:15,085 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:15,117 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:29,057 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:29,061 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:32,118 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:32,118 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:34,488 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:34,491 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:40,000 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:07:40,031 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:08,508 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:08,522 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:22,251 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:22,254 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:22,722 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:22,722 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:47,351 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:09:47,367 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-20 18:10:17,867 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: name 'request' is not defined
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 78, in read_categories
+    accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+                  ^^^^^^^
+NameError: name 'request' is not defined
+2024-08-20 18:10:17,869 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: name 'request' is not defined
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 78, in read_categories
+    accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+                  ^^^^^^^
+NameError: name 'request' is not defined
+2024-08-20 18:10:34,307 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: name 'request' is not defined
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 78, in read_categories
+NameError: name 'request' is not defined
+2024-08-20 18:10:54,875 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: name 'request' is not defined
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 78, in read_categories
+NameError: name 'request' is not defined
+2024-08-21 13:05:15,429 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:05:15,569 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:05:29,987 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:05:40,864 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:20,131 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:20,133 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:21,354 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:21,357 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:45,420 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:45,423 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:53,748 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:51:53,763 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:53:45,164 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:53:45,178 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:53:46,318 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:53:46,322 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:53:47,691 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 13:53:47,691 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:04:00,315 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:04:00,360 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:04:24,048 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:04:24,085 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:06:21,365 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:06:21,382 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:07:58,428 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:07:58,443 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:09:12,431 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:09:12,541 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:10:16,923 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:10:16,957 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 148, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:10:47,476 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:10:47,505 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:14:40,787 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-21 15:14:40,812 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: Invalid token type. Token must be a <class 'bytes'>
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 149, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 80, in read_categories
+    data = jwt.decode(accesstoken,
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 151, in decode_complete
+    decoded = api_jws.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 198, in decode_complete
+    payload, signing_input, header, signature = self._load(jwt)
+                                                ^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jws.py", line 254, in _load
+    raise DecodeError(f"Invalid token type. Token must be a {bytes}")
+jwt.exceptions.DecodeError: Invalid token type. Token must be a <class 'bytes'>
+2024-08-22 12:07:17,873 - backend.api.controller.category_controller - ERROR - Category Read Controller Exception: 500: product_category_id
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\sqlalchemy\sql\base.py", line 1617, in __getattr__
+    return self._index[key][1]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'product_category_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 57, in view_data_all
+    new = db.query(func.count(table.c.product_category_id),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\sqlalchemy\sql\base.py", line 1619, in __getattr__
+    raise AttributeError(key) from err
+AttributeError: product_category_id
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 101, in admin_read_categories
+    category_data = category_dao.read_categories(skip, limit,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 20, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table',
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 68, in view_data_all
+    return ApplicationServices.handle_exception(exception, True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: product_category_id
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 87, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 145, in admin_read_categories
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: product_category_id

@@ -1,6 +1,7 @@
 import logging
 from fastapi import APIRouter, Response, Request, Query, BackgroundTasks
 from typing import Optional, Any
+import jwt
 
 from backend.dto.category_dto import CategoryDTO, CategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -37,7 +38,12 @@ async def create_category(category_insert: CategoryDTO, request: Request,
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})
 
-        user_id = request.state.user.get('username')
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+        # user_id = request.state.user.get('username')
 
         response_data = category_services.admin_insert_category(
             category_insert, user_id)
@@ -70,7 +76,13 @@ async def read_categories(request: Request, response: Response,
     try:
         category_services = CategoryServices()
 
-        user_id = request.state.user.get('username')
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        # user_id = request.state.user.get('username')
 
         response_data = category_services.admin_read_categories(user_id,
                                                                 limit, page,
@@ -98,7 +110,13 @@ async def delete_category(category_id: int, request: Request,
                 HttpStatusCodeEnum.NOT_FOUND,
                 ResponseMessageEnum.CategoryNotFound, False, data={})
 
-        user_id = request.state.user.get('username')
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        # user_id = request.state.user.get('username')
 
         response_data = category_services.admin_delete_category(category_id,
                                                                 user_id)
@@ -123,7 +141,13 @@ async def update_category(category_update_dto: CategoryUpdateDTO,
                 HttpStatusCodeEnum.BAD_REQUEST,
                 ResponseMessageEnum.BadRequest, False, data={})
 
-        user_id = request.state.user.get('username')
+        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+        data = jwt.decode(accesstoken,
+                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                          options={"verify_signature": False})
+        user_id = data.get('public_id')
+
+        # user_id = request.state.user.get('username')
 
         response_data = category_services.admin_update_category(
             category_update_dto, user_id)

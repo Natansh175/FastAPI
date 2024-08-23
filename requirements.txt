@@ -1,5 +1,5 @@
 sqlalchemy~=2.0.29
-fastapi~=0.109.1
+fastapi~=0.112.1
 pathlib~=1.0.1
 pydantic~=2.7.1
 typing~=3.7.4.3
@@ -9,3 +9,7 @@ pyjwt~=2.8.0
 jwt~=1.3.1
 uvicorn~=0.30.1
 pandas~=2.2.2
+starlette~=0.38.2
+opentelemetry-distro~=0.47b0
+opentelemetry-instrumentation-fastapi~=0.47b0
+opentelemetry-exporter-otlp-proto-grpc~=1.26.0

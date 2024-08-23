@@ -1,5 +1,5 @@
 import logging
-from fastapi import APIRouter, Request, Response, Form, BackgroundTasks
+from fastapi import APIRouter, Request, Response, BackgroundTasks
 
 from backend.dto.register_dto import RegisterDTO
 from backend.services.authentication_services import AuthenticationServices
@@ -52,8 +52,9 @@ def register_user(response: Response, user_info: RegisterDTO,
 
 @authentication.post("/login")
 async def user_login(response: Response,
-                     email: str = Form(...),
-                     password: str = Form(...)):
+                     email: str,
+                     password: str):
+
     try:
         if not email or not password:
             response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
@@ -66,11 +67,13 @@ async def user_login(response: Response,
 
         authentication_services = AuthenticationServices()
 
-        response_data = authentication_services.app_login(email,
-                                                          password,
-                                                          response)
-        response.status_code = response_data.get('status_code')
-        return response_data.get('response_message')
+        response_data = await authentication_services.app_login(email,
+                                                                password,
+                                                                response)
+
+        response.status_code = HttpStatusCodeEnum.OK
+        # response.status_code = response_data.get('status_code')
+        return response_data
 
     except Exception as exception:
         logger.error(f"Login validate Controller exception: {exception}", exc_info=True)

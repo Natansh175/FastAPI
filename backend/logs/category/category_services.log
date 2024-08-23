@@ -1,1 +1,50 @@
 2024-08-13 17:56:54,234 - backend.services.category_services - ERROR - Error while inserting data in excel for natansh175@gmail.com: 'DataFrame' object has no attribute 'to_sv'
+2024-08-22 12:07:17,636 - backend.services.category_services - ERROR - Category Read Service Exception: 500: product_category_id
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\sqlalchemy\sql\base.py", line 1617, in __getattr__
+    return self._index[key][1]
+           ~~~~~~~~~~~^^^^^
+KeyError: 'product_category_id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 57, in view_data_all
+    new = db.query(func.count(table.c.product_category_id),
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\sqlalchemy\sql\base.py", line 1619, in __getattr__
+    raise AttributeError(key) from err
+AttributeError: product_category_id
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 101, in admin_read_categories
+    category_data = category_dao.read_categories(skip, limit,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 20, in read_categories
+    category_data = sql_dynamic.view_data_all('category_table',
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\sql_dynamic.py", line 68, in view_data_all
+    return ApplicationServices.handle_exception(exception, True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: product_category_id

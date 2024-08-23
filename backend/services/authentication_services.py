@@ -144,7 +144,7 @@ def login_required(role):
                         data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
 
                     except jwt.exceptions.InvalidSignatureError:
-                        logger.warning("Refresh token is invalid!")
+                        logger.warning("Access token is invalid!")
                         response.status_code = HttpStatusCodeEnum.UNAUTHORIZED
                         return ResponseMessageEnum.Unauthorized
 
@@ -232,7 +232,7 @@ class AuthenticationServices:
             return ApplicationServices.handle_exception(exception, True)
 
     @staticmethod
-    def app_login(email, password, response: Response):
+    async def app_login(email, password, response: Response):
         logger.info(f"Login attempt with email: {email}.")
         authentication_dao = AuthenticationDAO()
 
@@ -278,12 +278,8 @@ class AuthenticationServices:
 
                     logger.info(f"Admin '{email}' logged in "
                                 f"successfully.")
-                    return ApplicationServices.application_response(
-                        HttpStatusCodeEnum.OK,
-                        ResponseMessageEnum.LoggedIn,
-                        True,
-                        {}
-                    )
+
+                    return response.raw_headers
 
                 elif login_role == 'user':
                     response.set_cookie(
@@ -308,12 +304,8 @@ class AuthenticationServices:
 
                     logger.info(f"'{email}' logged in successfully as "
                                 f"{login_role}.")
-                    return ApplicationServices.application_response(
-                        HttpStatusCodeEnum.OK,
-                        ResponseMessageEnum.LoggedIn,
-                        True,
-                        {}
-                    )
+
+                    return response.raw_headers
 
                 elif login_role == 'seller':
                     response.set_cookie(
@@ -338,12 +330,8 @@ class AuthenticationServices:
 
                     logger.info(f"'{email}' logged in successfully as "
                                 f"{login_role}.")
-                    return ApplicationServices.application_response(
-                        HttpStatusCodeEnum.OK,
-                        ResponseMessageEnum.LoggedIn,
-                        True,
-                        {}
-                    )
+
+                    return response.raw_headers
 
             else:
                 logger.warning(f"Incorrect password for email {email}")

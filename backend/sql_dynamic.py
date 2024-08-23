@@ -1,4 +1,5 @@
-from sqlalchemy import or_, inspect
+from sqlalchemy import or_, inspect, func
+from collections import defaultdict
 
 from backend.db.db import Base, SessionLocal
 from backend.services.app_services import ApplicationServices
@@ -48,8 +49,75 @@ def view_data_all(table_name: str, columns_start_from: str,
 
                 if search_conditions:
                     query = query.filter(or_(*search_conditions)).order_by(sorting_column)
+
             query = query.order_by(sorting_column).offset(skip).limit(limit)
-            return query.all()
+
+            # Print the traceback if product table data is being viewed.
+            if table.name == "product_table":
+
+                category_table = Base.metadata.tables.get("category_table")
+                subcategory_table = Base.metadata.tables.get(
+                    "subcategory_table")
+
+                # Final DataBase Query
+                product_category_subcategory_data = (
+                    db.query(
+                        category_table.c.category_name.label('category_name'),
+                        subcategory_table.c.subcategory_name.label(
+                            'subcategory_name'),
+                        func.sum(table.c.product_quantity).label(
+                            'total_quantity'),
+                        func.count(table.c.product_id).label('product_count')
+                    )
+                    .join(category_table,
+                          category_table.c.category_id == table.c.product_category_id)
+                    .join(subcategory_table,
+                          subcategory_table.c.subcategory_id == table.c.product_subcategory_id)
+                    .group_by(
+                        category_table.c.category_name,
+                        subcategory_table.c.subcategory_name
+                    )
+                    .order_by(category_table.c.category_name,
+                              subcategory_table.c.subcategory_name)
+                    .all()
+                )
+
+                print(product_category_subcategory_data)
+
+                # Structure for results in a nested dictionary
+                category_dict = defaultdict(lambda: defaultdict(
+                    lambda: {'product_count': 0, 'total_quantity': 0}))
+
+                # Fills data from query results.
+                for row in product_category_subcategory_data:
+                    category_name = row.category_name
+                    subcategory_name = row.subcategory_name
+                    total_quantity = row.total_quantity
+                    product_count = row.product_count
+
+                    category_dict[category_name][subcategory_name][
+                        'product_count'] += product_count
+                    category_dict[category_name][subcategory_name][
+                        'total_quantity'] += total_quantity
+
+                # For printing the traceback
+                for category_name, subcategories in category_dict.items():
+                    total_category_quantity = sum(
+                        data['total_quantity'] for data in
+                        subcategories.values())
+                    total_category_count = sum(
+                        data['product_count'] for data in
+                        subcategories.values())
+
+                    print("\r")
+                    print(
+                        f"Category: {category_name}, Total Products: {total_category_count}, Total Quantity: {total_category_quantity}")
+
+                    for subcategory_name, data in subcategories.items():
+                        print(f"    Subcategory: {subcategory_name}, Product Count: {data['product_count']}, Total Quantity: {data['total_quantity']}")
+                    print("\r")
+
+                return query.all()
 
         else:
             return ResponseMessageEnum.TableNotFound
