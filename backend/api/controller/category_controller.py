@@ -2,6 +2,7 @@ import logging
 from fastapi import APIRouter, Response, Request, Query, BackgroundTasks
 from typing import Optional, Any
 import jwt
+from opentelemetry import trace
 
 from backend.dto.category_dto import CategoryDTO, CategoryUpdateDTO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -73,25 +74,28 @@ async def read_categories(request: Request, response: Response,
                           search_keyword: Optional[Any] =
                           Query(None, description="Search for specific keyword")
                           ):
+
     try:
-        category_services = CategoryServices()
+        with trace.get_tracer(__name__).start_as_current_span(
+                "read_category_controller_span"):
+            category_services = CategoryServices()
 
-        accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
-        data = jwt.decode(accesstoken,
-                          algorithms=[AuthenticationEnum.HASH_ALGORITHM],
-                          options={"verify_signature": False})
-        user_id = data.get('public_id')
+            accesstoken = request.cookies.get(AuthenticationEnum.ACCESSTOKEN.value)
+            data = jwt.decode(accesstoken,
+                              algorithms=[AuthenticationEnum.HASH_ALGORITHM],
+                              options={"verify_signature": False})
+            user_id = data.get('public_id')
 
-        # user_id = request.state.user.get('username')
+            # user_id = request.state.user.get('username')
 
-        response_data = category_services.admin_read_categories(user_id,
-                                                                limit, page,
-                                                                sort_by,
-                                                                search_keyword,
-                                                                background_tasks)
+            response_data = category_services.admin_read_categories(user_id,
+                                                                    limit, page,
+                                                                    sort_by,
+                                                                    search_keyword,
+                                                                    background_tasks)
 
-        response.status_code = response_data.get('status_code')
-        return response_data.get('data')
+            response.status_code = response_data.get('status_code')
+            return response_data.get('data')
 
     except Exception as exception:
         logger.error(f"Category Read Controller Exception: {exception}", exc_info=True)

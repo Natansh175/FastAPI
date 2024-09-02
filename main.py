@@ -1,15 +1,14 @@
 import uvicorn
-from alembic.operations import batch
 from fastapi import FastAPI
+from backend.routes import routes
 from starlette.middleware.cors import CORSMiddleware
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry import trace
 from opentelemetry.exporter.jaeger.thrift import JaegerExporter
-from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.resources import SERVICE_NAME, Resource
 
-from backend.routes import routes
 
 # Set the service name
 resource = Resource(attributes={
@@ -29,6 +28,7 @@ jaeger_exporter = JaegerExporter(
 span_processor = BatchSpanProcessor(jaeger_exporter)
 trace.get_tracer_provider().add_span_processor(span_processor)
 
+
 # Main app
 app = FastAPI(debug=True, title="Basic E-Commerce API", version="1.0.0",
               summary="A basic E-Commerce API with applied security for "
@@ -36,7 +36,12 @@ app = FastAPI(debug=True, title="Basic E-Commerce API", version="1.0.0",
                       "REST APIs."
               )
 
+# Instrument the FastAPI app
 FastAPIInstrumentor.instrument_app(app)
+
+# Set up the tracer
+tracer = trace.get_tracer(__name__)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -52,7 +57,8 @@ app.include_router(routes.router)
 # Demo/Home endpoint
 @app.get("/")
 async def home():
-    return {"message": "Hello World"}
+    with trace.get_tracer(__name__).start_as_current_span("demo-span"):
+        return {"message": "Hello World"}
 
 
 if __name__ == "__main__":

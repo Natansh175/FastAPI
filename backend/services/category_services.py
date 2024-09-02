@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from math import ceil
+from opentelemetry import trace
 
 from backend.dao.category_dao import CategoryDAO
 from backend.enum.http_enum import HttpStatusCodeEnum, ResponseMessageEnum
@@ -93,51 +94,55 @@ class CategoryServices:
         """
         logger.info(f"{user_id} is reading all categories.")
         try:
-            skip = (page - 1) * limit
+            with trace.get_tracer(__name__).start_as_current_span(
+                    "read_category_service_span") as span:
+                span.set_attribute("user_id", user_id)
 
-            category_dao = CategoryDAO()
-            insert_data_to_excel = InsertDataIntoExcel()
+                skip = (page - 1) * limit
 
-            category_data = category_dao.read_categories(skip, limit,
-                                                         sort_by, search_keyword)
+                category_dao = CategoryDAO()
+                insert_data_to_excel = InsertDataIntoExcel()
 
-            if category_data:
-                data_to_show = [
-                    {
-                        "category_id": category.category_id,
-                        "category_name": category.category_name,
-                        "category_description": category.category_description,
-                        "category_count": category.category_count
-                    }
-                    for category in category_data
-                ]
-                total_count = len(data_to_show)
-                total_pages = ceil(total_count / limit)
+                category_data = category_dao.read_categories(skip, limit,
+                                                             sort_by, search_keyword)
 
-                max_pages_to_display = 5
-                start_page = max(1, page - max_pages_to_display // 2)
-                end_page = min(total_pages,
-                               start_page + max_pages_to_display - 1)
+                if category_data:
+                    data_to_show = [
+                        {
+                            "category_id": category.category_id,
+                            "category_name": category.category_name,
+                            "category_description": category.category_description,
+                            "category_count": category.category_count
+                        }
+                        for category in category_data
+                    ]
+                    total_count = len(data_to_show)
+                    total_pages = ceil(total_count / limit)
 
-                pagination_range = range(start_page, end_page + 1)
+                    max_pages_to_display = 5
+                    start_page = max(1, page - max_pages_to_display // 2)
+                    end_page = min(total_pages,
+                                   start_page + max_pages_to_display - 1)
 
-                background_tasks.add_task(insert_data_to_excel.admin_insert_data_excel,
-                                          data_to_show, user_id,
-                                          type_of_data="category_data")
+                    pagination_range = range(start_page, end_page + 1)
 
-                logger.info(f"Categories retrieved successfully by {user_id}.")
+                    background_tasks.add_task(insert_data_to_excel.admin_insert_data_excel,
+                                              data_to_show, user_id,
+                                              type_of_data="category_data")
+
+                    logger.info(f"Categories retrieved successfully by {user_id}.")
+                    return ApplicationServices.application_response(
+                        HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
+                        data=data_to_show
+                    )
+
+                logger.info("No categories found")
                 return ApplicationServices.application_response(
-                    HttpStatusCodeEnum.OK, ResponseMessageEnum.OK, True,
-                    data=data_to_show
+                    HttpStatusCodeEnum.NOT_FOUND,
+                    ResponseMessageEnum.NoCategoryFound,
+                    False,
+                    data=ResponseMessageEnum.NoCategoryFound
                 )
-
-            logger.info("No categories found")
-            return ApplicationServices.application_response(
-                HttpStatusCodeEnum.NOT_FOUND,
-                ResponseMessageEnum.NoCategoryFound,
-                False,
-                data=ResponseMessageEnum.NoCategoryFound
-            )
 
         except Exception as exception:
             logger.error(f"Category Read Service Exception: {exception}",

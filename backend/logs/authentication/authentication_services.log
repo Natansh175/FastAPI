@@ -9305,3 +9305,149 @@ Traceback (most recent call last):
   File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
     raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
 fastapi.exceptions.HTTPException: 500: subcategory_quantity
+2024-08-30 12:09:43,437 - backend.services.authentication_services - ERROR - Login Required Exception: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 106, in admin_read_categories
+    category_data = category_dao.read_categories(skip, limit,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 23, in read_categories
+    span.set_attribute(
+TypeError: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 91, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 150, in admin_read_categories
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 163, in decorator
+    return await fn(**kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 102, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+2024-08-30 12:43:40,565 - backend.services.authentication_services - ERROR - Refresh Token function exception: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 106, in admin_read_categories
+    category_data = category_dao.read_categories(skip, limit,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 23, in read_categories
+    span.set_attribute(
+TypeError: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 91, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 150, in admin_read_categories
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 114, in refresh_token
+    return await fn(**kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 102, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+2024-08-30 12:43:40,586 - backend.services.authentication_services - ERROR - Login Required Exception: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 144, in decorator
+    data = jwt.decode(accesstoken, AuthenticationEnum.SECRET_KEY, algorithms=["HS256"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 210, in decode
+    decoded = self.decode_complete(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 162, in decode_complete
+    self._validate_claims(
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 248, in _validate_claims
+    self._validate_exp(payload, now, leeway)
+  File "C:\ProgramData\Anaconda3\envs\Fastapi\Lib\site-packages\jwt\api_jwt.py", line 306, in _validate_exp
+    raise ExpiredSignatureError("Signature has expired")
+jwt.exceptions.ExpiredSignatureError: Signature has expired
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 106, in admin_read_categories
+    category_data = category_dao.read_categories(skip, limit,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\dao\category_dao.py", line 23, in read_categories
+    span.set_attribute(
+TypeError: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 91, in read_categories
+    response_data = category_services.admin_read_categories(user_id,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\category_services.py", line 150, in admin_read_categories
+    ApplicationServices.handle_exception(exception, True)
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 114, in refresh_token
+    return await fn(**kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\api\controller\category_controller.py", line 102, in read_categories
+    return ApplicationServices.handle_exception(exception, is_raise=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 153, in decorator
+    return await refresh_token(fn, role, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\authentication_services.py", line 127, in refresh_token
+    return ApplicationServices.handle_exception(exception, True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Training\FastAPI\Structural FastAPI\backend\services\app_services.py", line 36, in handle_exception
+    raise HTTPException(status_code=response['status_code'], detail=response['response_message'])
+fastapi.exceptions.HTTPException: 500: Span.set_attribute() takes 3 positional arguments but 9 were given

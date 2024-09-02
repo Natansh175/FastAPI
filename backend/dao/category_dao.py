@@ -1,4 +1,5 @@
 from backend import sql_dynamic
+from opentelemetry import trace
 
 
 class CategoryDAO:
@@ -17,11 +18,18 @@ class CategoryDAO:
     # To show all inserted and not-deleted categories to user
     @staticmethod
     def read_categories(skip, limit, sort_criteria, search_keyword):
-        category_data = sql_dynamic.view_data_all('category_table',
-                                                  'category',
-                                                  4, skip,
-                                                  limit, sort_criteria, search_keyword)
-        return category_data
+        with trace.get_tracer(__name__).start_as_current_span(
+                "read_category_dao_span") as span:
+            span.set_attribute("skip", skip)
+            span.set_attribute("limit", limit)
+            span.set_attribute("sort_criteria", sort_criteria)
+            span.set_attribute("search_keyword", search_keyword)
+
+            category_data = sql_dynamic.view_data_all('category_table',
+                                                      'category',
+                                                      4, skip,
+                                                      limit, sort_criteria, search_keyword)
+            return category_data
 
     @staticmethod
     def update_category(category_vo_list):
